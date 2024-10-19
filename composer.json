@@ -1,0 +1,17 @@
+{
+    "name": "daniser/rubrica",
+    "description": "A project with php and mysql",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Daniser\\Rubrica\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "DaniSer84",
+            "email": "serenelli84@gmail.com"
+        }
+    ],
+    "require": {}
+}
