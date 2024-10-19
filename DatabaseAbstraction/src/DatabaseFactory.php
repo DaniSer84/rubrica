@@ -1,8 +1,8 @@
 <?php
 
-namespace Test\DatabaseAbstraction;
+namespace Daniser\Rubrica;
 use Exception;
-use Test\DatabaseAbstraction\DatabaseContract;
+use Daniser\Rubrica\DatabaseContract;
 use PDO;
 use PDOException;
 use Dotenv\Dotenv;

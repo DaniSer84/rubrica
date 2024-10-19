@@ -1,0 +1,159 @@
+[19-Oct-2024 15:54:27 UTC] PHP Fatal error:  Uncaught Error: Class "Test\DatabaseAbstraction\DatabaseFactory" not found in C:\WebDev\CODE\rubrica\common.php:11
+Stack trace:
+#0 C:\WebDev\CODE\rubrica\index.php(5): require_once()
+#1 {main}
+  thrown in C:\WebDev\CODE\rubrica\common.php on line 11
+[19-Oct-2024 15:56:33 UTC] PHP Fatal error:  Uncaught Error: Class "Test\DatabaseAbstraction\DatabaseFactory" not found in C:\WebDev\CODE\rubrica\common.php:9
+Stack trace:
+#0 C:\WebDev\CODE\rubrica\index.php(5): require_once()
+#1 {main}
+  thrown in C:\WebDev\CODE\rubrica\common.php on line 9
+[19-Oct-2024 15:57:37 UTC] PHP Fatal error:  Uncaught Error: Class "Daniser\Rubrica\DatabaseFactory" not found in C:\WebDev\CODE\rubrica\common.php:9
+Stack trace:
+#0 C:\WebDev\CODE\rubrica\index.php(5): require_once()
+#1 {main}
+  thrown in C:\WebDev\CODE\rubrica\common.php on line 9
+[19-Oct-2024 16:02:14 UTC] PHP Warning:  Array to string conversion in C:\WebDev\CODE\rubrica\index.php on line 9
+[19-Oct-2024 16:02:14 UTC] PHP Warning:  Array to string conversion in C:\WebDev\CODE\rubrica\index.php on line 9
+[19-Oct-2024 16:02:14 UTC] PHP Warning:  Array to string conversion in C:\WebDev\CODE\rubrica\index.php on line 9
+[19-Oct-2024 16:15:49 UTC] PHP Warning:  Undefined variable $db2 in C:\WebDev\CODE\rubrica\index.php on line 7
+[19-Oct-2024 16:15:49 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getData() on null in C:\WebDev\CODE\rubrica\index.php:7
+Stack trace:
+#0 {main}
+  thrown in C:\WebDev\CODE\rubrica\index.php on line 7
+[19-Oct-2024 16:31:27 UTC] PHP Warning:  Undefined variable $db2 in C:\WebDev\CODE\rubrica\index.php on line 104
+[19-Oct-2024 16:31:27 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getData() on null in C:\WebDev\CODE\rubrica\index.php:104
+Stack trace:
+#0 {main}
+  thrown in C:\WebDev\CODE\rubrica\index.php on line 104
+[19-Oct-2024 19:43:28 UTC] PHP Warning:  Undefined array key "picture" in C:\WebDev\CODE\rubrica\index.php on line 9
+[19-Oct-2024 19:43:28 UTC] PHP Warning:  Undefined array key "phone_number" in C:\WebDev\CODE\rubrica\index.php on line 12
+[19-Oct-2024 19:43:28 UTC] PHP Warning:  Undefined array key "company" in C:\WebDev\CODE\rubrica\index.php on line 14
+[19-Oct-2024 19:43:28 UTC] PHP Warning:  Undefined array key "role" in C:\WebDev\CODE\rubrica\index.php on line 15
+[19-Oct-2024 19:43:28 UTC] PHP Warning:  Undefined variable $firstName in C:\WebDev\CODE\rubrica\index.php on line 18
+[19-Oct-2024 19:47:27 UTC] PHP Warning:  Undefined array key "picture" in C:\WebDev\CODE\rubrica\index.php on line 9
+[19-Oct-2024 19:47:27 UTC] PHP Warning:  Undefined array key "phone_number" in C:\WebDev\CODE\rubrica\index.php on line 12
+[19-Oct-2024 19:47:27 UTC] PHP Warning:  Undefined array key "company" in C:\WebDev\CODE\rubrica\index.php on line 14
+[19-Oct-2024 19:47:27 UTC] PHP Warning:  Undefined array key "role" in C:\WebDev\CODE\rubrica\index.php on line 15
+[19-Oct-2024 19:47:27 UTC] PHP Warning:  Undefined variable $db2 in C:\WebDev\CODE\rubrica\index.php on line 19
+[19-Oct-2024 19:47:27 UTC] PHP Fatal error:  Uncaught Error: Call to a member function setData() on null in C:\WebDev\CODE\rubrica\index.php:19
+Stack trace:
+#0 {main}
+  thrown in C:\WebDev\CODE\rubrica\index.php on line 19
+[19-Oct-2024 19:49:15 UTC] PHP Warning:  Undefined array key "picture" in C:\WebDev\CODE\rubrica\index.php on line 9
+[19-Oct-2024 19:49:15 UTC] PHP Warning:  Undefined array key "phone_number" in C:\WebDev\CODE\rubrica\index.php on line 12
+[19-Oct-2024 19:49:15 UTC] PHP Warning:  Undefined array key "company" in C:\WebDev\CODE\rubrica\index.php on line 14
+[19-Oct-2024 19:49:15 UTC] PHP Warning:  Undefined array key "role" in C:\WebDev\CODE\rubrica\index.php on line 15
+[19-Oct-2024 19:49:15 UTC] PHP Warning:  Undefined variable $db2 in C:\WebDev\CODE\rubrica\index.php on line 19
+[19-Oct-2024 19:49:15 UTC] PHP Fatal error:  Uncaught Error: Call to a member function setData() on null in C:\WebDev\CODE\rubrica\index.php:19
+Stack trace:
+#0 {main}
+  thrown in C:\WebDev\CODE\rubrica\index.php on line 19
+[19-Oct-2024 19:49:56 UTC] PHP Warning:  Undefined array key "picture" in C:\WebDev\CODE\rubrica\index.php on line 9
+[19-Oct-2024 19:49:56 UTC] PHP Warning:  Undefined array key "phone_number" in C:\WebDev\CODE\rubrica\index.php on line 12
+[19-Oct-2024 19:49:56 UTC] PHP Warning:  Undefined array key "company" in C:\WebDev\CODE\rubrica\index.php on line 14
+[19-Oct-2024 19:49:56 UTC] PHP Warning:  Undefined array key "role" in C:\WebDev\CODE\rubrica\index.php on line 15
+[19-Oct-2024 19:49:56 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'rubrica.contact' doesn't exist in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php:36
+Stack trace:
+#0 C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php(36): PDOStatement->execute(Array)
+#1 C:\WebDev\CODE\rubrica\index.php(19): Daniser\Rubrica\MyPDO->setData('INSERT INTO con...', Array)
+#2 {main}
+  thrown in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php on line 36
+[19-Oct-2024 19:52:04 UTC] PHP Warning:  Undefined array key "picture" in C:\WebDev\CODE\rubrica\index.php on line 10
+[19-Oct-2024 19:52:04 UTC] PHP Warning:  Undefined array key "phone_number" in C:\WebDev\CODE\rubrica\index.php on line 13
+[19-Oct-2024 19:52:04 UTC] PHP Warning:  Undefined array key "company" in C:\WebDev\CODE\rubrica\index.php on line 15
+[19-Oct-2024 19:52:04 UTC] PHP Warning:  Undefined array key "role" in C:\WebDev\CODE\rubrica\index.php on line 16
+[19-Oct-2024 19:52:04 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'birthday' in 'field list' in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php:36
+Stack trace:
+#0 C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php(36): PDOStatement->execute(Array)
+#1 C:\WebDev\CODE\rubrica\index.php(20): Daniser\Rubrica\MyPDO->setData('INSERT INTO con...', Array)
+#2 {main}
+  thrown in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php on line 36
+[19-Oct-2024 19:52:25 UTC] PHP Warning:  Undefined array key "picture" in C:\WebDev\CODE\rubrica\index.php on line 10
+[19-Oct-2024 19:52:25 UTC] PHP Warning:  Undefined array key "phone_number" in C:\WebDev\CODE\rubrica\index.php on line 13
+[19-Oct-2024 19:52:25 UTC] PHP Warning:  Undefined array key "company" in C:\WebDev\CODE\rubrica\index.php on line 15
+[19-Oct-2024 19:52:25 UTC] PHP Warning:  Undefined array key "role" in C:\WebDev\CODE\rubrica\index.php on line 16
+[19-Oct-2024 19:52:25 UTC] PHP Warning:  Undefined array key "phone_number" in C:\WebDev\CODE\rubrica\index.php on line 137
+[19-Oct-2024 19:52:25 UTC] PHP Warning:  Undefined array key "company" in C:\WebDev\CODE\rubrica\index.php on line 137
+[19-Oct-2024 19:52:25 UTC] PHP Warning:  Undefined array key "role" in C:\WebDev\CODE\rubrica\index.php on line 137
+[19-Oct-2024 20:52:54 UTC] PHP Warning:  Undefined array key "picture" in C:\WebDev\CODE\rubrica\index.php on line 10
+[19-Oct-2024 20:54:02 UTC] PHP Warning:  Undefined array key "picture" in C:\WebDev\CODE\rubrica\index.php on line 10
+[19-Oct-2024 20:54:02 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'birthday' in 'field list' in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php:36
+Stack trace:
+#0 C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php(36): PDOStatement->execute(Array)
+#1 C:\WebDev\CODE\rubrica\index.php(20): Daniser\Rubrica\MyPDO->setData('INSERT INTO con...', Array)
+#2 {main}
+  thrown in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php on line 36
+[19-Oct-2024 20:55:15 UTC] PHP Warning:  Undefined array key "picture" in C:\WebDev\CODE\rubrica\index.php on line 10
+[19-Oct-2024 20:55:15 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'birthday' in 'field list' in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php:36
+Stack trace:
+#0 C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php(36): PDOStatement->execute(Array)
+#1 C:\WebDev\CODE\rubrica\index.php(20): Daniser\Rubrica\MyPDO->setData('INSERT INTO con...', Array)
+#2 {main}
+  thrown in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php on line 36
+[19-Oct-2024 20:56:07 UTC] PHP Warning:  Undefined array key "picture" in C:\WebDev\CODE\rubrica\index.php on line 10
+[19-Oct-2024 20:56:07 UTC] PHP Warning:  Array to string conversion in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php on line 36
+[19-Oct-2024 20:56:07 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'birthday' in 'field list' in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php:36
+Stack trace:
+#0 C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php(36): PDOStatement->execute(Array)
+#1 C:\WebDev\CODE\rubrica\index.php(20): Daniser\Rubrica\MyPDO->setData('INSERT INTO con...', Array)
+#2 {main}
+  thrown in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php on line 36
+[19-Oct-2024 21:00:04 UTC] PHP Warning:  Undefined array key "picture" in C:\WebDev\CODE\rubrica\index.php on line 10
+[19-Oct-2024 21:00:25 UTC] PHP Warning:  Undefined array key "picture" in C:\WebDev\CODE\rubrica\index.php on line 10
+[19-Oct-2024 21:00:58 UTC] PHP Warning:  Undefined array key "picture" in C:\WebDev\CODE\rubrica\index.php on line 9
+[19-Oct-2024 21:01:06 UTC] PHP Warning:  Undefined array key "picture" in C:\WebDev\CODE\rubrica\index.php on line 9
+[19-Oct-2024 21:05:31 UTC] PHP Warning:  Undefined array key "picture" in C:\WebDev\CODE\rubrica\index.php on line 9
+[19-Oct-2024 21:49:25 UTC] PHP Warning:  Undefined variable $string in C:\WebDev\CODE\rubrica\index.php on line 25
+[19-Oct-2024 21:59:50 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php:36
+Stack trace:
+#0 C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php(36): PDOStatement->execute(Array)
+#1 C:\WebDev\CODE\rubrica\index.php(65): Daniser\Rubrica\MyPDO->setData('INSERT INTO con...', Array)
+#2 {main}
+  thrown in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php on line 36
+[19-Oct-2024 22:04:57 UTC] PHP Parse error:  syntax error, unexpected variable "$db" in C:\WebDev\CODE\rubrica\index.php on line 94
+[19-Oct-2024 22:05:56 UTC] PHP Parse error:  syntax error, unexpected identifier "header" in C:\WebDev\CODE\rubrica\index.php on line 101
+[19-Oct-2024 22:06:02 UTC] PHP Parse error:  syntax error, unexpected identifier "header" in C:\WebDev\CODE\rubrica\index.php on line 101
+[19-Oct-2024 22:06:21 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 65011720 bytes) in C:\WebDev\CODE\rubrica\index.php on line 78
+[19-Oct-2024 22:08:46 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') VALUES ( 'Daniele', 'Serenelli', '3516847907', 'serenelli84@gmail.com',  )' at line 1 in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php:36
+Stack trace:
+#0 C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php(36): PDOStatement->execute(Array)
+#1 C:\WebDev\CODE\rubrica\index.php(95): Daniser\Rubrica\MyPDO->setData('INSERT INTO con...', Array)
+#2 {main}
+  thrown in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php on line 36
+[19-Oct-2024 22:13:51 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') VALUES ( 'Daniele', 'Serenelli', '3516847907', 'serenelli84@gmail.com',  )' at line 1 in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php:36
+Stack trace:
+#0 C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php(36): PDOStatement->execute(Array)
+#1 C:\WebDev\CODE\rubrica\index.php(99): Daniser\Rubrica\MyPDO->setData('INSERT INTO con...', Array)
+#2 {main}
+  thrown in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php on line 36
+[19-Oct-2024 22:25:30 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'serenelli84@gmail.com' for key 'contacts.email_2' in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php:36
+Stack trace:
+#0 C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php(36): PDOStatement->execute(Array)
+#1 C:\WebDev\CODE\rubrica\index.php(99): Daniser\Rubrica\MyPDO->setData('INSERT INTO con...', Array)
+#2 {main}
+  thrown in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php on line 36
+[19-Oct-2024 22:44:45 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1364 Field 'phone_number' doesn't have a default value in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php:36
+Stack trace:
+#0 C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php(36): PDOStatement->execute(Array)
+#1 C:\WebDev\CODE\rubrica\index.php(14): Daniser\Rubrica\MyPDO->setData('INSERT INTO con...', Array)
+#2 {main}
+  thrown in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php on line 36
+[19-Oct-2024 22:53:15 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'birthday' in 'field list' in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php:36
+Stack trace:
+#0 C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php(36): PDOStatement->execute(Array)
+#1 C:\WebDev\CODE\rubrica\index.php(22): Daniser\Rubrica\MyPDO->setData('INSERT INTO con...', Array)
+#2 {main}
+  thrown in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php on line 36
+[19-Oct-2024 22:55:40 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'birthday' in 'field list' in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php:36
+Stack trace:
+#0 C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php(36): PDOStatement->execute(Array)
+#1 C:\WebDev\CODE\rubrica\index.php(22): Daniser\Rubrica\MyPDO->setData('INSERT INTO con...', Array)
+#2 {main}
+  thrown in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php on line 36
+[19-Oct-2024 22:58:46 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'serenelli84@gmail.com' for key 'contacts.email_2' in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php:36
+Stack trace:
+#0 C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php(36): PDOStatement->execute(Array)
+#1 C:\WebDev\CODE\rubrica\index.php(22): Daniser\Rubrica\MyPDO->setData('INSERT INTO con...', Array)
+#2 {main}
+  thrown in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php on line 36

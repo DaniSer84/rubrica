@@ -1,6 +1,6 @@
 <?php
 
-namespace Test\DatabaseAbstraction;
+namespace Daniser\Rubrica;
 use PDOStatement;
 
 class MyPDOQueryResult implements DatabaseQueryResultContract {

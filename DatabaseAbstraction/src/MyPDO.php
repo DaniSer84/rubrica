@@ -1,7 +1,7 @@
 <?php
 
 // questo namespace serve a far capire all'autoload in index di caricare il file -> per referenziare in maniera semplice le classi.
-namespace Test\DatabaseAbstraction;
+namespace Daniser\Rubrica;
 
 class MyPDO extends \PDO implements DatabaseContract {
 

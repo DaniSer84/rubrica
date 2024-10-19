@@ -1,6 +1,6 @@
 <?php
 
-namespace Test\DatabaseAbstraction;
+namespace Daniser\Rubrica;
 
 interface DatabaseContract {
 

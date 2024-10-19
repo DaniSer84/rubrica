@@ -1,6 +1,6 @@
 <?php
 
-namespace Test\DatabaseAbstraction;
+namespace Daniser\Rubrica;
 
 // una classe per astrarre il concetto della connessione a un db
 class DbConfig {
