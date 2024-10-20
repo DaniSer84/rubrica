@@ -177,3 +177,85 @@ Stack trace:
 [20-Oct-2024 11:00:17 UTC] PHP Warning:  Undefined array key "item_id" in C:\WebDev\CODE\rubrica\delete.php on line 9
 [20-Oct-2024 11:00:28 UTC] PHP Warning:  Undefined array key "item_id" in C:\WebDev\CODE\rubrica\delete.php on line 9
 [20-Oct-2024 11:00:59 UTC] PHP Warning:  Undefined array key "item_id" in C:\WebDev\CODE\rubrica\delete.php on line 9
+[20-Oct-2024 13:11:51 UTC] PHP Warning:  Undefined array key "actor_id" in C:\WebDev\CODE\rubrica\update.php on line 7
+[20-Oct-2024 13:11:52 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'rubrica.actor' doesn't exist in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php:24
+Stack trace:
+#0 C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php(24): PDOStatement->execute(Array)
+#1 C:\WebDev\CODE\rubrica\update.php(9): Daniser\Rubrica\MyPDO->getData('SELECT * FROM a...', Array)
+#2 {main}
+  thrown in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php on line 24
+[20-Oct-2024 13:13:16 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'rubrica.actor' doesn't exist in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php:24
+Stack trace:
+#0 C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php(24): PDOStatement->execute(Array)
+#1 C:\WebDev\CODE\rubrica\update.php(9): Daniser\Rubrica\MyPDO->getData('SELECT * FROM a...', Array)
+#2 {main}
+  thrown in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php on line 24
+[20-Oct-2024 13:49:03 UTC] PHP Warning:  Undefined array key "picture" in C:\WebDev\CODE\rubrica\update.php on line 34
+[20-Oct-2024 13:49:03 UTC] PHP Warning:  Undefined array key "birthdare" in C:\WebDev\CODE\rubrica\update.php on line 36
+[20-Oct-2024 13:49:03 UTC] PHP Warning:  Undefined variable $db2 in C:\WebDev\CODE\rubrica\update.php on line 39
+[20-Oct-2024 13:49:03 UTC] PHP Fatal error:  Uncaught Error: Call to a member function setData() on null in C:\WebDev\CODE\rubrica\update.php:39
+Stack trace:
+#0 {main}
+  thrown in C:\WebDev\CODE\rubrica\update.php on line 39
+[20-Oct-2024 13:54:17 UTC] PHP Warning:  Undefined array key "picture" in C:\WebDev\CODE\rubrica\update.php on line 34
+[20-Oct-2024 13:54:17 UTC] PHP Warning:  Undefined array key "birthdare" in C:\WebDev\CODE\rubrica\update.php on line 36
+[20-Oct-2024 13:54:17 UTC] PHP Warning:  Undefined variable $db2 in C:\WebDev\CODE\rubrica\update.php on line 38
+[20-Oct-2024 13:54:17 UTC] PHP Fatal error:  Uncaught Error: Call to a member function setData() on null in C:\WebDev\CODE\rubrica\update.php:38
+Stack trace:
+#0 {main}
+  thrown in C:\WebDev\CODE\rubrica\update.php on line 38
+[20-Oct-2024 13:55:03 UTC] PHP Warning:  Undefined array key "picture" in C:\WebDev\CODE\rubrica\update.php on line 34
+[20-Oct-2024 13:55:03 UTC] PHP Warning:  Undefined array key "birthdare" in C:\WebDev\CODE\rubrica\update.php on line 36
+[20-Oct-2024 13:55:03 UTC] PHP Warning:  Undefined variable $db2 in C:\WebDev\CODE\rubrica\update.php on line 38
+[20-Oct-2024 13:55:03 UTC] PHP Fatal error:  Uncaught Error: Call to a member function setData() on null in C:\WebDev\CODE\rubrica\update.php:38
+Stack trace:
+#0 {main}
+  thrown in C:\WebDev\CODE\rubrica\update.php on line 38
+[20-Oct-2024 13:57:53 UTC] PHP Warning:  Undefined variable $_FILE in C:\WebDev\CODE\rubrica\update.php on line 34
+[20-Oct-2024 13:57:53 UTC] PHP Warning:  Trying to access array offset on null in C:\WebDev\CODE\rubrica\update.php on line 34
+[20-Oct-2024 13:57:53 UTC] PHP Warning:  Trying to access array offset on null in C:\WebDev\CODE\rubrica\update.php on line 34
+[20-Oct-2024 13:59:06 UTC] PHP Warning:  Undefined variable $_FILE in C:\WebDev\CODE\rubrica\update.php on line 34
+[20-Oct-2024 13:59:06 UTC] PHP Warning:  Trying to access array offset on null in C:\WebDev\CODE\rubrica\update.php on line 34
+[20-Oct-2024 13:59:06 UTC] PHP Warning:  Trying to access array offset on null in C:\WebDev\CODE\rubrica\update.php on line 34
+[20-Oct-2024 14:00:38 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php:36
+Stack trace:
+#0 C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php(36): PDOStatement->execute(Array)
+#1 C:\WebDev\CODE\rubrica\update.php(38): Daniser\Rubrica\MyPDO->setData('UPDATE actor SE...', Array)
+#2 {main}
+  thrown in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php on line 36
+[20-Oct-2024 14:02:09 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php:36
+Stack trace:
+#0 C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php(36): PDOStatement->execute(Array)
+#1 C:\WebDev\CODE\rubrica\update.php(38): Daniser\Rubrica\MyPDO->setData('UPDATE actor SE...', Array)
+#2 {main}
+  thrown in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php on line 36
+[20-Oct-2024 14:02:20 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'rubrica.actor' doesn't exist in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php:36
+Stack trace:
+#0 C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php(36): PDOStatement->execute(Array)
+#1 C:\WebDev\CODE\rubrica\update.php(39): Daniser\Rubrica\MyPDO->setData('UPDATE actor SE...', Array)
+#2 {main}
+  thrown in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php on line 36
+[20-Oct-2024 14:02:37 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'actor_id' in 'where clause' in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php:36
+Stack trace:
+#0 C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php(36): PDOStatement->execute(Array)
+#1 C:\WebDev\CODE\rubrica\update.php(39): Daniser\Rubrica\MyPDO->setData('UPDATE contacts...', Array)
+#2 {main}
+  thrown in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php on line 36
+[20-Oct-2024 14:08:05 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect date value: '' for column 'birthdate' at row 1 in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php:36
+Stack trace:
+#0 C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php(36): PDOStatement->execute(Array)
+#1 C:\WebDev\CODE\rubrica\update.php(39): Daniser\Rubrica\MyPDO->setData('UPDATE contacts...', Array)
+#2 {main}
+  thrown in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php on line 36
+[20-Oct-2024 14:10:58 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect date value: '' for column 'birthdate' at row 1 in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php:36
+Stack trace:
+#0 C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php(36): PDOStatement->execute(Array)
+#1 C:\WebDev\CODE\rubrica\update.php(39): Daniser\Rubrica\MyPDO->setData('UPDATE contacts...', Array)
+#2 {main}
+  thrown in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php on line 36
+[20-Oct-2024 14:11:04 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect date value: '' for column 'birthdate' at row 1 in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php:36
+Stack trace:
+#0 C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php(36): PDOStatement->execute(Array)
+#1 C:\WebDev\CODE\rubrica\update.php(39): Daniser\Rubrica\MyPDO->setData('UPDATE contacts...', Array)
+#2 {main}
+  thrown in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php on line 36

@@ -44,68 +44,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             padding: 2.3rem 1.5rem;
             border-radius: 5px;
         }
-
-        a {
-            text-decoration: none;
-            color: #434343;
-
-            &:hover {
-                text-decoration: underline;
-                color: darkgray;
-            }
-        }
-
-        .list-item-text {
-            vertical-align: sub;
-        }
-
         .list-item-btn-container button {
             scale: .8;
         }
-
         .button-container {
             display: flex;
             gap: .5rem;
         }
-
         .button-container button {
             flex: 1 0 auto;
         }
-
-        .card {
-            max-width: 500px;
-            margin: 2rem auto;
-            border: 1px solid lightgray;
-            padding: 2.3rem 1.5rem;
-            border-radius: 5px;
-        }
-
-        .card img {
-            border-radius: 50%;
-            scale: .6;
-            flex-grow: 0;
-        }
-
-        .field:not(i) {
-            width: 100%;
-            height: 3rem;
-        }
-
-        .field i {
-            padding-right: 2rem;
-            width: 10%;
-        }
-
-        .field span {
-            border-bottom: 1px solid lightgray;
-            padding: 0.6rem 0;
-            width: 90%;
-            display: inline-block;
-        }
-
-        .field em {
-            color: #aaaaaa;
-            font-size: .9rem;
+        tr {
+            vertical-align: middle;
         }
     </style>
     <script src="https://kit.fontawesome.com/fb85e57258.js" crossorigin="anonymous"></script>
@@ -124,8 +74,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <th scope="col">Phone number</th>
                     <th scope="col">Company</th>
                     <th scope="col">Role</th>
-                    <th scope="col">Email</th>
                     <th scope="col">Picture</th>
+                    <th scope="col">Email</th>
                     <th scope="col">Birthdate</th>
                     <th scope="col">Created at</th>
                     <th scope="col">Active</th>
@@ -162,15 +112,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
     <hr>
-    <div class="form-container">
+    <div class="form-container mb-5">
         <h4 class="mb-5 text-center">Aggiungi un contatto:</h4>
-        <?php
-        function setInputValue($name)
-        {
-            return $_POST ? $_POST[$name] : null;
-        }
-
-        ?>
         <form action="" method="POST" enctype="multipart/form-data" class="needs-validation">
             <div class="form-floating mb-3">
                 <input type="file" class="form-control" id="file_upload" name="picture">
@@ -205,11 +148,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="società">Società</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="qualifica" name="role" placeholder="Developer">                   >
+                <input type="text" class="form-control" id="qualifica" name="role" placeholder="Developer">          
                 <label for="qualifica">Qualifica</label>
             </div>
             <div class="form-floating mb-5">
-                <input type="date" class="form-control" id="data_nascita" name="birthdate" placeholder="01/01/1980">
+                <input type="date" class="form-control" id="data_nascita" name="birthdate" placeholder="01/01/1980" required>
                 <label for="data_nascita">Data di nascita</label>
             </div>
             <div class="button-container">
