@@ -105,20 +105,57 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             font-size: .9rem;
         }
     </style>
+    <script src="https://kit.fontawesome.com/fb85e57258.js" crossorigin="anonymous"></script>
+    <script src="js/index.js" type="module"></script>
 </head>
 
 <body>
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Contacts</h5>
-            <ul class="list-group">
+    <div class="container">
+        <h5 class="title text-center mb-3 mt-5">Contacts</h5>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Surname</th>
+                    <th scope="col">Phone number</th>
+                    <th scope="col">Company</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Picture</th>
+                    <th scope="col">Birthdate</th>
+                    <th scope="col">Created at</th>
+                    <th scope="col">Active</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
                 <?php
-                $result = $db->getData("SELECT * FROM contacts", []);
+                $result = $db->getData("SELECT * FROM contacts ORDER BY surname", []);
                 while ($contact = $result->fetch()) {
-                    echo Helper::createContactListItem($contact);
+                    echo Helper::createContactTable($contact);
                 }
                 ?>
-            </ul>
+            </tbody>
+        </table>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="deleteItem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Delete contact with id: <span id="id-to-delete"></span></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this contact?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="" id="delete-btn">
+                        <button type="button" class="btn btn-primary" >Delete</button>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
     <hr>
