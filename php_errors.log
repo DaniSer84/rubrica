@@ -157,3 +157,23 @@ Stack trace:
 #1 C:\WebDev\CODE\rubrica\index.php(22): Daniser\Rubrica\MyPDO->setData('INSERT INTO con...', Array)
 #2 {main}
   thrown in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php on line 36
+[20-Oct-2024 09:16:37 UTC] PHP Warning:  Undefined array key "actor_id" in C:\WebDev\CODE\rubrica\delete.php on line 8
+[20-Oct-2024 09:16:37 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'rubrica.actor' doesn't exist in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php:73
+Stack trace:
+#0 C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php(73): PDOStatement->execute(Array)
+#1 C:\WebDev\CODE\rubrica\delete.php(10): Daniser\Rubrica\MyPDO->deleteData('DELETE FROM act...', Array)
+#2 {main}
+  thrown in C:\WebDev\CODE\rubrica\DatabaseAbstraction\src\MyPDO.php on line 73
+[20-Oct-2024 09:17:05 UTC] PHP Warning:  Undefined array key "id" in C:\WebDev\CODE\rubrica\delete.php on line 8
+[20-Oct-2024 09:17:14 UTC] PHP Warning:  Undefined array key "id" in C:\WebDev\CODE\rubrica\delete.php on line 8
+[20-Oct-2024 09:17:40 UTC] PHP Warning:  Undefined array key "id" in C:\WebDev\CODE\rubrica\delete.php on line 8
+[20-Oct-2024 09:18:23 UTC] PHP Warning:  Undefined array key "id" in C:\WebDev\CODE\rubrica\delete.php on line 8
+[20-Oct-2024 09:18:23 UTC] PHP Warning:  Array to string conversion in C:\WebDev\CODE\rubrica\delete.php on line 10
+[20-Oct-2024 09:18:23 UTC] PHP Warning:  Undefined variable $Array in C:\WebDev\CODE\rubrica\delete.php on line 10
+[20-Oct-2024 10:53:11 UTC] PHP Warning:  Undefined array key "item_id" in C:\WebDev\CODE\rubrica\delete.php on line 8
+[20-Oct-2024 10:53:44 UTC] PHP Warning:  Undefined array key "item_id" in C:\WebDev\CODE\rubrica\delete.php on line 8
+[20-Oct-2024 10:58:49 UTC] PHP Warning:  Undefined array key "item_id" in C:\WebDev\CODE\rubrica\delete.php on line 8
+[20-Oct-2024 10:59:20 UTC] PHP Warning:  Undefined array key "item_id" in C:\WebDev\CODE\rubrica\delete.php on line 8
+[20-Oct-2024 11:00:17 UTC] PHP Warning:  Undefined array key "item_id" in C:\WebDev\CODE\rubrica\delete.php on line 9
+[20-Oct-2024 11:00:28 UTC] PHP Warning:  Undefined array key "item_id" in C:\WebDev\CODE\rubrica\delete.php on line 9
+[20-Oct-2024 11:00:59 UTC] PHP Warning:  Undefined array key "item_id" in C:\WebDev\CODE\rubrica\delete.php on line 9

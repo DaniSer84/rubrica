@@ -34,9 +34,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insert Contact Form</title>
-    <script src="https://kit.fontawesome.com/fb85e57258.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         .form-container {
             max-width: 500px;
@@ -45,6 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             padding: 2.3rem 1.5rem;
             border-radius: 5px;
         }
+
         a {
             text-decoration: none;
             color: #434343;
@@ -54,18 +54,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 color: darkgray;
             }
         }
+
         .list-item-text {
             vertical-align: sub;
         }
+
         .list-item-btn-container button {
             scale: .8;
         }
+
         .button-container {
             display: flex;
             gap: .5rem;
         }
 
-        button {
+        .button-container button {
             flex: 1 0 auto;
         }
 
@@ -168,10 +171,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         ?>
-        <form action="" method="POST" enctype="multipart/form-data"
-            class="needs-validation">
+        <form action="" method="POST" enctype="multipart/form-data" class="needs-validation">
             <div class="form-floating mb-3">
-                <input type="file" class="form-control" id="file_upload" name="picture" value="">
+                <input type="file" class="form-control" id="file_upload" name="picture">
                 <label for="file_upload">Immagine</label>
                 <div class="invalid-feedback">
                     Please choose a file.
@@ -179,37 +181,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="nome" name="name" placeholder="Mario"
-                    value="<?= setInputValue("name") ?>">
+                    >
                 <label for="nome">Nome</label>
             </div>
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="cognome" name="surname" placeholder="Rossi"
-                    value="<?= setInputValue("surname") ?>">
+                >
                 <label for="cognome">Cognome</label>
             </div>
             <div class="form-floating mb-3">
                 <input type="tel" class="form-control" id="telefono" name="phone_number" placeholder="02 2021010"
-                    value="<?= setInputValue("phone_number") ?>">
+                    >
                 <label for="telefono">Telefono</label>
             </div>
             <div class="form-floating mb-3">
                 <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com"
-                    value="<?= setInputValue("email") ?>">
+                    >
                 <label for="email">Email address</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="società" name="company" placeholder="Amazon"
-                    value="<?= setInputValue("company") ?>">
+                <input type="text" class="form-control" id="società" name="company" placeholder="CDM"
+                    >
                 <label for="società">Società</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="qualifica" name="role" placeholder="Developer"
-                    value="<?= setInputValue("role") ?>">
+                <input type="text" class="form-control" id="qualifica" name="role" placeholder="Developer">                   >
                 <label for="qualifica">Qualifica</label>
             </div>
             <div class="form-floating mb-5">
-                <input type="date" class="form-control" id="data_nascita" name="birthdate" placeholder="01/01/1980"
-                    value="<?= setInputValue("birthdate") ?>">
+                <input type="date" class="form-control" id="data_nascita" name="birthdate" placeholder="01/01/1980">
                 <label for="data_nascita">Data di nascita</label>
             </div>
             <div class="button-container">
