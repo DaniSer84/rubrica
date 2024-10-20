@@ -5,29 +5,22 @@ use Daniser\Rubrica\Helper;
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-    $string = Helper::setString($_POST);
-    $values = Helper::setQueryValues( $_POST );
-    $tokens = Helper::setTokens( $_POST );
 
-    // var_dump( $_FILES["picture"]["name"] );
-    
-    if ( $_FILES["picture"]["name"] ) {
-        
+    $string = Helper::setString($_POST);
+    $tokens = Helper::setTokens($_POST);
+    $values = Helper::setQueryValues($_POST);
+
+    if ($_FILES["picture"]["name"]) {
+
         $string .= ",picture";
         $tokens .= ",?";
-        array_push( $values, $_FILES["picture"]["name"]);
-        
+        array_push($values, $_FILES["picture"]["name"]);
+
     }
-    
+
     $query = "INSERT INTO contacts ( $string ) VALUES ( $tokens )";
 
-    // var_dump( $values );
-    // echo $query;
-    // die("");
-    
-    $db->setData($query, [ $values ] );
-
+    $db->setData($query, [$values]);
 
     header("Location: index.php");
 }
