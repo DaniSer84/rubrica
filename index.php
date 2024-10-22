@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     </style>
     <script src="https://kit.fontawesome.com/fb85e57258.js" crossorigin="anonymous"></script>
-    <script src="js/index.js" type="module"></script>
+    <script src="js/main.js" type="module"></script>
 </head>
 
 <body>
@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Delete contact with id: <span id="id-to-delete"></span></h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Deleting contact: <span id="to-delete"></span></h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -134,7 +134,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="form-floating mb-3">
                 <input type="tel" class="form-control" id="telefono" name="phone_number" placeholder="02 2021010"
-                    >
+                    required>
                 <label for="telefono">Telefono</label>
             </div>
             <div class="form-floating mb-3">

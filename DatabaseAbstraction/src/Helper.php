@@ -74,16 +74,23 @@ class Helper {
         $icons = [
           "name" => "fa-user-pen", 
           "surname" => "fa-user-pen",
-          "telephone" => "fa-phone",
+          "phone_number" => "fa-phone",
           "email"=> "fa-envelope",
-          "society"=> "fa-building",
-          "position"=> "fa-briefcase",
-          "birthday"=> "fa-calendar",
+          "company"=> "fa-building",
+          "role"=> "fa-briefcase",
+          "birthdate"=> "fa-calendar",
         ];
         
         $ucKey = "<em class='field-label'>" . ucfirst($key) . "</em>";
+
+        $item = "";
+
+        if ( !is_numeric($key) ) {
+
+            $item .= "<div class='field'><i class='fa-solid $icons[$key]'></i><span class='field-label'>" . ($value ? $value : $ucKey) . "</span></div>";
+            
+        }
       
-        $item = "<div class='field'><i class='fa-solid $icons[$key]'></i><span class='field-label'>" . ($value ? $value : $ucKey) . "</span></div>";
         
         return $item;
       }

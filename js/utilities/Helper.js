@@ -1,19 +1,17 @@
 
 class Helper {
 
-    static setIdtoDelete(id) {
+    static setToDelete(name, id) {
 
         let deleteButton = document.getElementById('delete-btn')
-        let idToDelete = document.getElementById('id-to-delete')
+        let toDelete = document.getElementById('to-delete')
     
-        idToDelete.textContent = id
+        toDelete.textContent = name
     
         deleteButton.setAttribute("href", `delete.php?item_id=${id}`)
     
     }
     
 }
-
-
 
 export { Helper }

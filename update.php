@@ -20,8 +20,6 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET") {
         
     }
 
-    var_dump($selectedContact);
-    
 }
 
 if ( $_SERVER["REQUEST_METHOD"] == "POST") {
