@@ -22,21 +22,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $tokens .= ",?";
         array_push($values, $_FILES["picture"]["name"]);
         
+        // TODO: https://www.phptutorial.net/php-tutorial/php-file-upload/
+        $filename = $_FILES["picture"]["name"];
+        $tmp = $_FILES["picture"]["tmp_name"];
+    
+        $uploadedFile = pathinfo($filename, PATHINFO_FILENAME) . '.png';
+    
+        $filepath = UPLOAD_DIR . '/' . $uploadedFile;
+    
+        $success = move_uploaded_file($tmp, $filepath);
+        if (!$success) {
+            echo "Error moving the file to the upload folder";
+            die();
+        }
     }
     
-    // TODO: https://www.phptutorial.net/php-tutorial/php-file-upload/
-    $filename = $_FILES["picture"]["name"];
-    $tmp = $_FILES["picture"]["tmp_name"];
-
-    $uploadedFile = pathinfo($filename, PATHINFO_FILENAME) . '.png';
-
-    $filepath = UPLOAD_DIR . '/' . $uploadedFile;
-
-    $success = move_uploaded_file($tmp, $filepath);
-    if (!$success) {
-        echo "Error moving the file to the upload folder";
-        die();
-    }
 
 
     $query = "INSERT INTO contacts ( $string ) VALUES ( $tokens )";
