@@ -3,20 +3,41 @@
 require_once __DIR__ . "/common.php";
 use Daniser\Rubrica\Helper;
 
+const UPLOAD_DIR = __DIR__ . "/uploads";
+const ALLOWED_FILES = [
+    'image/png' => 'png',
+    'image/jpeg' => 'jpg'
+];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $string = Helper::setString($_POST);
     $tokens = Helper::setTokens($_POST);
     $values = Helper::setQueryValues($_POST);
-
+    
+    
     if ($_FILES["picture"]["name"]) {
-
+        
         $string .= ",picture";
         $tokens .= ",?";
         array_push($values, $_FILES["picture"]["name"]);
-
+        
     }
+    
+    // TODO: https://www.phptutorial.net/php-tutorial/php-file-upload/
+    $filename = $_FILES["picture"]["name"];
+    $tmp = $_FILES["picture"]["tmp_name"];
+
+    $uploadedFile = pathinfo($filename, PATHINFO_FILENAME) . '.png';
+
+    $filepath = UPLOAD_DIR . '/' . $uploadedFile;
+
+    $success = move_uploaded_file($tmp, $filepath);
+    if (!$success) {
+        echo "Error moving the file to the upload folder";
+        die();
+    }
+
 
     $query = "INSERT INTO contacts ( $string ) VALUES ( $tokens )";
 
