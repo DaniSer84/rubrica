@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insert Contact Form</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         .form-container {
             max-width: 500px;
@@ -44,18 +44,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             padding: 2.3rem 1.5rem;
             border-radius: 5px;
         }
+
         .list-item-btn-container button {
             scale: .8;
         }
+
         .button-container {
             display: flex;
             gap: .5rem;
         }
+
         .button-container button {
             flex: 1 0 auto;
         }
+
         tr {
             vertical-align: middle;
+        }
+
+        .add-img-file {
+            cursor: pointer;
+        }
+        .add-contact-btn {
+            position: relative;
+            left: calc(50% - 62px);
         }
     </style>
     <script src="https://kit.fontawesome.com/fb85e57258.js" crossorigin="anonymous"></script>
@@ -63,104 +75,131 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <div class="container">
-        <h5 class="title text-center mb-3 mt-5">Contacts</h5>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Surname</th>
-                    <th scope="col">Phone number</th>
-                    <th scope="col">Company</th>
-                    <th scope="col">Role</th>
-                    <th scope="col">Picture</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Birthdate</th>
-                    <th scope="col">Created at</th>
-                    <th scope="col">Active</th>
-                </tr>
-            </thead>
-            <tbody class="table-group-divider">
-                <?php
-                $result = $db->getData("SELECT * FROM contacts ORDER BY surname", []);
-                while ($contact = $result->fetch()) {
-                    echo Helper::createContactTable($contact);
-                }
-                ?>
-            </tbody>
-        </table>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="deleteItem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Deleting contact: <span id="to-delete"></span></h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Are you sure you want to delete this contact?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <a href="" id="delete-btn">
-                        <button type="button" class="btn btn-primary" >Delete</button>
-                    </a>
+    <header class="d-flex justify-content-between align-items-center px-5 border-2 border-bottom">
+        <h1>Rubrica</h1>
+        <a href="contact-list.php">Contact list</a>
+    </header>
+    <main>
+        <div class="container rubrica-container">
+            <h5 class="title text-center mb-3 mt-5">Contacts</h5>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Surname</th>
+                        <th scope="col">Phone number</th>
+                        <th scope="col">Company</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Picture</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Birthdate</th>
+                        <th scope="col">Created at</th>
+                        <th scope="col">Active</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <?php
+                    $result = $db->getData("SELECT * FROM contacts ORDER BY surname", []);
+                    while ($contact = $result->fetch()) {
+                        echo Helper::createContactTable($contact);
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+        <!-- Modal - delete contact -->
+        <div class="modal fade" id="deleteItem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Deleting contact: <span
+                                id="to-delete"></span></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete this contact?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <a href="" id="delete-btn">
+                            <button type="button" class="btn btn-primary">Delete</button>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <hr>
-    <div class="form-container mb-5">
-        <h4 class="mb-5 text-center">Aggiungi un contatto:</h4>
-        <form action="" method="POST" enctype="multipart/form-data" class="needs-validation">
-            <div class="form-floating mb-3">
-                <input type="file" class="form-control" id="file_upload" name="picture">
-                <label for="file_upload">Immagine</label>
-                <div class="invalid-feedback">
-                    Please choose a file.
+        <hr>
+        <button type="button" class="btn btn-success add-contact-btn" data-bs-toggle="modal" data-bs-target="#addContact">
+            Add a contact
+        </button>
+        <!-- Modal add contact-->
+        <div class="modal fade" id="addContact" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-container mb-5">
+                            <h4 class="mb-5 text-center">Aggiungi un contatto:</h4>
+                            <form action="" method="POST" enctype="multipart/form-data" class="needs-validation">
+                                <div class="mb-3 ">
+                                    <label for="file_upload" class="position-relative text-center">
+                                        <img src="img/user-account.png" class="w-50 m-auto add-img-file">
+                                    </label>
+                                    <input type="file" class="form-control d-none" id="file_upload" name="picture">
+                                    <div class="invalid-feedback">
+                                        Please choose a file.
+                                    </div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="nome" name="name" placeholder="Mario">
+                                    <label for="nome">Nome</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="cognome" name="surname"
+                                        placeholder="Rossi">
+                                    <label for="cognome">Cognome</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="tel" class="form-control" id="telefono" name="phone_number"
+                                        placeholder="02 2021010" required>
+                                    <label for="telefono">Telefono</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="email" name="email"
+                                        placeholder="name@example.com">
+                                    <label for="email">Email address</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="società" name="company"
+                                        placeholder="CDM">
+                                    <label for="società">Società</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="qualifica" name="role"
+                                        placeholder="Developer">
+                                    <label for="qualifica">Qualifica</label>
+                                </div>
+                                <div class="form-floating mb-5">
+                                    <input type="date" class="form-control" id="data_nascita" name="birthdate"
+                                        placeholder="01/01/1980" required>
+                                    <label for="data_nascita">Data di nascita</label>
+                                </div>
+                                <div class="button-container">
+                                    <button type="reset" class="btn btn-secondary">Cancella</button>
+                                    <button type="submit" class="btn btn-primary">Crea</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="nome" name="name" placeholder="Mario"
-                    >
-                <label for="nome">Nome</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="cognome" name="surname" placeholder="Rossi"
-                >
-                <label for="cognome">Cognome</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="tel" class="form-control" id="telefono" name="phone_number" placeholder="02 2021010"
-                    required>
-                <label for="telefono">Telefono</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com"
-                    >
-                <label for="email">Email address</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="società" name="company" placeholder="CDM"
-                    >
-                <label for="società">Società</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="qualifica" name="role" placeholder="Developer">          
-                <label for="qualifica">Qualifica</label>
-            </div>
-            <div class="form-floating mb-5">
-                <input type="date" class="form-control" id="data_nascita" name="birthdate" placeholder="01/01/1980" required>
-                <label for="data_nascita">Data di nascita</label>
-            </div>
-            <div class="button-container">
-                <button type="reset" class="btn btn-secondary">Cancella</button>
-                <button type="submit" class="btn btn-primary">Crea</button>
-            </div>
-        </form>
-    </div>
+        </div>
+
+
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
