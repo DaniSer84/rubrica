@@ -21,8 +21,19 @@ use Daniser\Rubrica\Helper;
             display: flex;
             gap: .5rem;
         }
-
-        button {
+        .list-item-btn-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+        .list-item-btn-container button {
+            border-radius: 10px;
+        }
+        a {
+            text-decoration: none;
+            color: black; 
+        }
+        .button-container button {
             flex: 1 0 auto;
         }
 
@@ -74,10 +85,35 @@ use Daniser\Rubrica\Helper;
         <div class="container">
             <?php
             $result = $db->getData("SELECT * FROM contacts ORDER BY surname", []);
-            while ($contact = $result->fetch()) {
-                echo Helper::createNameSurnameListItem($contact);
-            }
-            ?>
+            while ($contact = $result->fetch()): ?>
+                <div class="card mb-3" style="max-width: 540px; max-height: 250px">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="https://placehold.co/200x200" class="img-fluid rounded-circle" alt="...">
+                        </div>
+                        <div class="col-md-8 d-flex">
+                            <div class="card-body">
+                                <h5 class="card-title mb-3"><?=$contact['name']?> <?=$contact['surname']?></h5>
+                                <a href="tel:<?=$contact['phone_number']?>">
+                                    <p class="card-text mb-2"><i class="fa-solid fa-phone me-3"></i><?=$contact['phone_number']?></p>
+                                </a>
+                                <a href="mailto:<?=$contact['email']?>">
+                                    <p class="card-text mb-2"><i class="fa-solid fa-envelope me-3"></i><?=$contact['email']?></p>
+                                </a>
+                                <a href="">
+                                    <p class="card-text mb-2"><i class="fa-solid fa-circle-info me-3"></i><small class="text-body-secondary">more info</small></p>
+                                </a>
+                            </div>
+                            <div class='list-item-btn-container me-2'>
+                                <a href='update.php?item_id=<?=$contact['id']?>'>
+                                    <button class='btn btn-info'><i class='fa-solid fa-pen-to-square'></i></button>
+                                </a>
+                                <button type='button' class='btn btn-danger delete-btn' data-bs-toggle='modal' data-bs-target='#deleteItem'><i class='fa-solid fa-trash-can'></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endwhile ?>
         </div>
         <div class="container">
             <div class="card">
@@ -101,6 +137,27 @@ use Daniser\Rubrica\Helper;
 
         </div>
     </main>
+    <!-- Modal - delete contact -->
+    <div class="modal fade" id="deleteItem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Deleting contact: <span
+                                id="to-delete"></span></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete this contact?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <a href="" id="delete-btn">
+                            <button type="button" class="btn btn-primary">Delete</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

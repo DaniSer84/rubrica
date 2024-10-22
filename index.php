@@ -58,6 +58,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
+        html {
+            max-height: 100%;
+        }
         .form-container {
             max-width: 500px;
             margin: auto;
@@ -65,7 +68,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             padding: 2.3rem 1.5rem;
             border-radius: 5px;
         }
-
+        .rubrica-container {
+            max-height: 80vh;
+            overflow-y: auto;
+        }
         .list-item-btn-container button {
             scale: .8;
         }
@@ -92,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     </style>
     <script src="https://kit.fontawesome.com/fb85e57258.js" crossorigin="anonymous"></script>
-    <script src="js/main.js" type="module"></script>
+    <script src="src/js/main.js" type="module"></script>
 </head>
 
 <body>
@@ -101,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a href="contact-list.php">Contact list</a>
     </header>
     <main>
-        <div class="container rubrica-container">
+        <div class="container-fluid rubrica-container m-auto">
             <h5 class="title text-center mb-3 mt-5">Contacts</h5>
             <table class="table">
                 <thead>
