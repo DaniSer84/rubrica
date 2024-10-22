@@ -1,5 +1,9 @@
 <?php
 
+require_once __DIR__ . "/common.php";
+
+use Daniser\Rubrica\Helper;
+
 ?>
 
 <!DOCTYPE html>
@@ -13,14 +17,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
-        .form-container {
-            max-width: 500px;
-            margin: auto;
-            border: 1px solid lightgray;
-            padding: 2.3rem 1.5rem;
-            border-radius: 5px;
-        }
-
         .button-container {
             display: flex;
             gap: .5rem;
@@ -38,6 +34,7 @@
             padding: 2.3rem 1.5rem;
             */
         }
+
         .card img {
             border-radius: 50%;
             scale: .6;
@@ -72,15 +69,16 @@
     <div class="container">
         <div class="card">
             <img src="https://placehold.co/400x400" class="card-img-top">
-            <?php
-            // if ($_POST) {
-            //     foreach ($_POST as $key => $value) {
-            //         echo createItem($key, $value);
-            //     }
-            // }
-            ?>
             <div class="card-body">
-                <h5>Card title</h5>
+                <?php
+                $result = $db->getData("SELECT name, surname, phone_number, email, company, role, birthdate FROM contacts WHERE id = ?", [8]);
+                $contact = $result->fetch(); ?>
+                <h5 class="card-title text-center mb-5"><?= $contact['name'] ?> <?= $contact['surname'] ?></h5>
+                <?php
+                foreach ($contact as $key => $value) {
+                    echo Helper::createItem($key, $value);
+                }
+                ?>
                 <div class="button-container mt-4">
                     <button class="btn btn-secondary">Fai qualcosa</button>
                     <button class="btn btn-danger">Cancella</button>
