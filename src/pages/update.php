@@ -22,10 +22,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
 }
 
-// echo "<pre>";
-// var_dump($_SERVER);
-// echo "</pre>";
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $id = $_POST["id"];
@@ -59,10 +55,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ]
     );
 
-    // echo "<pre>";
-    // var_dump($_POST);
-    // echo "</pre>";
-    // die();
     header('Location: ' . $backTo);
     exit;
 

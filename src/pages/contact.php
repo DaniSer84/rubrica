@@ -41,7 +41,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET") {
         <h1>Rubrica</h1>
         <h3>Info Contatto</h3>
         <nav>
-        <a href="index.php">Home</a>
+        <a href="../../index.php">Home</a>
         |
         <a href="contact-list.php">Lista Contatti</a>
         </nav>
@@ -49,7 +49,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET") {
     <main>
         <div class="container">
             <div class="card">
-                <img src="https://placehold.co/400x400" class="card-img-top">
+                <img src="https://placehold.co/200x200" class="card-img-top">
                 <div class="card-body">
                     <?php
                     // $result = $db->getData("SELECT name, surname, phone_number, email, company, role, birthdate FROM contacts WHERE id = ?", [8]);

@@ -59,8 +59,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/common.php";
                                 <a href='update.php?item_id=<?= $contact['id'] ?>'>
                                     <button class='btn btn-info'><i class='fa-solid fa-pen-to-square'></i></button>
                                 </a>
-                                <button type='button' class='btn btn-danger delete-btn' data-bs-toggle='modal'
-                                    data-bs-target='#deleteItem'><i class='fa-solid fa-trash-can'></i></button>
+                            <button type='button' class='btn btn-danger set-to-delete' data-bs-toggle='modal' data-bs-target='#deleteItem' data-id='<?= $contact['id']?>'><i class='fa-solid fa-trash-can'></i></button>
                             </div>
                         </div>
                     </div>

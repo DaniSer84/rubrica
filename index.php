@@ -119,7 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <hr>
         <button type="button" class="btn btn-success add-contact-btn" data-bs-toggle="modal" data-bs-target="#addContact">
-            Add a contact
+            Aggiungi un contatto
         </button>
         <!-- Modal add contact-->
         <div class="modal fade" id="addContact" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -158,7 +158,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="form-floating mb-3">
                                     <input type="email" class="form-control" id="email" name="email"
                                         placeholder="name@example.com">
-                                    <label for="email">Email address</label>
+                                    <label for="email">Email</label>
                                 </div>
                                 <div class="form-floating mb-3">
                                     <input type="text" class="form-control" id="società" name="company"
@@ -176,11 +176,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <label for="data_nascita">Data di nascita</label>
                                 </div>
                                 <div class="button-container">
-                                    <button type="reset" class="btn btn-secondary">Cancella</button>
+                                    <button type="reset" class="btn btn-secondary">Resetta</button>
                                     <button type="submit" class="btn btn-primary">Crea</button>
                                 </div>
                             </form>
                         </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
