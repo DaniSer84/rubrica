@@ -1,7 +1,10 @@
 import { Helper } from "./utilities/Helper.js";
+import { Style } from "./utilities/Style.js";
 
 let deleteButton = document.querySelectorAll('.set-to-delete');
+let addContactBtn = document.querySelector('.add-contact-btn')
 
+// set delete buttons
 deleteButton.forEach(button => {
     button.addEventListener('click', (e) => {
         
@@ -15,5 +18,5 @@ deleteButton.forEach(button => {
     })
 });
 
-// TODO: implement a delete function for all the buttons
-
+// set add Contact Button to center
+Style.centerElement(addContactBtn)

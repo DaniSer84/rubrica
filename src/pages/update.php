@@ -79,35 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Insert Contact Form</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <style>
-        header>* {
-            min-width: 200px;
-        }
-
-        .form-container {
-            max-width: 500px;
-            margin: auto;
-            border: 1px solid lightgray;
-            padding: 2.3rem 1.5rem;
-            border-radius: 5px;
-        }
-
-        .fields-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            max-height: 100vh;
-        }
-
-        .button-container {
-            display: flex;
-            gap: .5rem;
-        }
-
-        .button-container button {
-            flex: 1 0 auto;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/style.css">
     <script src="https://kit.fontawesome.com/fb85e57258.js" crossorigin="anonymous"></script>
     <script src="js/index.js" type="module"></script>
 </head>
@@ -122,9 +94,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <a href="contact-list.php">Lista Contatti</a>
         </nav>
     </header>
-    <div class="form-container mb-5">
+    <div class="form-container mb-5 mt-2">
         <form action="" method="POST" enctype="multipart/form-data" class="needs-validation">
-            <div class="fields-container">
+            <div class="form-fields-container">
                 <input type="text" name="back-to" value="<?=$_SERVER["HTTP_REFERER"]?>" hidden>
                 <div class="form-floating mb-3">
                     <input type="file" class="form-control" id="file_upload" name="picture"

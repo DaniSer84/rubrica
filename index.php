@@ -57,50 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Insert Contact Form</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <style>
-        html {
-            max-height: 100%;
-        }
-        header > * {
-            min-width: 200px;
-            text-align: center;
-        }
-        .form-container {
-            max-width: 500px;
-            margin: auto;
-            border: 1px solid lightgray;
-            padding: 2.3rem 1.5rem;
-            border-radius: 5px;
-        }
-        .rubrica-container {
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-        .list-item-btn-container button {
-            scale: .8;
-        }
-
-        .button-container {
-            display: flex;
-            gap: .5rem;
-        }
-
-        .button-container button {
-            flex: 1 0 auto;
-        }
-
-        tr {
-            vertical-align: middle;
-        }
-
-        .add-img-file {
-            cursor: pointer;
-        }
-        .add-contact-btn {
-            position: relative;
-            left: calc(50% - 62px);
-        }
-    </style>
+    <link rel="stylesheet" href="src/css/style.css">
     <script src="https://kit.fontawesome.com/fb85e57258.js" crossorigin="anonymous"></script>
     <script src="src/js/main.js" type="module"></script>
 </head>

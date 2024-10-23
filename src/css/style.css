@@ -1,0 +1,82 @@
+html {
+    max-height: 100%;
+}
+header > * {
+    min-width: 200px;
+    text-align: center;
+}
+.form-container {
+    max-width: 500px;
+    margin: auto;
+    border: 1px solid lightgray;
+    padding: 2.3rem 1.5rem;
+    border-radius: 5px;
+}
+.form-fields-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    max-height: 100vh;
+}
+.rubrica-container {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+.list-item-btn-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.list-item-btn-container  button {
+    border-radius: 10px;
+    scale: .8;
+}
+.button-container {
+    display: flex;
+    gap: .5rem;
+}
+
+.button-container button {
+    flex: 1 0 auto;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+tr {
+    vertical-align: middle;
+}
+.add-img-file {
+    cursor: pointer;
+}
+.card {
+    max-width: 500px;
+    margin: 2rem auto;
+    border-width: 2px;
+}
+.card img {
+    border-radius: 50%;
+    scale: .6;
+    flex-grow: 0;
+}
+.field:not(i) {
+    width: 100%;
+    height: 3rem;
+}
+
+.field i {
+    padding-right: 2rem;
+    width: 10%;
+}
+
+.field span {
+    border-bottom: 1px solid lightgray;
+    padding: 0.6rem 0;
+    width: 90%;
+    display: inline-block;
+}
+
+.field em {
+    color: #aaaaaa;
+    font-size: .9rem;
+}

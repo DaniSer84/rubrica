@@ -14,71 +14,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/common.php";
     <script src="https://kit.fontawesome.com/fb85e57258.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <style>
-        header > * {
-            min-width: 200px;
-        }
-        .button-container {
-            display: flex;
-            gap: .5rem;
-        }
-        .list-item-btn-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-evenly;
-        }
-
-        .list-item-btn-container button {
-            border-radius: 10px;
-        }
-
-        a {
-            text-decoration: none;
-            color: black;
-        }
-
-        .button-container button {
-            flex: 1 0 auto;
-        }
-
-        .card {
-            max-width: 500px;
-            margin: 2rem auto;
-            border-width: 2px;
-            /*
-            padding: 2.3rem 1.5rem;
-            */
-        }
-
-        .card img {
-            border-radius: 50%;
-            scale: .6;
-            flex-grow: 0;
-        }
-
-        .field:not(i) {
-            width: 100%;
-            height: 3rem;
-        }
-
-        .field i {
-            padding-right: 2rem;
-            width: 10%;
-        }
-
-        .field span {
-            border-bottom: 1px solid lightgray;
-            padding: 0.6rem 0;
-            width: 90%;
-            display: inline-block;
-        }
-
-        .field em {
-            color: #aaaaaa;
-            font-size: .9rem;
-        }
-    </style>
-    <script src="src/js/main.js" type="module"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/main.js" type="module"></script>
 </head>
 
 <body>

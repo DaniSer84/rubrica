@@ -50,7 +50,7 @@ class Helper {
                     "<td>$active</td>" . 
                     "<td>$pictureId</td>" . 
                     "<td>" . 
-                        "<div class='list-item-btn-container'>" .
+                        "<div class='list-item-btn-container flex-row justify-content-end'>" .
                             "<a href='src/pages/update.php?item_id=$id'>" .
                                 "<button class='btn btn-info'><i class='fa-solid fa-pen-to-square'></i></button>" .
                             "</a>" .
@@ -72,8 +72,8 @@ class Helper {
 
     public static function createItem($key, $value) {
         $icons = [
-          "name" => "fa-user-pen", 
-          "surname" => "fa-user-pen",
+          "name" => "fa-user", 
+          "surname" => "",
           "phone_number" => "fa-phone",
           "email"=> "fa-envelope",
           "company"=> "fa-building",
