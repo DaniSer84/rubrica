@@ -7,11 +7,16 @@ class Helper {
         let toDelete = document.getElementById('to-delete');
     
         toDelete.textContent = id;
+
+        let url = document.URL === "http://localhost:83/src/pages/contact-list.php" ? 
+                                   "delete.php" : 
+                                   "src/pages/delete.php"
     
-        deleteButton.setAttribute("href", `src/pages/delete.php?item_id=${id}`);
+        deleteButton.setAttribute("href", `${url}?item_id=${id}`);
     
     }
     
 }
 
 export { Helper }
+
