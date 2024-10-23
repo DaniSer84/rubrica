@@ -51,10 +51,10 @@ class Helper {
                     "<td>$pictureId</td>" . 
                     "<td>" . 
                         "<div class='list-item-btn-container'>" .
-                            "<a href='update.php?item_id=$id'>" .
+                            "<a href='src/pages/update.php?item_id=$id'>" .
                                 "<button class='btn btn-info'><i class='fa-solid fa-pen-to-square'></i></button>" .
                             "</a>" .
-                            "<button type='button' class='btn btn-danger delete-btn' data-bs-toggle='modal' data-bs-target='#deleteItem'><i class='fa-solid fa-trash-can'></i></button>" .
+                            "<button type='button' class='btn btn-danger set-to-delete' data-bs-toggle='modal' data-bs-target='#deleteItem' data-id='$id'><i class='fa-solid fa-trash-can'></i></button>" .
                     "</div>" . 
                     "</td>" . 
                 "</tr>";

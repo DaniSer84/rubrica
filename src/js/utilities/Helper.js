@@ -1,14 +1,14 @@
 
 class Helper {
 
-    static setToDelete(name, id) {
+    static setToDelete(id) {
 
         let deleteButton = document.getElementById('delete-btn');
         let toDelete = document.getElementById('to-delete');
     
-        toDelete.textContent = name;
+        toDelete.textContent = id;
     
-        deleteButton.setAttribute("href", `delete.php?item_id=${id}`);
+        deleteButton.setAttribute("href", `src/pages/delete.php?item_id=${id}`);
     
     }
     

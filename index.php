@@ -61,6 +61,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         html {
             max-height: 100%;
         }
+        header > * {
+            min-width: 200px;
+            text-align: center;
+        }
         .form-container {
             max-width: 500px;
             margin: auto;
@@ -104,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <header class="d-flex justify-content-between align-items-center px-5 border-2 border-bottom">
         <h1>Rubrica</h1>
-        <a href="contact-list.php">Contact list</a>
+        <a href="src/pages/contact-list.php">Contact list</a>
     </header>
     <main>
         <div class="container-fluid rubrica-container m-auto">
@@ -140,17 +144,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Deleting contact: <span
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Deleting contact with id: <span
                                 id="to-delete"></span></h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        Are you sure you want to delete this contact?
+                        Do you really want to procede?
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <a href="" id="delete-btn">
-                            <button type="button" class="btn btn-primary">Delete</button>
+                            <button type="button" class="btn btn-danger">Delete</button>
                         </a>
                     </div>
                 </div>

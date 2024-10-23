@@ -1,8 +1,7 @@
 <?php
 
-require_once __DIR__ ."/common.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/common.php";
 
-// ci viene passato in get
 if ( $_SERVER["REQUEST_METHOD"] == "GET") {
 
 
@@ -22,8 +21,6 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET") {
         
     }
 
-    // $db2->deleteData("DELETE FROM actor WHERE actor_id = ?", [ $id ] );
-
-    header("Location: index.php");
+    header("Location: " . $_SERVER["HTTP_REFERER"]);
     
 }
