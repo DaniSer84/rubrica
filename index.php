@@ -122,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             Aggiungi un contatto
         </button>
         <!-- Modal add contact-->
-        <div class="modal fade" id="addContact" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="addContact" tabinfile-uploaddex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -133,10 +133,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <h4 class="mb-5 text-center">Aggiungi un contatto:</h4>
                             <form action="" method="POST" enctype="multipart/form-data" class="needs-validation">
                                 <div class="mb-3 ">
-                                    <label for="file_upload" class="position-relative text-center">
+                                    <label for="file-upload" class="position-relative text-center">
                                         <img src="img/user-account.png" class="w-50 m-auto add-img-file">
-                                    </label>
-                                    <input type="file" class="form-control d-none" id="file_upload" name="picture">
+                                    </label><br>
+                                    <span class="img-check d-none"></span>
+                                    <input type="file" id="file-upload" accept="image/png, image/jpeg" name="picture" class="form-control d-none">
                                     <div class="invalid-feedback">
                                         Please choose a file.
                                     </div>

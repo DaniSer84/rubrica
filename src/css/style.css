@@ -80,3 +80,7 @@ tr {
     color: #aaaaaa;
     font-size: .9rem;
 }
+.img-check {
+    display: block;
+    text-align: center;
+}

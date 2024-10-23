@@ -3,6 +3,16 @@ import { Style } from "./utilities/Style.js";
 
 let deleteButton = document.querySelectorAll('.set-to-delete');
 let addContactBtn = document.querySelector('.add-contact-btn')
+let check = document.querySelector('.img-check')
+let fileInput = document.querySelector('#file-upload')
+
+// uploaded image check
+fileInput.addEventListener('change', () => {
+    check.classList.remove('d-none')
+    check.innerHTML = `<i class="fa-regular fa-circle-check" style="color: #17d924;"></i> ${fileInput.value}`
+    console.dir(fileInput)
+    
+})
 
 // set delete buttons
 deleteButton.forEach(button => {

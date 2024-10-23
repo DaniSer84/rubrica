@@ -78,7 +78,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/common.php";
                 </div>
                 <div class="modal-body">
                     Are you sure you want to delete this contact?
-                    <!-- TODO: implement for delete -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
