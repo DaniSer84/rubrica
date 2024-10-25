@@ -30,9 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
         }
         
-        $string .= ",picture";
-        $tokens .= ",?";
-        array_push($values, $_FILES["picture"]["name"]);
+        // $string .= ",picture";
+        // $tokens .= ",?";
+        // array_push($values, $_FILES["picture"]["name"]);
         
         $filename = $_FILES["picture"]["name"];
         $tmp = $_FILES["picture"]["tmp_name"];
@@ -72,21 +72,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
         $uploadedFile = pathinfo($filename, PATHINFO_FILENAME) . '.' . ALLOWED_FILES[$myme_type];
     
+        
         $filepath = UPLOAD_DIR . '/' . $uploadedFile;
-    
+        
         $success = move_uploaded_file($tmp, $filepath);
         if (!$success) {
-            echo "Error moving the file to the upload folder";
-            die();
+                echo "Error moving the file to the upload folder";
+                die();
+            }
+            
         }
+        
+        
+    // set image to base 64 ->
+    $data = file_get_contents($filepath);
+    $type = ALLOWED_FILES[$myme_type];
+    $base64 = "data:image/$type;base64," . base64_encode($data);
 
-    }
-    
-
+    var_dump($base64);
+    die();
 
     $query = "INSERT INTO contacts ( $string ) VALUES ( $tokens )";
 
+    var_dump($string);
+    die();
+
     $db->setData($query, [$values]);
+
+    // $db->doWithTransaction([
+    //     "INSERT INTO contacts ( ) "
+    // ]);
 
     header("Location: index.php");
 }
