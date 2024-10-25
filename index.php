@@ -2,31 +2,75 @@
 
 require_once __DIR__ . "/common.php";
 use Daniser\Rubrica\Helper;
+use Rubrica\Php\ImageUpload;
 
-const UPLOAD_DIR = __DIR__ . "/uploads";
+// TODO: abstract form methods
+
+const UPLOAD_DIR = __DIR__ . "/src/pictures";
 const ALLOWED_FILES = [
     'image/png' => 'png',
     'image/jpeg' => 'jpg'
 ];
+const MAX_SIZE = 2 * 1024 * 1024;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+    
     $string = Helper::setString($_POST);
     $tokens = Helper::setTokens($_POST);
     $values = Helper::setQueryValues($_POST);
     
-    
+    // TODO: make class for Picture handling
     if ($_FILES["picture"]["name"]) {
+        
+        $status = $_FILES["picture"]["error"];
+        if ($status) {
+
+            echo "Error uploading file (error code: $status) <br> <a href=index.php>Home</a>";
+            die();
+            
+        }
         
         $string .= ",picture";
         $tokens .= ",?";
         array_push($values, $_FILES["picture"]["name"]);
         
-        // TODO: https://www.phptutorial.net/php-tutorial/php-file-upload/
         $filename = $_FILES["picture"]["name"];
         $tmp = $_FILES["picture"]["tmp_name"];
+
+        // check file size
+        $filesize = filesize($tmp);
+        
+        if ($filesize > MAX_SIZE) {
+            
+            echo "File size exceeds limit: <br> File size: " . 
+            ImageUpload::formatFileSize($filesize) . 
+            "<br> allowed " . 
+            ImageUpload::formatFileSize(MAX_SIZE) .
+            "<br><a href=index.php>Home</a>";
+            
+            die();
+        }
+
+        // get mime type:
+        $info = finfo_open(FILEINFO_MIME_TYPE);
+
+        if (!$info) {
+
+            return false;
+            
+        }
+
+        $myme_type = finfo_file($info, $tmp);
+        finfo_close($info);
+
+        if (!in_array($myme_type, array_keys(ALLOWED_FILES))) {
+
+            echo "file type not allowed<br><a href=index.php>Home</a>";
+            die();
+            
+        }
     
-        $uploadedFile = pathinfo($filename, PATHINFO_FILENAME) . '.png';
+        $uploadedFile = pathinfo($filename, PATHINFO_FILENAME) . '.' . ALLOWED_FILES[$myme_type];
     
         $filepath = UPLOAD_DIR . '/' . $uploadedFile;
     
@@ -35,6 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Error moving the file to the upload folder";
             die();
         }
+
     }
     
 
