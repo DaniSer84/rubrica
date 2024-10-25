@@ -7,12 +7,16 @@ let check = document.querySelector('.img-check')
 let fileInput = document.querySelector('#file-upload')
 
 // uploaded image check
-fileInput.addEventListener('change', () => {
-    check.classList.remove('d-none')
-    check.innerHTML = `<i class="fa-regular fa-circle-check" style="color: #17d924;"></i> ${fileInput.value}`
-    console.dir(fileInput)
+if (fileInput) {
+
+    fileInput.addEventListener('change', () => {
+        
+        check.classList.remove('d-none')
+        check.innerHTML = `<i class="fa-regular fa-circle-check" style="color: #17d924;"></i> ${fileInput.value}`
+        
+    })
     
-})
+}
 
 // set delete buttons
 deleteButton.forEach(button => {
