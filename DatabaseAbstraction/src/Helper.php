@@ -126,40 +126,40 @@ class Helper {
         return rtrim($tokens, ",");
     }
 
-    public static function setString($array) {
+    public static function setFields($array) {
 
-        $string = "";
+        $fields = "";
         
         foreach( $array as $key => $value ) {
 
 
             if ( $value ) {
     
-                $string .= "$key,";
+                $fields .= "$key,";
     
             }
             
         }
 
-        return rtrim($string, ",");
+        return rtrim($fields, ",");
         
     }
 
     public static function setQueryValues( $array) {
 
-        $values = [];
+        $values = "";
 
         foreach ( $array as $value ) {
     
             if ( $value ) {
     
-                array_push($values, $value) ;
+                $values .= "'$value',";
                 
             }
             
         }
     
-        return $values;
+        return rtrim($values, ",");
 
     }
     

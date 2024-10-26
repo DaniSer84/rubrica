@@ -3,34 +3,24 @@ import { Style } from "./utilities/Style.js";
 
 let deleteButton = document.querySelectorAll('.set-to-delete');
 let addContactBtn = document.querySelector('.add-contact-btn')
-let check = document.querySelector('.img-check')
 let fileInput = document.querySelector('#file-upload')
+let checkboxes = document.querySelectorAll('.form-check-input')
 
 // uploaded image check
-if (fileInput) {
-
-    fileInput.addEventListener('change', () => {
-        
-        check.classList.remove('d-none')
-        check.innerHTML = `<i class="fa-regular fa-circle-check" style="color: #17d924;"></i> ${fileInput.value}`
-        
-    })
-    
-}
+if (fileInput) Helper.uploadingImage(fileInput)
 
 // set delete buttons
-deleteButton.forEach(button => {
-    button.addEventListener('click', (e) => {
-        
-        let id = e.target.dataset.id
-
-        if (e.target.tagName !== 'BUTTON') 
-            id = e.target.closest('button').dataset.id
-
-        Helper.setToDelete(id);
-        
-    })
-});
+if (deleteButton) deleteButton.forEach(button => Helper.setToDelete(button));
 
 // set add Contact Button to center
-Style.centerElement(addContactBtn)
+if (addContactBtn) Style.centerElement(addContactBtn)
+
+if (checkboxes) checkboxes.forEach(checkbox => Helper.setCheckInput(checkbox))
+
+let active = document.querySelector('.fa-circle-check')
+
+if (active && document.URL !== 'http.localhost:83/src/pages/contact-list.php') Helper.isActive(active)
+
+
+
+// #3ad737
