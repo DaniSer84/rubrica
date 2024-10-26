@@ -15,7 +15,7 @@ const MAX_SIZE = 2 * 1024 * 1024;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
-    $string = Helper::setString($_POST);
+    $fields = Helper::setFields($_POST);
     $tokens = Helper::setTokens($_POST);
     $values = Helper::setQueryValues($_POST);
     
@@ -89,20 +89,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $type = ALLOWED_FILES[$myme_type];
     $base64 = "data:image/$type;base64," . base64_encode($data);
 
-    var_dump($base64);
-    die();
+    // var_dump($base64);
+    // die();
 
-    $query = "INSERT INTO contacts ( $string ) VALUES ( $tokens )";
 
-    var_dump($string);
-    die();
+    
+    $insertContact = "INSERT INTO contacts ( $fields ) VALUES ( $values )";
+    $insertPicture = "INSERT INTO pictures ( content, type, contact_id ) VALUES ( '$base64', '$myme_type', last_insert_id() )";
+    // $joinPictureToContact = "SET @contact_id = (SELECT max(id) FROM contacts);" .
+    //                         "UPDATE contacts SET picture_id = (SELECT max(id) FROM pictures) " . 
+    //                         "WHERE id = @contact_id";
 
-    $db->setData($query, [$values]);
-
-    // $db->doWithTransaction([
-    //     "INSERT INTO contacts ( ) "
-    // ]);
-
+    // var_dump($insertContact, $insertPicture);
+    
+    $db->doWithTransaction([
+        $insertContact,
+        $insertPicture,
+    ]);
+    
+    
     header("Location: index.php");
 }
 
@@ -124,7 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
     <header class="d-flex justify-content-between align-items-center px-5 border-2 border-bottom">
-        <h1>Rubrica</h1>
+        <a href="index.php"><h1>Rubrica</h1></a>
         <a href="src/pages/contact-list.php">Contact list</a>
     </header>
     <main>

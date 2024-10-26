@@ -20,7 +20,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/common.php";
 
 <body>
     <header class="d-flex justify-content-between align-items-center px-5 border-2 border-bottom text-center">
-        <h1>Rubrica</h1>
+    <a href="../../index.php"><h1>Rubrica</h1></a>
         <h3>Lista contatti</h3>
         <nav>
             <a href="../../index.php">Home</a>
@@ -33,16 +33,18 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/common.php";
                 Aggiungi un contatto
             </button>
             <?php
-            $result = $db->getData("SELECT * FROM contacts ORDER BY surname", []);
-            while ($contact = $result->fetch()): ?>
+            $contacts = $db->getData("SELECT id, name, surname, phone_number, email, active FROM contacts ORDER BY surname", []);
+            while ($contact = $contacts->fetch()): 
+                $picture = $db->getData("SELECT content FROM pictures WHERE contact_id = " . $contact['id'])->fetch();
+            ?>
                 <div class="card mb-3" style="max-width: 540px; max-height: 250px">
                     <div class="row g-0">
                         <div class="col-md-4">
-                            <img src=<?=$contact['picture'] !== '' ? "../pictures/" . $contact['picture'] : "https://placehold.co/200x200"?> class="img-fluid rounded-circle" alt="...">
+                            <img src="<?=$picture[0]?>" class="img-fluid rounded-circle" alt="...">
                         </div>
                         <div class="col-md-8 d-flex">
                             <div class="card-body">
-                                <h5 class="card-title mb-3"><?= $contact['name'] ?>     <?= $contact['surname'] ?></h5>
+                                <h5 class="card-title mb-3"><?= $contact['name'] ?> <?= $contact['surname'] ?> <i class='fa-solid fa-circle-check' style='color:<?=$contact['active'] == '1' ? '#3ad737' : '#aaaaaa'?>'></i></h5> 
                                 <a href="tel:<?= $contact['phone_number'] ?>">
                                     <p class="card-text mb-2"><i
                                             class="fa-solid fa-phone me-3"></i><?= $contact['phone_number'] ?></p>
