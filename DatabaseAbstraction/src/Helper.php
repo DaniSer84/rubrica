@@ -47,7 +47,10 @@ class Helper {
                     "<td>$email</td>" . 
                     "<td>$birthdate</td>" . 
                     "<td>$createdAt</td>" . 
-                    "<td>$active</td>" . 
+                    "<td>" . 
+                    "<div class='form-check form-switch'> 
+                        <input class='form-check-input' type='checkbox' role='switch' data-active='$active' disabled>
+                    </div></td>" . 
                     "<td>$pictureId</td>" . 
                     "<td>" . 
                         "<div class='list-item-btn-container flex-row justify-content-end'>" .
@@ -72,6 +75,7 @@ class Helper {
 
     public static function createItem($key, $value) {
         $icons = [
+          "id" => "fa-list-ol",
           "name" => "fa-user", 
           "surname" => "",
           "phone_number" => "fa-phone",
@@ -79,6 +83,7 @@ class Helper {
           "company"=> "fa-building",
           "role"=> "fa-briefcase",
           "birthdate"=> "fa-calendar",
+          "active" => "fa-circle-check",
         ];
         
         $ucKey = "<em class='field-label'>" . ucfirst($key) . "</em>";

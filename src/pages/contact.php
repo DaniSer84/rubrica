@@ -8,7 +8,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET") {
 
     $id = $_GET["item_id"];
 
-    $result = $db->getData("SELECT name, surname, phone_number, email, company, role, birthdate FROM contacts WHERE id = ?", [ $id ] );
+    $result = $db->getData("SELECT id, name, surname, phone_number, email, company, role, birthdate, active FROM contacts WHERE id = ?", [ $id ] );
 
     $contact = $result->fetch();
 
@@ -17,6 +17,8 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET") {
         die("Actor not found.");
         
     }
+
+    $picture = $db->getData("SELECT content FROM pictures WHERE contact_id = " . $contact['id'])->fetch();
 
 }
 
@@ -33,12 +35,12 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET") {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/style.css">
-    <script src="src/js/main.js" type="module"></script>
+    <script src="../js/main.js" type="module"></script>
 </head>
 
 <body>
     <header class="d-flex justify-content-between align-items-center px-5 border-2 border-bottom text-center">
-        <h1>Rubrica</h1>
+    <a href="../../index.php"><h1>Rubrica</h1></a>
         <h3>Info Contatto</h3>
         <nav>
         <a href="../../index.php">Home</a>
@@ -49,7 +51,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET") {
     <main>
         <div class="container">
             <div class="card">
-                <img src="https://placehold.co/200x200" class="card-img-top">
+                <img src="<?=$picture[0]?>" class="card-img-top">
                 <div class="card-body">
                     <?php
                     // $result = $db->getData("SELECT name, surname, phone_number, email, company, role, birthdate FROM contacts WHERE id = ?", [8]);
@@ -60,6 +62,10 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET") {
                         echo Helper::createItem($key, $value);
                     }
                     ?>
+                    <!-- <div class='form-check form-switch field'> 
+                    <input class='form-check-input' style="margin-right: 1rem;position:relative;top:0.65rem" type='checkbox' role='switch' data-active='<?=$contact['active']?>' disabled>
+                    <span class='field-label'>Active</span>
+                    </div> -->
                     <div class="button-container mt-4">
                         <!-- TODO: implement functions for these buttons -->
                         <button class="btn btn-primary">Modifica</button>
