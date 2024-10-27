@@ -21,6 +21,7 @@ $headParams = [
 ];
 $head->setParams($headParams);
 
+// TODO: abstract form methods
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $fields = Helper::setFields($_POST);
@@ -132,6 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <main>
         <div class="container-fluid rubrica-container m-auto">
             <h5 class="title text-center mb-3 mt-5">Contacts</h5>
+            <!-- TODO: remove 'picture' field (and from table) -->
             <table class="table">
                 <thead>
                     <tr>
@@ -255,9 +257,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+    <?=$bsStrip?>
 </body>
 
 </html>
