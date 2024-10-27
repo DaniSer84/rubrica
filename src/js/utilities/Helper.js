@@ -52,18 +52,22 @@ class Helper {
 
         let span = active.nextElementSibling
 
-        if (span.textContent === '1') {
+        if (span) {
+            if (span.textContent === '1') {
 
-            active.style.color = '#3ad737'
-            span.textContent = 'Active'
-            span.style.color = '#3ad737'
-
-        } else {
-
-            active.style.color = '#aaaaaa'
-            span.innerHTML = '<em class="field-label">Inactive</em'
-
+                active.style.color = '#3ad737'
+                span.textContent = 'Active'
+                span.style.color = '#3ad737'
+    
+            } else {
+    
+                active.style.color = '#aaaaaa'
+                span.innerHTML = '<em class="field-label">Inactive</em'
+    
+            }
         }
+        
+        
     }
 }
 

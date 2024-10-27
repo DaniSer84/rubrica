@@ -19,8 +19,4 @@ if (checkboxes) checkboxes.forEach(checkbox => Helper.setCheckInput(checkbox))
 
 let active = document.querySelector('.fa-circle-check')
 
-if (active && document.URL !== 'http.localhost:83/src/pages/contact-list.php') Helper.isActive(active)
-
-
-
-// #3ad737
+if (active) Helper.isActive(active)
