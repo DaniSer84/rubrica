@@ -3,6 +3,7 @@
 require_once __DIR__ . "/common.php";
 use Daniser\Rubrica\Helper;
 use Rubrica\Php\ImageUpload;
+use Rubrica\Php\Components\Head;
 
 // TODO: abstract form methods
 
@@ -116,7 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<!-- <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insert Contact Form</title>
@@ -125,8 +126,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="src/css/style.css">
     <script src="https://kit.fontawesome.com/fb85e57258.js" crossorigin="anonymous"></script>
     <script src="src/js/main.js" type="module"></script>
-</head>
-
+</head> -->
+<?php 
+    $head = new Head("Rubrica", "src/css/style.css", "src/js/main.js");
+    
+?>
+<?=$head->render();?>
 <body>
     <header class="d-flex justify-content-between align-items-center px-5 border-2 border-bottom">
         <a href="index.php"><h1>Rubrica</h1></a>
