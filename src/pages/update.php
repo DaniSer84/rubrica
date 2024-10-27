@@ -13,6 +13,8 @@ $headParams = [
 ];
 $head->setParams($headParams);
 
+$referer = $_SERVER["HTTP_REFERER"];
+
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
     $id = $_GET["item_id"];
@@ -83,9 +85,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </nav>
     </header>
     <div class="form-container mb-5 mt-2">
+        <!-- TODO: Add 'active' and 'picture' fields -->
         <form action="" method="POST" enctype="multipart/form-data" class="needs-validation">
             <div class="form-fields-container">
-                <input type="text" name="back-to" value="<?=$_SERVER["HTTP_REFERER"]?>" hidden>
+                <input type="text" name="back-to" value="<?=$referer?>" hidden>
                 <div class="form-floating mb-3">
                     <input type="file" class="form-control" id="file_upload" name="picture"
                         value="<?= Helper::AccessToValue($selectedContact, "picture") ?>">
@@ -136,15 +139,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </div>
             <div class="button-container">
-                <a href="<?=$_SERVER['HTTP_REFERER']?>"><button class="btn btn-secondary">Indietro</button></a>
+                <a href="<?=$referer?>"><button class="btn btn-secondary">Indietro</button></a>
                 <button type="submit" class="btn btn-primary">Modifica</button>
             </div>
         </form>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+    <?=$bsStrip?>
 </body>
 
 </html>
