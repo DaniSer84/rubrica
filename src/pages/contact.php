@@ -49,19 +49,12 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET") {
             <div class="card">
                 <img src="<?=$picture[0]?>" class="card-img-top">
                 <div class="card-body">
-                    <?php
-                    // $result = $db->getData("SELECT name, surname, phone_number, email, company, role, birthdate FROM contacts WHERE id = ?", [8]);
-                    // $contact = $result->fetch(); ?>
                     <h5 class="card-title display-6 text-center mb-5"><?= $contact['name'] ?> <?= $contact['surname'] ?></h5>
                     <?php
                     foreach ($contact as $key => $value) {
                         echo Helper::createItem($key, $value);
                     }
                     ?>
-                    <!-- <div class='form-check form-switch field'> 
-                    <input class='form-check-input' style="margin-right: 1rem;position:relative;top:0.65rem" type='checkbox' role='switch' data-active='<?=$contact['active']?>' disabled>
-                    <span class='field-label'>Active</span>
-                    </div> -->
                     <div class="button-container mt-4">
                         <!-- TODO: implement functions for these buttons -->
                         <button class="btn btn-primary">Modifica</button>

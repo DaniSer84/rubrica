@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ]
     );
 
-    header('Location: ' . $backTo);
+    header("Location: $backTo");
     exit;
 
 }
@@ -136,7 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </div>
             <div class="button-container">
-                <button type="reset" class="btn btn-secondary">Resetta</button>
+                <a href="<?=$_SERVER['HTTP_REFERER']?>"><button class="btn btn-secondary">Indietro</button></a>
                 <button type="submit" class="btn btn-primary">Modifica</button>
             </div>
         </form>
