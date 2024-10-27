@@ -2,22 +2,18 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/common.php";
 
+$headParams = [
+    "title" => "Update Contact", 
+    "style" => "../css/style.css",
+    "script" => "../js/main.js"
+];
+$head->setParams($headParams);
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insert Contact Form</title>
-    <script src="https://kit.fontawesome.com/fb85e57258.js" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/style.css">
-    <script src="../js/main.js" type="module"></script>
-</head>
-
+<?=$head->render()?>
 <body>
     <header class="d-flex justify-content-between align-items-center px-5 border-2 border-bottom text-center">
     <a href="../../index.php"><h1>Rubrica</h1></a>

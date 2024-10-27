@@ -14,6 +14,13 @@ const ALLOWED_FILES = [
 ];
 const MAX_SIZE = 2 * 1024 * 1024;
 
+$headParams = [
+    "title" => "Rubrica", 
+    "style" => "src/css/style.css",
+    "script" => "src/js/main.js"
+];
+$head->setParams($headParams);
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $fields = Helper::setFields($_POST);
@@ -116,21 +123,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
-
-<!-- <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insert Contact Form</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="src/css/style.css">
-    <script src="https://kit.fontawesome.com/fb85e57258.js" crossorigin="anonymous"></script>
-    <script src="src/js/main.js" type="module"></script>
-</head> -->
-<?php 
-    $head = new Head("Rubrica", "src/css/style.css", "src/js/main.js");
-    
-?>
 <?=$head->render();?>
 <body>
     <header class="d-flex justify-content-between align-items-center px-5 border-2 border-bottom">

@@ -4,79 +4,39 @@ namespace Rubrica\Php\Components;
 
 class Head {
 
-  public string $title;
+  public array $params;  
 
-  public string $style;
+  public function __construct($params = []) {
 
-  public string $scriptJs;
-
-  public function __construct(string $title, string $style, string $scriptJs) {
-
-    $this->title = $title;
-    $this->style = $style;
-    $this->scriptJs = $scriptJs;
+    $this->params = $params;
 
   }
   
-  public function getTitle(): string {
+  public function setParams($params): array {
 
-    return $this->title;
+    return $this->params = $params;
     
   }
+  public function putParam($key) {
 
-  public function getStyle(): string {
+    if (count($this->params) > 0 && array_key_exists($key, $this->params)) 
+      return $this->params[$key];
 
-    return $this->style;
+    return null;
     
   }
-
-  public function getScriptJs(): string {
-
-    return $this->scriptJs;
-    
-  }
-  
-  public function setTitle($title): string {
-
-    $this->title = $title;
-
-    return $this->title;
-    
-  }
-
-  public function setStyle($style): string {
-
-    $this->style = $style;
-
-    return $this->style;
-    
-  }  
-
-  public function setScript($scriptJs): string {
-
-    $this->scriptJs = $scriptJs;
-
-    return $this->scriptJs;
-    
-  }
-
-  
   public function render(): string {
-
-    $title = $this->getTitle();
-    $style = $this->getStyle();
-    $scriptJs = $this->getScriptJs();
 
     return
             "<head>
               <meta charset='UTF-8'>
               <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-              <title>$title</title>
+              <title>" . $this->putParam("title") . "</title>
               <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css' rel='stylesheet'
                   integrity='sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH' crossorigin='anonymous'>
-              <link rel='stylesheet' href='$style'>
+              <link rel='stylesheet' href='" . $this->putParam("style") . "'>
               <script src='https://kit.fontawesome.com/fb85e57258.js' crossorigin='anonymous'></script>
-              <script src='$scriptJs' type='module'></script>
+              <script src='" . $this->putParam("script") . "' type='module'></script>
             </head>";
   }
 }
