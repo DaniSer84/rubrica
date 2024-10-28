@@ -39,16 +39,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $phoneNumber = $_POST["phone_number"];
     $company = $_POST["company"];
     $role = $_POST["role"];
-    $picture = $_FILES["picture"]["name"];
     $email = $_POST["email"];
     $birthdate = $_POST["birthdate"];
-
+    $active = $_POST["active"];
     $backTo = $_POST["back-to"];
 
     $db->setData(
         "UPDATE contacts SET " .
         "name = ?,  surname = ?, phone_number = ?, company = ?, role = ?, " .
-        "picture = ?, email = ?, birthdate = ? WHERE id = ?",
+        "email = ?, birthdate = ?, active = ? WHERE id = ?",
         [
             [
                 $name,
@@ -56,10 +55,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $phoneNumber,
                 $company,
                 $role,
-                $picture,
                 $email,
                 $birthdate,
-                $id
+                $active,
+                $id,
             ]
         ]
     );
@@ -73,7 +72,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
-<?=$head->render();?>
+<?= $head->render(); ?>
+
 <body>
     <header class="d-flex justify-content-between align-items-center px-5 border-2 border-bottom text-center">
         <h1>Rubrica</h1>
@@ -96,6 +96,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="invalid-feedback">
                         Please choose a file.
                     </div>
+                </div>
+                <div class="form-check form-switch">
+                    <input type="hidden" name="active" value="0">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+                        name="active" value="<?= Helper::AccessToValue($selectedContact, 'active') ?>">
+                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="id" name="id" placeholder=""

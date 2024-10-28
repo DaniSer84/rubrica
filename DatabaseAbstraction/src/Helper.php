@@ -28,12 +28,10 @@ class Helper {
         $phone_number = Self::AccessToValue($item,"phone_number");
         $company = Self::AccessToValue($item,"company");
         $role = Self::AccessToValue($item,"role");
-        $picture = Self::AccessToValue($item,"picture");
         $email = Self::AccessToValue($item,"email");
         $birthdate = Self::AccessToValue($item,"birthdate");
         $createdAt = Self::AccessToValue($item,"created_at");
         $active = Self::AccessToValue($item,"active");
-        $pictureId = Self::AccessToValue($item,"picture_id");
         
         
         return  "<tr>" . 
@@ -43,16 +41,14 @@ class Helper {
                     "<td>$phone_number</td>" . 
                     "<td>$company</td>" . 
                     "<td>$role</td>" . 
-                    "<td>$picture</td>" . 
                     "<td>$email</td>" . 
                     "<td>$birthdate</td>" . 
                     "<td>$createdAt</td>" . 
                     "<td>" . 
                     "<div class='form-check form-switch'> 
-                        <input class='form-check-input' type='checkbox' role='switch' data-active='$active' disabled>
+                        <input class='form-check-input' type='checkbox' role='switch' value='$active' disabled>
                     </div></td>" . 
-                    "<td>$pictureId</td>" . 
-                    "<td>" . 
+                    "<td>" .    
                         "<div class='list-item-btn-container flex-row justify-content-end'>" .
                             "<a href='src/pages/update.php?item_id=$id'>" .
                                 "<button class='btn btn-info'><i class='fa-solid fa-pen-to-square'></i></button>" .
