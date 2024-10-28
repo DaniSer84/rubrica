@@ -9,6 +9,8 @@ $headParams = [
 ];
 $head->setParams($headParams);
 
+$contacts = $db->getData("SELECT id, name, surname, phone_number, email, active FROM contacts ORDER BY surname", []);
+
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +31,6 @@ $head->setParams($headParams);
                 Aggiungi un contatto
             </button>
             <?php
-            $contacts = $db->getData("SELECT id, name, surname, phone_number, email, active FROM contacts ORDER BY surname", []);
             while ($contact = $contacts->fetch()): 
                 $picture = $db->getData("SELECT content FROM pictures WHERE contact_id = " . $contact['id'])->fetch();
             ?>

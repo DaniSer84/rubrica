@@ -35,7 +35,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET") {
 <html lang="en">
 <?=$head->render()?>
 <body>
-    <header class="d-flex justify-content-between align-items-center px-5 border-2 border-bottom text-center">
+    <header class="d-flex justify-content-between align-items-center px-5 border-2 border-bottom text-center ">
     <a href="../../index.php"><h1>Rubrica</h1></a>
         <h3>Info Contatto</h3>
         <nav>

@@ -36,8 +36,11 @@ header > * {
     gap: .5rem;
 }
 
-.button-container button {
+.button-container button, .button-container a {
     flex: 1 0 auto;
+}
+.button-container a button {
+    width: 100%;
 }
 a {
     text-decoration: none;
@@ -50,7 +53,7 @@ tr {
     cursor: pointer;
 }
 .card {
-    max-width: 500px;
+    max-width: 380px;
     margin: 2rem auto;
     border-width: 2px;
 }
@@ -63,17 +66,20 @@ tr {
     width: 100%;
     height: 3rem;
 }
-
+.field {
+    display: flex;
+    align-items: center;
+}
 .field i {
-    padding-right: 2rem;
-    width: 10%;
+    /* padding-right: 2rem; */
+    flex-basis: 15%;
 }
 
 .field span {
     border-bottom: 1px solid lightgray;
     padding: 0.6rem 0;
-    width: 90%;
-    display: inline-block;
+    flex-basis: 85%;
+    /* display: inline-block; */
 }
 .field em {
     color: #aaaaaa;

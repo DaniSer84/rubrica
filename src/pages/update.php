@@ -7,7 +7,7 @@ use Daniser\Rubrica\Helper;
 $selectedContact = null;
 
 $headParams = [
-    "title" => "Update Contact", 
+    "title" => "Update Contact",
     "style" => "../css/style.css",
     "script" => "../js/main.js"
 ];
@@ -145,13 +145,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </div>
             <div class="button-container">
-                <a href="<?=$referer?>"><button class="btn btn-secondary">Indietro</button></a>
+                <a href="<?= $referer ?>"><button class="btn btn-secondary">Indietro</button></a>
                 <button type="submit" class="btn btn-primary">Modifica</button>
             </div>
         </form>
     </div>
 
-    <?=$bsStrip?>
+    <?= $bsStrip ?>
 </body>
 
 </html>

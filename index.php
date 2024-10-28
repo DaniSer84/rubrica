@@ -3,9 +3,6 @@
 require_once __DIR__ . "/common.php";
 use Daniser\Rubrica\Helper;
 use Rubrica\Php\ImageUpload;
-use Rubrica\Php\Components\Head;
-
-// TODO: abstract form methods
 
 const UPLOAD_DIR = __DIR__ . "/src/pictures";
 const ALLOWED_FILES = [
@@ -38,10 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             die();
             
         }
-        
-        // $string .= ",picture";
-        // $tokens .= ",?";
-        // array_push($values, $_FILES["picture"]["name"]);
         
         $filename = $_FILES["picture"]["name"];
         $tmp = $_FILES["picture"]["tmp_name"];
