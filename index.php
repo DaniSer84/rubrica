@@ -53,56 +53,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             die();
         }
 
-        // get mime type:
-        $info = finfo_open(FILEINFO_MIME_TYPE);
+        $mime_type = ImageUpload::getMimeType($tmp);
 
-        if (!$info) {
-
-            return false;
-            
-        }
-
-        $myme_type = finfo_file($info, $tmp);
-        finfo_close($info);
-
-        if (!in_array($myme_type, array_keys(ALLOWED_FILES))) {
+        if (!in_array($mime_type, array_keys(ALLOWED_FILES))) {
 
             echo "file type not allowed<br><a href=index.php>Home</a>";
             die();
             
         }
     
-        $uploadedFile = pathinfo($filename, PATHINFO_FILENAME) . '.' . ALLOWED_FILES[$myme_type];
-    
+        $uploadedFile = pathinfo($filename, PATHINFO_FILENAME) . '.' . ALLOWED_FILES[$mime_type];
         
         $filepath = UPLOAD_DIR . '/' . $uploadedFile;
         
-        $success = move_uploaded_file($tmp, $filepath);
-        if (!$success) {
-                echo "Error moving the file to the upload folder";
-                die();
-            }
-            
+        // $success = move_uploaded_file($tmp, $filepath);
+        // if (!$success) {
+        //         echo "Error moving the file to the upload folder";
+        //         die();
+        //     }
+        
+        $data = file_get_contents($filepath);
+        $type = ALLOWED_FILES[$mime_type];
+        $base64 = "data:image/$type;base64," . base64_encode($data);
         }
         
-        
-    // set image to base 64 ->
-    $data = file_get_contents($filepath);
-    $type = ALLOWED_FILES[$myme_type];
-    $base64 = "data:image/$type;base64," . base64_encode($data);
 
-    // var_dump($base64);
-    // die();
-
-
-    
     $insertContact = "INSERT INTO contacts ( $fields ) VALUES ( $values )";
-    $insertPicture = "INSERT INTO pictures ( content, type, contact_id ) VALUES ( '$base64', '$myme_type', last_insert_id() )";
-    // $joinPictureToContact = "SET @contact_id = (SELECT max(id) FROM contacts);" .
-    //                         "UPDATE contacts SET picture_id = (SELECT max(id) FROM pictures) " . 
-    //                         "WHERE id = @contact_id";
-
-    // var_dump($insertContact, $insertPicture);
+    if (!($base64 && $mime_type)) {
+        $base64 = null;
+        $mime_type = null;
+    }
+    $insertPicture = "INSERT INTO pictures ( content, type, contact_id ) VALUES ( '$base64', '$mime_type', last_insert_id() )";
     
     $db->doWithTransaction([
         $insertContact,
@@ -126,7 +107,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <main>
         <div class="container-fluid rubrica-container m-auto">
             <h5 class="title text-center mb-3 mt-5">Contacts</h5>
-            <!-- TODO: remove 'picture' field (and from table) -->
             <table class="table">
                 <thead>
                     <tr>
@@ -136,7 +116,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <th scope="col">Phone number</th>
                         <th scope="col">Company</th>
                         <th scope="col">Role</th>
-                        <th scope="col">Picture</th>
                         <th scope="col">Email</th>
                         <th scope="col">Birthdate</th>
                         <th scope="col">Created at</th>

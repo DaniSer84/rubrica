@@ -85,13 +85,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </nav>
     </header>
     <div class="form-container mb-5 mt-2">
-        <!-- TODO: Add 'active' and 'picture' fields -->
+        <!-- TODO: Add 'picture' fields -->
         <form action="" method="POST" enctype="multipart/form-data" class="needs-validation">
             <div class="form-fields-container">
-                <input type="text" name="back-to" value="<?=$referer?>" hidden>
+                <input type="text" name="back-to" value="<?= $referer ?>" hidden>
                 <div class="form-floating mb-3">
-                    <input type="file" class="form-control" id="file_upload" name="picture"
-                        value="<?= Helper::AccessToValue($selectedContact, "picture") ?>">
+                    <input type="file" class="form-control" id="file_upload" name="picture" value="">
                     <label for="file_upload">Immagine</label>
                     <div class="invalid-feedback">
                         Please choose a file.

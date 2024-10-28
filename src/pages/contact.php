@@ -19,13 +19,12 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET") {
 
     $contact = $result->fetch();
 
-    if (!$contact) {
+    if ($contact) {
 
-        die("Actor not found.");
+        $picture = $db->getData("SELECT content FROM pictures WHERE contact_id = " . $contact['id'])->fetch();
         
     }
 
-    $picture = $db->getData("SELECT content FROM pictures WHERE contact_id = " . $contact['id'])->fetch();
 
 }
 
@@ -45,9 +44,11 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET") {
         </nav>
     </header>
     <main>
+        <!-- CONTACT CARD -->
+        <?php if ($contact) :?>
         <div class="container">
             <div class="card">
-                <img src="<?=$picture[0]?>" class="card-img-top">
+                <img src="<?=$picture[0] !== "" ? $picture[0] : "https://placehold.co/200x200?text=Your+Pic"?>" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title display-6 text-center mb-5"><?= $contact['name'] ?> <?= $contact['surname'] ?></h5>
                     <?php
@@ -56,14 +57,18 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET") {
                     }
                     ?>
                     <div class="button-container mt-4">
-                        <!-- TODO: implement functions for these buttons -->
-                        <button class="btn btn-primary">Modifica</button>
-                        <button class="btn btn-danger">Cancella</button>
+                        <a href="update.php?item_id=<?=$contact['id']?>"><button class="btn btn-primary">Modifica</button></a>
+                        <button class="btn btn-danger set-to-delete" data-bs-toggle='modal' data-bs-target='#deleteItem' data-id="<?=$contact['id']?>">Cancella</button>
                     </div>
                 </div>
             </div>
-
         </div>
+        <?php else:?>
+            <div class="container container-fluid m-auto w-50 text-center mt-5">
+                <p>Contatto cancellato!</p>
+                <p class="fw-light"><a href="contact-list.php">torna alla lista...</a></p>
+            </div>
+        <?php endif ?>
     </main>
     <!-- TODO: abstract all modals -->
     <!-- Modal - delete contact -->
@@ -71,17 +76,17 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET") {
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Deleting contact: <span id="to-delete"></span>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminando contatto: <span id="to-delete"></span>
                     </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Are you sure you want to delete this contact?
+                    Sei sicuro di voler eliminare il contatto?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
                     <a href="" id="delete-btn">
-                        <button type="button" class="btn btn-primary">Delete</button>
+                        <button type="button" class="btn btn-danger">Elimina</button>
                     </a>
                 </div>
             </div>

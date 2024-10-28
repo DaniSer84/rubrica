@@ -11,5 +11,22 @@ class ImageUpload {
         return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$size[$factor];
         
     }
+
+    static function getMimeType($img) {
+
+             $info = finfo_open(FILEINFO_MIME_TYPE);
+
+        if (!$info) {
+
+            return false;
+            
+        }
+
+        $mime_type = finfo_file($info, $img);
+        finfo_close($info);
+
+        return $mime_type;
+        
+    }
     
 }
