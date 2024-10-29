@@ -66,11 +66,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         $filepath = UPLOAD_DIR . '/' . $uploadedFile;
         
-        // $success = move_uploaded_file($tmp, $filepath);
-        // if (!$success) {
-        //         echo "Error moving the file to the upload folder";
-        //         die();
-        //     }
+        $success = move_uploaded_file($tmp, $filepath);
+        if (!$success) {
+                echo "Error moving the file to the upload folder";
+                die();
+            }
         
         $data = file_get_contents($filepath);
         $type = ALLOWED_FILES[$mime_type];
@@ -79,6 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
 
     $insertContact = "INSERT INTO contacts ( $fields ) VALUES ( $values )";
+
     if (!($base64 && $mime_type)) {
         $base64 = null;
         $mime_type = null;
@@ -174,9 +175,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     </label><br>
                                     <span class="img-check d-none"></span>
                                     <input type="file" id="file-upload" accept="image/png, image/jpeg" name="picture" class="form-control d-none">
-                                    <div class="invalid-feedback">
-                                        Please choose a file.
-                                    </div>
                                 </div>
                                 <div class="form-floating mb-3">
                                     <input type="text" class="form-control" id="nome" name="name" placeholder="Mario">
