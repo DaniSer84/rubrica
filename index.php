@@ -36,10 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
         }
         
-        $filename = $_FILES["picture"]["name"];
+        $filename = str_replace(' ', '-', $_FILES["picture"]["name"]);
         $tmp = $_FILES["picture"]["tmp_name"];
-
-        // check file size
         $filesize = filesize($tmp);
         
         if ($filesize > MAX_SIZE) {
@@ -61,16 +59,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             die();
             
         }
-    
+
         $uploadedFile = pathinfo($filename, PATHINFO_FILENAME) . '.' . ALLOWED_FILES[$mime_type];
         
         $filepath = UPLOAD_DIR . '/' . $uploadedFile;
-        
-        $success = move_uploaded_file($tmp, $filepath);
-        if (!$success) {
-                echo "Error moving the file to the upload folder";
-                die();
-            }
+
+        if (!file_exists($filepath)) {
+            $success = move_uploaded_file($tmp, $filepath);
+            if (!$success) {
+                    echo "Error moving the file to the upload folder";
+                    die();
+                }
+        }
         
         $data = file_get_contents($filepath);
         $type = ALLOWED_FILES[$mime_type];
