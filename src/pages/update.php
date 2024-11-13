@@ -149,7 +149,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </nav>
     </header>
     <div class="form-container mb-5 mt-2">
-        <!-- TODO: Add 'picture' fields -->
+        <!-- TODO: Improve picture for update: 1) set X for no picture 2) show preview if possible... -->
         <form action="" method="POST" enctype="multipart/form-data" class="needs-validation">
             <div class="form-fields-container justify-content-between">
                 <input type="text" name="back-to" value="<?= $referer ?>" hidden>

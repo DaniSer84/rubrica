@@ -11,6 +11,9 @@ $head->setParams($headParams);
 
 $contacts = $db->getData("SELECT id, name, surname, phone_number, email, active FROM contacts ORDER BY surname", []);
 
+// TODO: add post method for insert contact
+
+
 ?>
 
 <!DOCTYPE html>
