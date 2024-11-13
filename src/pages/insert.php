@@ -21,17 +21,25 @@ $headParams = [
 ];
 $head->setParams($headParams);
 
-// $referer = $_SERVER["HTTP_REFERER"];
-echo '<pre>';
-var_dump($_SERVER);
-echo '</pre>';
+$referer = $_SERVER["HTTP_REFERER"];
 
 // TODO: abstract form methods
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    // echo "<pre>";
+    // var_dump(array_filter($_POST, function($key) {
+    //     return $key !== "back-to";
+    // }, ARRAY_FILTER_USE_KEY));
+    // echo "</pre>";
+
+    $relevantKeys = array_filter($_POST, function($key) {
+        return $key !== "back-to";
+    }, ARRAY_FILTER_USE_KEY);
     
-    $fields = Helper::setFields($_POST);
-    $tokens = Helper::setTokens($_POST);
-    $values = Helper::setQueryValues($_POST);
+    $fields = Helper::setFields($relevantKeys);
+    $tokens = Helper::setTokens($relevantKeys);
+    $values = Helper::setQueryValues($relevantKeys);
+    $backTo = $_POST['back-to'];
     
     // TODO: make class for Picture handling
     if ($_FILES["picture"]["name"]) {
@@ -70,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $uploadedFile = pathinfo($filename, PATHINFO_FILENAME) . '.' . ALLOWED_FILES[$mime_type];
         
-        $filepath = UPLOAD_DIR . '/' . $uploadedFile;
+        $filepath = "$uploadDir/$uploadedFile";
 
         if (!file_exists($filepath)) {
             $success = move_uploaded_file($tmp, $filepath);
@@ -100,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     ]);
     
     
-    header("Location: index.php");
+    header("Location: $backTo");
 }
 
 ?>
@@ -113,9 +121,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="form-container mb-5">
                             <h4 class="mb-5 text-center">Aggiungi un contatto:</h4>
                             <form action="" method="POST" enctype="multipart/form-data" class="needs-validation">
+                            <input type="text" name="back-to" value="<?= $referer ?>" hidden>
                                 <div class="mb-3 ">
                                     <label for="file-upload" class="position-relative text-center">
-                                        <img src="img/user-account.png" class="w-50 m-auto add-img-file">
+                                        <img src="../../img/user-account.png" class="w-50 m-auto add-img-file">
                                     </label><br>
                                     <span class="img-check d-none overflow-hidden"></span>
                                     <input type="file" id="file-upload" accept="image/png, image/jpeg" name="picture" class="form-control d-none">
@@ -156,6 +165,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </div>
                                 <div class="button-container">
                                     <button type="reset" class="btn btn-secondary">Resetta</button>
+                                    <a href="<?=$referer?>"><button type="button" class="btn btn-danger">Annulla</button></a>
                                     <button type="submit" class="btn btn-primary">Crea</button>
                                 </div>
                             </form>
