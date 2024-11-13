@@ -56,18 +56,34 @@ class Helper {
             if (span.textContent === '1') {
 
                 active.style.color = '#3ad737'
-                span.textContent = 'Active'
+                span.textContent = 'Attivo'
                 span.style.color = '#3ad737'
     
             } else {
     
                 active.style.color = '#aaaaaa'
-                span.innerHTML = '<em class="field-label">Inactive</em'
+                span.innerHTML = '<em class="field-label">Inattivo</em'
     
             }
         }
-        
-        
+    }
+
+    static modifyCheckboxLabel(checkbox, checkLabel) {
+
+        checkbox.checked ? checkLabel.textContent = 'Attivo' : checkLabel.textContent = 'Inattivo'
+    
+        checkbox.addEventListener('change', () => {
+    
+            if (checkbox.checked) {
+                checkbox.value = 1
+                checkLabel.textContent = 'Attivo'
+            } else {
+                checkbox.value = 0
+                checkLabel.textContent = 'Inattivo'
+            }
+    
+        })
+       
     }
 }
 

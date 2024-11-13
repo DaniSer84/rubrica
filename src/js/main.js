@@ -26,24 +26,10 @@ if (checkboxes) checkboxes.forEach(checkbox => {
 
     if (checkLabel) {
 
-        checkbox.checked ? checkLabel.textContent = 'Acrive' : checkLabel.textContent = 'Inactive'
-
-    checkbox.addEventListener('change', () => {
-
-        if (checkbox.checked) {
-            checkbox.value = 1
-            checkLabel.textContent = 'Active'
-        } else {
-            checkbox.value = 0
-            checkLabel.textContent = 'Inactive'
-        }
-
-    })
+        Helper.modifyCheckboxLabel(checkbox, checkLabel)
 
     }
 
 })
 
 if (active) Helper.isActive(active)
-
-console.log(checkboxes)
