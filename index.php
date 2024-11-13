@@ -21,24 +21,24 @@ $head->setParams($headParams);
         <a href="index.php">
             <h1>Rubrica</h1>
         </a>
-        <a href="src/pages/contact-list.php">Contact list</a>
+        <a href="src/pages/contact-list.php">Lista contatti</a>
     </header>
     <main>
         <div class="container-fluid rubrica-container m-auto">
-            <h5 class="title text-center mb-3 mt-5">Contacts</h5>
+            <h5 class="title text-center mb-3 mt-5">Contatti</h5>
             <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">Id</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Surname</th>
-                        <th scope="col">Phone number</th>
-                        <th scope="col">Company</th>
-                        <th scope="col">Role</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Cognome</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Compagnia</th>
+                        <th scope="col">Ruolo</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Birthdate</th>
-                        <th scope="col">Created at</th>
-                        <th scope="col">Active</th>
+                        <th scope="col">Data di nascita</th>
+                        <th scope="col">Data creazione</th>
+                        <th scope="col">Attivo</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">

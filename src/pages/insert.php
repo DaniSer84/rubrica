@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $status = $_FILES["picture"]["error"];
         if ($status) {
 
-            echo "Error uploading file (error code: $status) <br> <a href=index.php>Home</a>";
+            echo "Error uploading file (error code: $status) <br> <a href=$backTo>Back</a>";
             die();
             
         }

@@ -190,7 +190,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="form-floating mb-3">
                     <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com"
                         value="<?= Helper::AccessToValue($selectedContact, "email") ?>">
-                    <label for="email">Email address</label>
+                    <label for="email">Indirizzo email</label>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="società" name="company" placeholder="CDM"

@@ -59,7 +59,7 @@ $contacts = $db->getData("SELECT id, name, surname, phone_number, email, active 
                                 </a>
                                 <a href="contact.php?item_id=<?= $contact['id'] ?>">
                                     <p class="card-text mb-2"><i class="fa-solid fa-circle-info me-3"></i><small
-                                            class="text-body-secondary">more info</small></p>
+                                            class="text-body-secondary">Altre info...</small></p>
                                 </a>
                             </div>
                             <div class='list-item-btn-container me-2'>
