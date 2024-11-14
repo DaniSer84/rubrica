@@ -16,8 +16,6 @@ if (deleteButton) deleteButton.forEach(button => Helper.setToDelete(button));
 // set add Contact Button to center
 if (addContactBtn) Style.centerElement(addContactBtn)
 
-
-// TODO: refact this 
 if (checkboxes) checkboxes.forEach(checkbox => {
 
     Helper.setCheckInput(checkbox)

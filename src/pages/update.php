@@ -5,15 +5,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/common.php";
 use Daniser\Rubrica\Helper;
 use Rubrica\Php\ImageUpload;
 
-$selectedContact = null;
-
-$uploadDir = $_SERVER['DOCUMENT_ROOT'] . "/src/pictures";
-const ALLOWED_FILES = [
-    'image/png' => 'png',
-    'image/jpeg' => 'jpg'
-];
-const MAX_SIZE = 2 * 1024 * 1024;
-
 $headParams = [
     "title" => "Update Contact",
     "style" => "../css/style.css",
@@ -54,6 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($_FILES["picture"]["name"]) {
         
         $status = $_FILES["picture"]["error"];
+        
         if ($status) {
 
             echo "Error uploading file (error code: $status) <br> <a href=index.php>Home</a>";
@@ -89,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
         $uploadedFile = pathinfo($filename, PATHINFO_FILENAME) . '.' . ALLOWED_FILES[$mime_type];
         
-        $filepath = "$uploadDir/$uploadedFile";
+        $filepath = UPLOAD_DIR . "/" . $uploadedFile;
 
         $success = move_uploaded_file($tmp, $filepath);
         if (!$success) {

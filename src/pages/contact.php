@@ -70,7 +70,6 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET") {
             </div>
         <?php endif ?>
     </main>
-    <!-- TODO: abstract all modals -->
     <!-- Modal - delete contact -->
     <?=$deleteModal->render()?>
     <?=$bsStrip?>

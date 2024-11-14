@@ -5,15 +5,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/common.php";
 use Daniser\Rubrica\Helper;
 use Rubrica\Php\ImageUpload;
 
-$selectedContact = null;
-
-$uploadDir = $_SERVER['DOCUMENT_ROOT'] . "/src/pictures";
-const ALLOWED_FILES = [
-    'image/png' => 'png',
-    'image/jpeg' => 'jpg'
-];
-const MAX_SIZE = 2 * 1024 * 1024;
-
 $headParams = [
     "title" => "Update Contact",
     "style" => "../css/style.css",
@@ -25,12 +16,6 @@ $referer = $_SERVER["HTTP_REFERER"];
 
 // TODO: abstract form methods
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    // echo "<pre>";
-    // var_dump(array_filter($_POST, function($key) {
-    //     return $key !== "back-to";
-    // }, ARRAY_FILTER_USE_KEY));
-    // echo "</pre>";
 
     $relevantKeys = array_filter($_POST, function($key) {
         return $key !== "back-to";
@@ -45,6 +30,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($_FILES["picture"]["name"]) {
         
         $status = $_FILES["picture"]["error"];
+        $filename = str_replace(' ', '-', $_FILES["picture"]["name"]);
+        $tmp = $_FILES["picture"]["tmp_name"];
+        $filesize = filesize($tmp);
+        $mime_type = ImageUpload::getMimeType($tmp);
+
         if ($status) {
 
             echo "Error uploading file (error code: $status) <br> <a href=$backTo>Back</a>";
@@ -52,38 +42,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
         }
         
-        $filename = str_replace(' ', '-', $_FILES["picture"]["name"]);
-        $tmp = $_FILES["picture"]["tmp_name"];
-        $filesize = filesize($tmp);
-        
         if ($filesize > MAX_SIZE) {
             
             echo "File size exceeds limit: <br> File size: " . 
             ImageUpload::formatFileSize($filesize) . 
             "<br> allowed " . 
             ImageUpload::formatFileSize(MAX_SIZE) .
-            "<br><a href=index.php>Home</a>";
+            "<br><a href=$backTo>Back</a>";
             
             die();
         }
 
-        $mime_type = ImageUpload::getMimeType($tmp);
-
         if (!in_array($mime_type, array_keys(ALLOWED_FILES))) {
 
-            echo "file type not allowed<br><a href=index.php>Home</a>";
+            echo "file type not allowed<br><a href=$backTo>Back</a>";
             die();
             
         }
 
         $uploadedFile = pathinfo($filename, PATHINFO_FILENAME) . '.' . ALLOWED_FILES[$mime_type];
         
-        $filepath = "$uploadDir/$uploadedFile";
+        $filepath = UPLOAD_DIR . "/" . $uploadedFile;
 
         if (!file_exists($filepath)) {
             $success = move_uploaded_file($tmp, $filepath);
             if (!$success) {
-                    echo "Error moving the file to the upload folder";
+                    echo "Error moving the file to the upload folder<br><a href=$backTo>Back</a>";
                     die();
                 }
         }
@@ -91,7 +75,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $data = file_get_contents($filepath);
         $type = ALLOWED_FILES[$mime_type];
         $base64 = "data:image/$type;base64," . base64_encode($data);
-        }
+
+    }
         
 
     $insertContact = "INSERT INTO contacts ( $fields ) VALUES ( $values )";
@@ -100,6 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $base64 = null;
         $mime_type = null;
     }
+
     $insertPicture = "INSERT INTO pictures ( content, type, contact_id ) VALUES ( '$base64', '$mime_type', last_insert_id() )";
     
     $db->doWithTransaction([
