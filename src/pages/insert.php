@@ -4,6 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/common.php";
 
 use Daniser\Rubrica\Helper;
 use Rubrica\Php\ImageUpload;
+use Rubrica\Php\Image;
 
 $headParams = [
     "title" => "Update Contact",
@@ -25,19 +26,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tokens = Helper::setTokens($relevantKeys);
     $values = Helper::setQueryValues($relevantKeys);
     $backTo = $_POST['back-to'];
+    $backLink = "<a href=$backTo>Back</a>";
     
     // TODO: make class for Picture handling
     if ($_FILES["picture"]["name"]) {
         
+        $img = new Image($_FILES['picture']);
         $status = $_FILES["picture"]["error"];
-        $filename = str_replace(' ', '-', $_FILES["picture"]["name"]);
-        $tmp = $_FILES["picture"]["tmp_name"];
-        $filesize = filesize($tmp);
-        $mime_type = ImageUpload::getMimeType($tmp);
+        $filename = $img->name;
+        $tmp = $img->tmp;
+        $filesize = $img->getSize();
+        $mime_type = $img->getMimeType();
 
         if ($status) {
 
-            echo "Error uploading file (error code: $status) <br> <a href=$backTo>Back</a>";
+            echo "Error uploading file (error code: $status) <br> $backLink";
             die();
             
         }
@@ -45,17 +48,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($filesize > MAX_SIZE) {
             
             echo "File size exceeds limit: <br> File size: " . 
-            ImageUpload::formatFileSize($filesize) . 
+            Helper::formatFileSize($filesize) . 
             "<br> allowed " . 
-            ImageUpload::formatFileSize(MAX_SIZE) .
-            "<br><a href=$backTo>Back</a>";
+            Helper::formatFileSize(MAX_SIZE) .
+            "<br>$backLink";
             
             die();
         }
 
         if (!in_array($mime_type, array_keys(ALLOWED_FILES))) {
 
-            echo "file type not allowed<br><a href=$backTo>Back</a>";
+            echo "file type not allowed<br>$backLink";
             die();
             
         }
@@ -67,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!file_exists($filepath)) {
             $success = move_uploaded_file($tmp, $filepath);
             if (!$success) {
-                    echo "Error moving the file to the upload folder<br><a href=$backTo>Back</a>";
+                    echo "Error moving the file to the upload folder<br>$backLink";
                     die();
                 }
         }

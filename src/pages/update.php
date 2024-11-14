@@ -4,6 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/common.php";
 
 use Daniser\Rubrica\Helper;
 use Rubrica\Php\ImageUpload;
+use Rubrica\Php\Image;
 
 $headParams = [
     "title" => "Update Contact",
@@ -41,6 +42,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $birthdate = $_POST["birthdate"];
     $active = $_POST["active"];
     $backTo = $_POST["back-to"];
+    $backLink = "<a href=$backTo>Back</a>";
+
 
     if ($_FILES["picture"]["name"]) {
         
@@ -48,33 +51,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         if ($status) {
 
-            echo "Error uploading file (error code: $status) <br> <a href=index.php>Home</a>";
+            echo "Error uploading file (error code: $status) <br> $backLink";
             die();
             
         }
         
-        $filename = $_FILES["picture"]["name"];
-        $tmp = $_FILES["picture"]["tmp_name"];
-
-        // check file size
-        $filesize = filesize($tmp);
+        $img = new Image($_FILES['picture']);
+        $status = $_FILES["picture"]["error"];
+        $filename = $img->name;
+        $tmp = $img->tmp;
+        $filesize = $img->getSize();
+        $mime_type = $img->getMimeType();
         
         if ($filesize > MAX_SIZE) {
             
             echo "File size exceeds limit: <br> File size: " . 
-            ImageUpload::formatFileSize($filesize) . 
+            Helper::formatFileSize($filesize) . 
             "<br> allowed " . 
-            ImageUpload::formatFileSize(MAX_SIZE) .
-            "<br><a href=index.php>Home</a>";
+            Helper::formatFileSize(MAX_SIZE) .
+            "<br>$backLink";
             
             die();
         }
 
-        $mime_type = ImageUpload::getMimeType($tmp);
-
         if (!in_array($mime_type, array_keys(ALLOWED_FILES))) {
 
-            echo "file type not allowed<br><a href=index.php>Home</a>";
+            echo "file type not allowed<br>$backLink";
             die();
             
         }
