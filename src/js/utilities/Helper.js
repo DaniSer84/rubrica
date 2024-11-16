@@ -8,9 +8,10 @@ class Helper {
             let id = e.target.dataset.id
             let deleteButton = document.getElementById('delete-btn');
             let toDelete = document.getElementById('to-delete');
-            let url = document.URL === "http://localhost:83/index.php" ?
-                "src/pages/delete.php" :
-                "delete.php"
+            let url = document.URL === "http://localhost:83/index.php" ||  
+                      document.URL === "http://localhost:83/" ?
+                      "src/pages/delete.php" :
+                      "delete.php"
 
             if (e.target.tagName !== 'BUTTON')
                 id = e.target.closest('button').dataset.id

@@ -19,15 +19,6 @@ class Helper {
         
     }
 
-    static function formatFileSize (int $bytes, int $decimals = 2): string {
-
-        $size = ['B','kB','MB','GB','TB','PB','EB','ZB','YB'];
-        $factor = floor((strlen($bytes) -1) / 3);
-        
-        return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$size[$factor];
-        
-    }
-
     public static function createContactTable( array $item): string
     {   
 
@@ -78,7 +69,7 @@ class Helper {
         
     }
 
-    public static function createItem($key, $value) {
+    public static function createCardItem($key, $value) {
         $icons = [
           "id" => "fa-list-ol",
           "name" => "fa-user", 

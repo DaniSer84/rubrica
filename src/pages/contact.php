@@ -53,7 +53,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET") {
                     <h5 class="card-title display-6 text-center mb-5"><?= $contact['name'] ?> <?= $contact['surname'] ?></h5>
                     <?php
                     foreach ($contact as $key => $value) {
-                        echo Helper::createItem($key, $value);
+                        echo Helper::createCardItem($key, $value);
                     }
                     ?>
                     <div class="button-container mt-4">

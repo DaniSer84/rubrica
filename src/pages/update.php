@@ -3,8 +3,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . "/common.php";
 
 use Daniser\Rubrica\Helper;
-use Rubrica\Php\ImageUpload;
-use Rubrica\Php\Image;
+use Rubrica\Php\FileUpload\ImageUpload;
 
 $headParams = [
     "title" => "Update Contact",
@@ -47,53 +46,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($_FILES["picture"]["name"]) {
         
-        $status = $_FILES["picture"]["error"];
-        
-        if ($status) {
-
-            echo "Error uploading file (error code: $status) <br> $backLink";
-            die();
-            
-        }
-        
-        $img = new Image($_FILES['picture']);
-        $status = $_FILES["picture"]["error"];
-        $filename = $img->name;
-        $tmp = $img->tmp;
-        $filesize = $img->getSize();
-        $mime_type = $img->getMimeType();
-        
-        if ($filesize > MAX_SIZE) {
-            
-            echo "File size exceeds limit: <br> File size: " . 
-            Helper::formatFileSize($filesize) . 
-            "<br> allowed " . 
-            Helper::formatFileSize(MAX_SIZE) .
-            "<br>$backLink";
-            
-            die();
-        }
-
-        if (!in_array($mime_type, array_keys(ALLOWED_FILES))) {
-
-            echo "file type not allowed<br>$backLink";
-            die();
-            
-        }
-    
-        $uploadedFile = pathinfo($filename, PATHINFO_FILENAME) . '.' . ALLOWED_FILES[$mime_type];
-        
-        $filepath = UPLOAD_DIR . "/" . $uploadedFile;
-
-        $success = move_uploaded_file($tmp, $filepath);
-        if (!$success) {
-                echo "Error moving the file to the upload folder";
-                die();
-            }
-        
-        $data = file_get_contents($filepath);
-        $type = ALLOWED_FILES[$mime_type];
-        $base64 = "data:image/$type;base64," . base64_encode($data);
+        $imageUpload = new ImageUpload($_FILES['picture'], UPLOAD_DIR);
+        $imageUpload->validateImage($backLink);
+        $mime_type = $imageUpload->getMimeType();
+        $base64 = $imageUpload->getBase64();
     
         $updatePicture = "UPDATE pictures SET 
                         content = '$base64',

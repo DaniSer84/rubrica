@@ -1,8 +1,8 @@
 <?php
 
-namespace Rubrica\Php;
+namespace Rubrica\Php\FileUpload;
 
-class Helper {
+class FileUploadHelper {
 
     static function formatFileSize (int $bytes, int $decimals = 2): string {
 

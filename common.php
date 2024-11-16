@@ -26,14 +26,12 @@ $head = new Head();
 
 $bsStrip = SmallComponents::bsStrip();
 
-$deleteModal = new Modal();
-
 $deleteModalButton = new ActionButton([
     "id" => "delete-btn",
     "class" => "btn-danger",
-    "text" => "Elimina"
+    "text" => "Elimina",
 ]);
-$deleteModal->setParams([
+$deleteModal = new Modal([
     "id" => "deleteItem",
     "title" => "Eliminando contatto con id: <span id='to-delete'></span>",
     "text" => "Sei sicuro di voler eliminare il contatto?",
