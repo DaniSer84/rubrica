@@ -2,7 +2,6 @@
 
 namespace Rubrica\Php\FileUpload;
 
-use Rubrica\Php\FileUpload\Image;
 class ImageUpload {
 
     const ALLOWED_FILES = [
