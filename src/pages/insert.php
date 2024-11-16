@@ -31,18 +31,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $imageUpload = new ImageUpload($_FILES['picture'], UPLOAD_DIR);
         $imageUpload->validateImage($backLink);
-        $mime_type = $imageUpload->getMimeType();
+        $mime_type = $imageUpload->mimeType;
         $base64 = $imageUpload->getBase64();
-
+        
     }
-
+    
     $insertContact = "INSERT INTO contacts ( $fields ) VALUES ( $values )";
-
+    
     if (!($base64 && $mime_type)) {
         $base64 = null;
         $mime_type = null;
     }
-
+    
+    // echo "<pre>";
+    // var_dump($mime_type);
+    // echo "</pre>";
+    // die();
+    
     $insertPicture = "INSERT INTO pictures ( content, type, contact_id ) VALUES ( '$base64', '$mime_type', last_insert_id() )";
 
     $db->doWithTransaction([

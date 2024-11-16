@@ -21,10 +21,11 @@ class ImageUpload {
         UPLOAD_ERR_EXTENSION => 'File is not allowed to upload to this server',
     ];
 
-    private string $uploadDir;
-    private array $data;
+    public string $uploadDir;
+    public array $data;
     public string $name;
     public string $tmp;
+    public string $mimeType;
     
     public function __construct($data, $uploadDir) {
 
@@ -32,6 +33,7 @@ class ImageUpload {
         $this->data = $data;
         $this->name = str_replace(' ', '-', $data["name"]);
         $this->tmp = $data['tmp_name'];
+        $this->mimeType = $this->getMimeType();
 
     }
 
@@ -53,7 +55,7 @@ class ImageUpload {
         
     }
 
-    private function statusCheck() {
+    public function statusCheck() {
 
         $status = $this->data['error'];
         $message = self::MESSAGES[$status];
@@ -68,7 +70,7 @@ class ImageUpload {
 
     }
 
-    private function sizeCheck() {
+    public function sizeCheck() {
 
         $filesize = $this->getSize();
 
@@ -85,11 +87,11 @@ class ImageUpload {
         return "OK";
     }
 
-    private function typeCheck() {
+    public function typeCheck() {
 
-        $mimetype =  $this->getMimeType();
+        // $mimetype =  $this->getMimeType();
         
-        if (!in_array($mimetype, array_keys(self::ALLOWED_FILES))) {
+        if (!in_array($this->mimeType, array_keys(self::ALLOWED_FILES))) {
 
             return "file type not allowed<br>";
             
@@ -99,19 +101,19 @@ class ImageUpload {
         
     }
 
-    private function getUploadedFile() {
+    public function getUploadedFile() {
 
-        return pathinfo($this->name, PATHINFO_FILENAME) . '.' . self::ALLOWED_FILES[$this->getMimeType()];
+        return pathinfo($this->name, PATHINFO_FILENAME) . '.' . self::ALLOWED_FILES[$this->mimeType];
 
     }
 
-    private function getFilepath() {
+    public function getFilepath() {
 
         return $this->uploadDir . '/' . $this->getUploadedFile();
         
     }
 
-    private function moveFile() {
+    public function moveFile() {
 
         
         $filepath = $this->getFilepath();
@@ -130,7 +132,7 @@ class ImageUpload {
     public function getBase64() {
 
         $fileData = file_get_contents($this->getFilepath());
-        $type = self::ALLOWED_FILES[$this->getMimeType()];
+        $type = self::ALLOWED_FILES[$this->mimeType];
         
         return "data:image/" . $type . ";base64," . base64_encode($fileData);
     }

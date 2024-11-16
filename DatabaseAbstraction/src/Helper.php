@@ -78,7 +78,7 @@ class Helper {
           "email"=> "fa-envelope",
           "company"=> "fa-building",
           "role"=> "fa-briefcase",
-          "birthdate"=> "fa-calendar",
+          "birthdate"=> "fa-cake-candles",
           "active" => "fa-circle-check",
         ];
         

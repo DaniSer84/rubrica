@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     
     if (!$selectedContact) {
         
-        die("Actor not found.");
+        die("Contact not found. <a href=$referer>Back</a>");
         
     }
     
@@ -48,9 +48,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         $imageUpload = new ImageUpload($_FILES['picture'], UPLOAD_DIR);
         $imageUpload->validateImage($backLink);
-        $mime_type = $imageUpload->getMimeType();
+        $mime_type = $imageUpload->mimeType;
         $base64 = $imageUpload->getBase64();
-    
+
         $updatePicture = "UPDATE pictures SET 
                         content = '$base64',
                         type = '$mime_type' 
@@ -59,6 +59,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $db->doWithTransaction([
             $updatePicture
         ]);
+    }
+
+    if ($_POST["clear-picture"]) {
+
+        $base64 = null;
+        $mime_type = null;
+        
+        $updatePicture = "UPDATE pictures SET 
+                        content = '$base64',
+                        type = '$mime_type' 
+                        WHERE contact_id = '$id'";
+        
+        $db->doWithTransaction([
+            $updatePicture
+        ]);
+        
     }
 
     $updateContact = "UPDATE contacts SET
@@ -99,7 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </nav>
     </header>
     <div class="form-container mb-5 mt-2">
-        <!-- TODO: Improve picture for update: 1) set X for no picture 2) show preview if possible... -->
+        <!-- TODO: Improve picture for update: show preview if possible... -->
         <form action="" method="POST" enctype="multipart/form-data" class="needs-validation">
             <div class="form-fields-container justify-content-between">
                 <input type="text" name="back-to" value="<?= $referer ?>" hidden>
@@ -110,6 +126,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <span class="img-check d-none"></span>
                     <input type="file" id="file-upload" accept="image/png, image/jpeg" name="picture"
                         class="form-control d-none">
+                    <label for="clear-picture">Remove picture</label>
+                    <input type="checkbox" name="clear-picture" id="clear-picture">
                 </div>
                 <div class="form-check form-switch">
                     <input type="hidden" name="active" value="0">
