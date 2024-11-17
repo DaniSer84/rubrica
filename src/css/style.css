@@ -73,7 +73,6 @@ tr {
     /* padding-right: 2rem; */
     flex-basis: 15%;
 }
-
 .field span {
     border-bottom: 1px solid lightgray;
     padding: 0.6rem 0;
@@ -87,4 +86,5 @@ tr {
 .img-check {
     display: block;
     text-align: center;
+    word-break: break-word;
 }

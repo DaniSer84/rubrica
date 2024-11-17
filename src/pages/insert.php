@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     
     // echo "<pre>";
-    // var_dump($mime_type);
+    // var_dump($_FILES['picture']['name']);
     // echo "</pre>";
     // die();
     
@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="file-upload" class="position-relative text-center">
                     <img src="../../img/user-account.png" class="w-50 m-auto add-img-file">
                 </label><br>
-                <span class="img-check d-none overflow-hidden"></span>
+                <span class="img-check d-none"></span>
                 <input type="file" id="file-upload" accept="image/png, image/jpeg" name="picture"
                     class="form-control d-none">
             </div>
