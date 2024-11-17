@@ -25,7 +25,7 @@ class ImageUpload {
     public array $data;
     public string $name;
     public string $tmp;
-    public string $mimeType;
+    public ?string $mimeType;
     
     public function __construct($data, $uploadDir) {
 
@@ -140,18 +140,23 @@ class ImageUpload {
     
     public function getMimeType() {
 
-        $info = finfo_open(FILEINFO_MIME_TYPE);
+        if ($this->tmp) {
 
-        if (!$info) {
+            $info = finfo_open(FILEINFO_MIME_TYPE);
 
-            return false;
-
+            if (!$info) {
+    
+                return false;
+    
+            }
+    
+            $mime_type = finfo_file($info, $this->tmp);
+            finfo_close($info);
+    
+            return $mime_type;
+                
+            
         }
-
-        $mime_type = finfo_file($info, $this->tmp);
-        finfo_close($info);
-
-        return $mime_type;
         
     }
 
