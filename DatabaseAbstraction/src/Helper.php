@@ -79,6 +79,7 @@ class Helper {
           "company"=> "fa-building",
           "role"=> "fa-briefcase",
           "birthdate"=> "fa-cake-candles",
+          'created_at' => "fa-calendar",
           "active" => "fa-circle-check",
         ];
         

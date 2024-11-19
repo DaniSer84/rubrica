@@ -3,6 +3,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . "/common.php";
 
 use Daniser\Rubrica\Helper;
+use Rubrica\Php\FormRequest\FormRequest;
 
 $headParams = [
     "title" => "Contact", 
@@ -11,22 +12,11 @@ $headParams = [
 ];
 $head->setParams($headParams);
 
-if ( $_SERVER["REQUEST_METHOD"] == "GET") {
+$formRequest = new FormRequest($_REQUEST, $_FILES, $_SERVER, $db);
 
-    $id = $_GET["item_id"];
-
-    $result = $db->getData("SELECT id, name, surname, phone_number, email, company, role, birthdate, active FROM contacts WHERE id = ?", [ $id ] );
-
-    $contact = $result->fetch();
-
-    if ($contact) {
-
-        $picture = $db->getData("SELECT content FROM pictures WHERE contact_id = " . $contact['id'])->fetch();
-        
-    }
-
-
-}
+$data = $formRequest->sendRequest();
+$contact = $data['contact'];
+$picture = $data['picture'];
 
 ?>
 

@@ -3,7 +3,6 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . "/common.php";
 
 use Daniser\Rubrica\Helper;
-use Rubrica\Php\FileUpload\ImageUpload;
 use Rubrica\Php\FormRequest\FormRequest;
 
 $headParams = [
@@ -18,100 +17,6 @@ $referer = $_SERVER["HTTP_REFERER"];
 $formRequest = new FormRequest($_REQUEST, $_FILES, $_SERVER, $db);
 
 $data = $formRequest->sendRequest();
-
-// echo "<pre>";
-// var_dump($data);
-// echo "</pre>";
-
-// if ($_SERVER["REQUEST_METHOD"] == "GET") {
-
-    
-//     $id = $_GET["item_id"];
-
-//     $selectedContact = $db->getData("SELECT * FROM contacts WHERE id = ?", [$id])->fetch();
-    
-//     if (!$selectedContact) {
-        
-//         die("Contact not found. <a href=$referer>Back</a>");
-        
-//     }
-    
-//     $picture = $db->getData("SELECT content FROM pictures WHERE contact_id = " . $selectedContact['id'])->fetch();
-// }
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-//     var_dump($_REQUEST);
-// // var_dump($_POST);
-// // var_dump($_FILES);
-// die();
-    
-    $id = $_POST["id"];
-    $name = $_POST["name"];
-    $surname = $_POST["surname"];
-    $phoneNumber = $_POST["phone_number"];
-    $company = $_POST["company"];
-    $role = $_POST["role"];
-    $email = $_POST["email"];
-    $birthdate = $_POST["birthdate"];
-    $active = $_POST["active"];
-    $backTo = $_POST["back-to"];
-    $backLink = "<a href=$backTo>Back</a>";
-
-
-    if ($_FILES["picture"]["name"]) {
-        
-        $imageUpload = new ImageUpload($_FILES['picture'], UPLOAD_DIR);
-        $imageUpload->validateImage($backLink);
-        $mime_type = $imageUpload->mimeType;
-        $base64 = $imageUpload->getBase64();
-
-        $updatePicture = "UPDATE pictures SET 
-                        content = '$base64',
-                        type = '$mime_type' 
-                        WHERE contact_id = '$id'";
-        
-        $db->doWithTransaction([
-            $updatePicture
-        ]);
-    }
-
-    if ($_POST["clear-picture"]) {
-
-        $base64 = null;
-        $mime_type = null;
-        
-        $updatePicture = "UPDATE pictures SET 
-                        content = '$base64',
-                        type = '$mime_type' 
-                        WHERE contact_id = '$id'";
-        
-        $db->doWithTransaction([
-            $updatePicture
-        ]);
-        
-    }
-
-    $updateContact = "UPDATE contacts SET
-                        name = '$name',  
-                        surname = '$surname', 
-                        phone_number = '$phoneNumber', 
-                        company = '$company', 
-                        role = '$role',
-                        email = '$email', 
-                        birthdate = '$birthdate', 
-                        active = '$active' 
-                        WHERE id = '$id'";
-
-
-    $db->doWithTransaction([
-        $updateContact
-    ]);
-
-    header("Location: $backTo");
-    exit;
-
-}
 
 ?>
 
