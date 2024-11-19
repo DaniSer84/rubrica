@@ -4,6 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/common.php";
 
 use Daniser\Rubrica\Helper;
 use Rubrica\Php\FileUpload\ImageUpload;
+use Rubrica\Php\FormRequest\FormRequest;
 
 $headParams = [
     "title" => "Update Contact",
@@ -14,23 +15,37 @@ $head->setParams($headParams);
 
 $referer = $_SERVER["HTTP_REFERER"];
 
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
+$formRequest = new FormRequest($_REQUEST, $_FILES, $_SERVER, $db);
 
-    $id = $_GET["item_id"];
+$data = $formRequest->sendRequest();
 
-    $selectedContact = $db->getData("SELECT * FROM contacts WHERE id = ?", [$id])->fetch();
+// echo "<pre>";
+// var_dump($data);
+// echo "</pre>";
+
+// if ($_SERVER["REQUEST_METHOD"] == "GET") {
+
     
-    if (!$selectedContact) {
-        
-        die("Contact not found. <a href=$referer>Back</a>");
-        
-    }
+//     $id = $_GET["item_id"];
+
+//     $selectedContact = $db->getData("SELECT * FROM contacts WHERE id = ?", [$id])->fetch();
     
-    $picture = $db->getData("SELECT content FROM pictures WHERE contact_id = " . $selectedContact['id'])->fetch();
-}
+//     if (!$selectedContact) {
+        
+//         die("Contact not found. <a href=$referer>Back</a>");
+        
+//     }
+    
+//     $picture = $db->getData("SELECT content FROM pictures WHERE contact_id = " . $selectedContact['id'])->fetch();
+// }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+//     var_dump($_REQUEST);
+// // var_dump($_POST);
+// // var_dump($_FILES);
+// die();
+    
     $id = $_POST["id"];
     $name = $_POST["name"];
     $surname = $_POST["surname"];
@@ -121,7 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="text" name="back-to" value="<?= $referer ?>" hidden>
                 <div class="mb-3 ">
                     <label for="file-upload" class="position-relative text-center">
-                        <img src="<?=$picture[0] !== "" ? $picture[0] : "https://placehold.co/200x200?text=Your+Pic"?>" class="w-50 m-auto add-img-file img-fluid rounded-circle">
+                        <img src="<?=$data["picture"][0] !== "" ? $data["picture"][0] : "https://placehold.co/200x200?text=Your+Pic"?>" class="w-50 m-auto add-img-file img-fluid rounded-circle">
                     </label><br>
                     <span class="img-check d-none"></span>
                     <input type="file" id="file-upload" accept="image/png, image/jpeg" name="picture"
@@ -132,47 +147,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="form-check form-switch">
                     <input type="hidden" name="active" value="0">
                     <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
-                        name="active" value="<?= Helper::AccessToValue($selectedContact, 'active') ?>">
+                        name="active" value="<?= Helper::AccessToValue($data["contact"], 'active') ?>">
                     <label class="form-check-label" for="flexSwitchCheckDefault"></label>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="id" name="id" placeholder=""
-                        value="<?= Helper::AccessToValue($selectedContact, "id") ?>" readonly>
+                        value="<?= Helper::AccessToValue($data["contact"], "id") ?>" readonly>
                     <label for="id">Id</label>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="nome" name="name" placeholder="Mario"
-                        value="<?= Helper::AccessToValue($selectedContact, "name") ?>">
+                        value="<?= Helper::AccessToValue($data["contact"], "name") ?>">
                     <label for="nome">Nome</label>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="cognome" name="surname" placeholder="Rossi"
-                        value="<?= Helper::AccessToValue($selectedContact, "surname") ?>">
+                        value="<?= Helper::AccessToValue($data["contact"], "surname") ?>">
                     <label for="cognome">Cognome</label>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="tel" class="form-control" id="telefono" name="phone_number" placeholder="02 2021010"
-                        value="<?= Helper::AccessToValue($selectedContact, "phone_number") ?>">
+                        value="<?= Helper::AccessToValue($data["contact"], "phone_number") ?>">
                     <label for="telefono">Telefono</label>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com"
-                        value="<?= Helper::AccessToValue($selectedContact, "email") ?>">
+                        value="<?= Helper::AccessToValue($data["contact"], "email") ?>">
                     <label for="email">Indirizzo email</label>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="società" name="company" placeholder="CDM"
-                        value="<?= Helper::AccessToValue($selectedContact, "company") ?>">
+                        value="<?= Helper::AccessToValue($data["contact"], "company") ?>">
                     <label for="società">Società</label>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="qualifica" name="role" placeholder="Developer"
-                        value="<?= Helper::AccessToValue($selectedContact, "role") ?>">
+                        value="<?= Helper::AccessToValue($data["contact"], "role") ?>">
                     <label for="qualifica">Qualifica</label>
                 </div>
                 <div class="form-floating mb-5">
                     <input type="date" class="form-control" id="data_nascita" name="birthdate" placeholder="01/01/1980"
-                        value="<?= Helper::AccessToValue($selectedContact, "birthdate") ?>" required>
+                        value="<?= Helper::AccessToValue($data["contact"], "birthdate") ?>" required>
                     <label for="data_nascita">Data di nascita</label>
                 </div>
             </div>
