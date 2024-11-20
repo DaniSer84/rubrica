@@ -51,6 +51,14 @@ class FormRequest {
         $contact = $this->db->getData("SELECT * FROM contacts WHERE id = ?", [$id])->fetch();
         
         if (!$contact) {
+
+            if ($_SERVER['URL'] === '/src/pages/contact.php') {
+                $data = [
+                    "contact" => '',
+                    "picture" => ''
+                ];
+                return $data;
+            }
             
             die("Actor not found.");
             
