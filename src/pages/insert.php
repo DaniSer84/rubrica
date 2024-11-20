@@ -2,8 +2,7 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/common.php";
 
-use Daniser\Rubrica\Helper;
-use Rubrica\Php\FileUpload\ImageUpload;
+use Rubrica\Php\FormRequest\FormRequest;
 
 $headParams = [
     "title" => "Update Contact",
@@ -14,50 +13,8 @@ $head->setParams($headParams);
 
 $referer = $_SERVER["HTTP_REFERER"];
 
-// TODO: abstract form methods
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $relevantKeys = array_filter($_POST, function ($key) {
-        return $key !== "back-to";
-    }, ARRAY_FILTER_USE_KEY);
-
-    $fields = Helper::setFields($relevantKeys);
-    $tokens = Helper::setTokens($relevantKeys);
-    $values = Helper::setQueryValues($relevantKeys);
-    $backTo = $_POST['back-to'];
-    $backLink = "<a href=$backTo>Back</a>";
-
-    if ($_FILES["picture"]["name"]) {
-
-        $imageUpload = new ImageUpload($_FILES['picture'], UPLOAD_DIR);
-        $imageUpload->validateImage($backLink);
-        $mime_type = $imageUpload->mimeType;
-        $base64 = $imageUpload->getBase64();
-        
-    }
-    
-    $insertContact = "INSERT INTO contacts ( $fields ) VALUES ( $values )";
-    
-    if (!($base64 && $mime_type)) {
-        $base64 = null;
-        $mime_type = null;
-    }
-    
-    // echo "<pre>";
-    // var_dump($_FILES['picture']['name']);
-    // echo "</pre>";
-    // die();
-    
-    $insertPicture = "INSERT INTO pictures ( content, type, contact_id ) VALUES ( '$base64', '$mime_type', last_insert_id() )";
-
-    $db->doWithTransaction([
-        $insertContact,
-        $insertPicture,
-    ]);
-
-
-    header("Location: $backTo");
-}
+$formRequest = new FormRequest($_REQUEST, $_FILES, $_SERVER, $db);
+$formRequest->sendRequest();
 
 ?>
 
