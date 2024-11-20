@@ -1,5 +1,7 @@
 <?php
 
+use Rubrica\Php\QueryBuilder\QueryBuilder;
+
 require_once $_SERVER['DOCUMENT_ROOT'] . "/common.php";
 
 if ( $_SERVER["REQUEST_METHOD"] == "GET") {
@@ -9,7 +11,7 @@ if ( $_SERVER["REQUEST_METHOD"] == "GET") {
 
         $id = $_GET["item_id"];
         
-        $db->deleteData("DELETE FROM contacts WHERE id = ?", [ $id ] );
+        $db->deleteData(QueryBuilder::DeleteContact(), [ $id ] );
         
     } else {
 

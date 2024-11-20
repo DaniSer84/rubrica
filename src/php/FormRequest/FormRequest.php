@@ -3,6 +3,7 @@
 namespace Rubrica\Php\FormRequest;
 
 use Daniser\Rubrica\DatabaseContract;
+use Daniser\Rubrica\Helper;
 use Rubrica\Php\FileUpload\FileUploadHelper;
 use Rubrica\Php\FileUpload\ImageUpload;
 use Rubrica\Php\QueryBuilder\QueryBuilder;
@@ -20,7 +21,6 @@ class FormRequest {
     public array $fileData;
     public string $method;
     public DatabaseContract $db;
-
 
     public function __construct($request, $files, $server, DatabaseContract $db) {
 
@@ -49,7 +49,7 @@ class FormRequest {
         
         $id = $this->request["item_id"];
         
-        $contact = $this->db->getData("SELECT * FROM contacts WHERE id = ?", [$id])->fetch();
+        $contact = $this->db->getData(QueryBuilder::GetOne(), [$id])->fetch();
         
         if (!$contact) {
 
@@ -65,7 +65,7 @@ class FormRequest {
             
         }
         
-        $picture = $this->db->getData("SELECT content FROM pictures WHERE contact_id = " . $contact['id'])->fetch();
+        $picture = $this->db->getData(QueryBuilder::GetPicture(), [$id])->fetch();
         
         $data = [
             "contact" => $contact,
@@ -77,27 +77,16 @@ class FormRequest {
 
     public function post() {
 
-        $backTo = $this->request["back-to"];
+        $backTo = $this->request['back-to'];
         $backLink = "<a href=$backTo>Back</a>";
-
-        if ($this->files["picture"]["name"]) {
-
-            $imageUpload = new ImageUpload($this->files['picture'], UPLOAD_DIR);
-            $imageUpload->validateImage($backLink);
-            $mime_type = $imageUpload->mimeType;
-            $base64 = $imageUpload->getBase64();
-            
-        }
+        
+        $fileData = $this->getFileData($backLink);
+        $base64 = $fileData["base64"];
+        $mime_type = $fileData["mime_type"];
 
         if ($_SERVER['URL'] === '/src/pages/insert.php') {
 
-            
             $insertContact = QueryBuilder::InsertContact($this->request);
-            
-            if (!($base64 && $mime_type)) {
-                $base64 = null;
-                $mime_type = null;
-            }
             
             $insertPicture = QueryBuilder::InsertPicture($base64, $mime_type);
         
@@ -110,73 +99,67 @@ class FormRequest {
 
         if ($_SERVER['URL'] === '/src/pages/update.php') {
 
+            $fields = Helper::setUpdateFields($this->request);
+            $items = Helper::setItems($fields);
             $id = $this->request["id"];
-            $name = $this->request["name"];
-            $surname = $this->request["surname"];
-            $phoneNumber = $this->request["phone_number"];
-            $company = $this->request["company"];
-            $role = $this->request["role"];
-            $email = $this->request["email"];
-            $birthdate = $this->request["birthdate"];
-            $active = $this->request["active"];
+            $pictureItems = null;
 
-
-            if ($this->files["picture"]["name"]) {
+            if ($base64 && $mime_type) {
                 
-                $imageUpload = new ImageUpload($this->files['picture'], FileUploadHelper::UPLOAD_DIR);
-                $imageUpload->validateImage($backLink);
-                $mime_type = $imageUpload->mimeType;
-                $base64 = $imageUpload->getBase64();
-
-                $updatePicture = "UPDATE pictures SET 
-                                content = '$base64',
-                                type = '$mime_type' 
-                                WHERE contact_id = '$id'";
+                $pictureItems = [
+                    $base64,
+                    $mime_type,
+                    $id
+                ];
                 
-                $this->db->doWithTransaction([
-                    $updatePicture
-                ]);
             }
 
             if ($this->request["clear-picture"]) {
 
-                $base64 = null;
-                $mime_type = null;
-                
-                $updatePicture = "UPDATE pictures SET 
-                                content = '$base64',
-                                type = '$mime_type' 
-                                WHERE contact_id = '$id'";
-                
-                $this->db->doWithTransaction([
-                    $updatePicture
-                ]);
-                
+                $pictureItems = [
+                    '',
+                    '',
+                    $id
+                ];
+
             }
 
-            $updateContact = "UPDATE contacts SET
-                                name = '$name',  
-                                surname = '$surname', 
-                                phone_number = '$phoneNumber', 
-                                company = '$company', 
-                                role = '$role',
-                                email = '$email', 
-                                birthdate = '$birthdate', 
-                                active = '$active' 
-                                WHERE id = '$id'";
+            if($pictureItems) {
+                $this->db->setData(QueryBuilder::UpdatePicture(), [$pictureItems]);
+            }
 
+            array_push($items, $id);
 
-            $this->db->doWithTransaction([
-                $updateContact
-            ]);
+            $this->db->setData(QueryBuilder::UpdateContact(), [$items]);
             
         }
         
         
-    header("Location: $backTo");
-    exit;
+        header("Location: $backTo");
+        exit;
         
+    }
 
+    private function getFileData($backLink) {
+
+        $data = [
+            "base64" => null,
+            "mime_type" => null
+        ];
+        
+        if ($this->files["picture"]["name"]) {
+
+            $imageUpload = new ImageUpload($this->files['picture'], UPLOAD_DIR);
+            $imageUpload->validateImage($backLink);
+            $mime_type = $imageUpload->mimeType;
+            $base64 = $imageUpload->getBase64();
+
+            $data["base64"] = $base64;
+            $data["mime_type"] = $mime_type;
+        }
+
+        return $data;        
+        
     }
     
 }

@@ -1,5 +1,7 @@
 <?php
 
+use Rubrica\Php\QueryBuilder\QueryBuilder;
+
 require_once $_SERVER['DOCUMENT_ROOT'] . "/common.php";
 
 $headParams = [
@@ -9,7 +11,7 @@ $headParams = [
 ];
 $head->setParams($headParams);
 
-$contacts = $db->getData("SELECT id, name, surname, phone_number, email, active FROM contacts ORDER BY surname", []);
+$contacts = $db->getData(QueryBuilder::GetAll(), []);
 
 ?>
 

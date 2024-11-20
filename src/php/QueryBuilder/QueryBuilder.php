@@ -23,28 +23,29 @@ class QueryBuilder {
 
     static function GetOne() {
 
+        return "SELECT * FROM contacts WHERE id = ?";
+
     }
 
     static function GetAll() {
+        
+        return "SELECT * FROM contacts ORDER BY surname";
 
     }
 
     static function GetPicture() {
 
+        return "SELECT content FROM pictures WHERE contact_id = ?";
+
     }
 
     static function InsertContact($data) {
 
-        $relevantKeys = array_filter($data, function ($key) {
-            return in_array($key, self::FIELDS);
-        }, ARRAY_FILTER_USE_KEY);
-    
+        $relevantKeys = Helper::setRelevantFields($data);
         $fields = Helper::setFields($relevantKeys);
         $values = Helper::setQueryValues($relevantKeys);
     
-        $insertContact = "INSERT INTO contacts ( $fields ) VALUES ( $values )";
-
-        return $insertContact;
+        return "INSERT INTO contacts ( $fields ) VALUES ( $values )";
         
     }
 
@@ -56,13 +57,31 @@ class QueryBuilder {
 
     static function DeleteContact() {
 
+        return "DELETE FROM contacts WHERE id = ?";
+
     }
 
     static function UpdateContact() {
 
+        return "UPDATE contacts SET
+                active = ?, 
+                name = ?,  
+                surname = ?, 
+                phone_number = ?, 
+                email = ?, 
+                company = ?, 
+                role = ?,
+                birthdate = ?
+                WHERE id = ?";
+
     }
 
     static function UpdatePicture() {
+
+        return "UPDATE pictures SET 
+                content = ?,
+                type = ? 
+                WHERE contact_id = ?";
 
     }
 

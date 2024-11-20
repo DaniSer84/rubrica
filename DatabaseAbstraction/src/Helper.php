@@ -3,6 +3,35 @@
 namespace Daniser\Rubrica;
 class Helper {
 
+    const RELEVANT_FIELDS = [
+
+        "id",
+        "name",
+        "surname",
+        "phone_number",
+        "company",
+        "role",
+        "email",
+        "birthdate",
+        "created_at",
+        "active",
+        "picture"
+
+    ];
+
+    const UPDATE_FIELDS = [
+
+        "name",
+        "surname",
+        "phone_number",
+        "company",
+        "role",
+        "email",
+        "birthdate",
+        "active",
+
+    ];
+
     public static function createNameSurnameListItem( array $item) {
 
         return "<li class='list-group-item d-flex justify-content-between align-items-center'><span class='list-item-text'>" .
@@ -160,4 +189,33 @@ class Helper {
 
     }
     
+    static function setItems($data) {
+
+        $items = [];
+
+        foreach($data as $item) {
+
+            array_push($items, $item);
+            
+        }
+
+        return $items;
+        
+    }
+
+    static function setRelevantFields($data) {
+
+        return array_filter($data, function ($key) {
+            return in_array($key, self::RELEVANT_FIELDS);
+        }, ARRAY_FILTER_USE_KEY);
+
+    }
+
+    static function setUpdateFields($data) {
+
+        return array_filter($data, function ($key) {
+            return in_array($key, self::UPDATE_FIELDS);
+        }, ARRAY_FILTER_USE_KEY);
+
+    }
 }

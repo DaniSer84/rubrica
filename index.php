@@ -2,6 +2,7 @@
 
 require_once __DIR__ . "/common.php";
 use Daniser\Rubrica\Helper;
+use Rubrica\Php\QueryBuilder\QueryBuilder;
 
 $headParams = [
     "title" => "Rubrica",
@@ -43,7 +44,7 @@ $head->setParams($headParams);
                 </thead>
                 <tbody class="table-group-divider">
                     <?php
-                    $result = $db->getData("SELECT * FROM contacts ORDER BY surname", []);
+                    $result = $db->getData(QueryBuilder::GetAll(), []);
                     while ($contact = $result->fetch()) {
                         echo Helper::createContactTable($contact);
                     }
