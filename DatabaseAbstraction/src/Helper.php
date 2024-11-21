@@ -48,7 +48,7 @@ class Helper {
         
     }
 
-    public static function createContactTable( array $item): string
+    public static function createContactTable( array $item, string $hasImage): string
     {   
 
         $id = Self::AccessToValue($item,"id");
@@ -77,6 +77,7 @@ class Helper {
                     "<div class='form-check form-switch'> 
                         <input class='form-check-input' type='checkbox' role='switch' value='$active' disabled>
                     </div></td>" . 
+                    "<td>$hasImage</td>" . 
                     "<td>" .    
                         "<div class='list-item-btn-container flex-row justify-content-end'>" .
                             "<a href='src/pages/update.php?item_id=$id'>" .

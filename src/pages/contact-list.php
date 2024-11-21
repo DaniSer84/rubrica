@@ -38,12 +38,12 @@ $contacts = $db->getData(QueryBuilder::GetAll(), []);
             </a>
             <?php
             while ($contact = $contacts->fetch()):
-                $picture = $db->getData("SELECT content FROM pictures WHERE contact_id = " . $contact['id'])->fetch();
+                $picture = $db->getData( QueryBuilder::GetPicture(), [$contact['id']])->fetch()[0];
                 ?>
                 <div class="card mb-3" style="max-width: 540px; max-height: 250px">
                     <div class="row g-0">
                         <div class="col-md-4">
-                            <img src="<?= $picture[0] !== "" ? $picture[0] : "https://placehold.co/200x200?text=Your+Pic" ?>"
+                            <img src="<?= $picture !== "" ? $picture : "https://placehold.co/200x200?text=Your+Pic" ?>"
                                 class="img-fluid rounded-circle" alt="...">
                         </div>
                         <div class="col-md-8 d-flex">

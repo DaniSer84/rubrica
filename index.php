@@ -40,13 +40,16 @@ $head->setParams($headParams);
                         <th scope="col">Data di nascita</th>
                         <th scope="col">Data creazione</th>
                         <th scope="col">Attivo</th>
+                        <th scope="col">Image</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
                     <?php
                     $result = $db->getData(QueryBuilder::GetAll(), []);
                     while ($contact = $result->fetch()) {
-                        echo Helper::createContactTable($contact);
+                        $picture = $db->getData(QueryBuilder::GetPicture(), [$contact['id']])->fetch();
+                        $hasImage = $picture[0] !== "" ? "Yes" : "No";
+                        echo Helper::createContactTable($contact, $hasImage);
                     }
                     ?>
                 </tbody>
