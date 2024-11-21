@@ -4,6 +4,7 @@ namespace Rubrica\Php\FileUpload;
 
 class ImageUpload {
 
+    const UPLOAD_DIR = "C:/WebDev/CODE/rubrica/src/pictures";
     const ALLOWED_FILES = [
         'image/png' => 'png',
         'image/jpeg' => 'jpg'
@@ -21,15 +22,13 @@ class ImageUpload {
         UPLOAD_ERR_EXTENSION => 'File is not allowed to upload to this server',
     ];
 
-    public string $uploadDir;
     public array $data;
     public string $name;
     public string $tmp;
     public ?string $mimeType;
     
-    public function __construct($data, $uploadDir) {
+    public function __construct($data) {
 
-        $this->uploadDir = $uploadDir;
         $this->data = $data;
         $this->name = str_replace(' ', '-', $data["name"]);
         $this->tmp = $data['tmp_name'];
@@ -74,12 +73,12 @@ class ImageUpload {
 
         $filesize = $this->getSize();
 
-        if ($filesize > MAX_SIZE) {
+        if ($filesize > self::MAX_SIZE) {
             
             return "File size exceeds limit: <br> File size: " . 
             FileUploadHelper::formatFileSize($filesize) . 
             "<br> allowed " . 
-            FileUploadHelper::formatFileSize(MAX_SIZE) .
+            FileUploadHelper::formatFileSize(self::MAX_SIZE) .
             "<br>";
             
         }
@@ -109,7 +108,7 @@ class ImageUpload {
 
     public function getFilepath() {
 
-        return $this->uploadDir . '/' . $this->getUploadedFile();
+        return self::UPLOAD_DIR . '/' . $this->getUploadedFile();
         
     }
 

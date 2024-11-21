@@ -10,14 +10,6 @@ use Rubrica\Php\Components\SmallComponents;
 
 require_once __DIR__ ."/vendor/autoload.php";
 
-const UPLOAD_DIR = __DIR__ . "/src/pictures";
-
-const ALLOWED_FILES = [
-    'image/png' => 'png',
-    'image/jpeg' => 'jpg'
-];
-const MAX_SIZE = 2 * 1024 * 1024;
-
 $selectedContact = null;
 
 $db = DatabaseFactory::Create(DatabaseContract::TYPE_PDO);

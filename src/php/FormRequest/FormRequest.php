@@ -149,7 +149,7 @@ class FormRequest {
         
         if ($this->files["picture"]["name"]) {
 
-            $imageUpload = new ImageUpload($this->files['picture'], UPLOAD_DIR);
+            $imageUpload = new ImageUpload($this->files['picture']);
             $imageUpload->validateImage($backLink);
             $mime_type = $imageUpload->mimeType;
             $base64 = $imageUpload->getBase64();
