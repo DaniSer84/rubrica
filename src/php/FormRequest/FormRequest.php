@@ -4,7 +4,6 @@ namespace Rubrica\Php\FormRequest;
 
 use Daniser\Rubrica\DatabaseContract;
 use Daniser\Rubrica\Helper;
-use Rubrica\Php\FileUpload\FileUploadHelper;
 use Rubrica\Php\FileUpload\ImageUpload;
 use Rubrica\Php\QueryBuilder\QueryBuilder;
 
