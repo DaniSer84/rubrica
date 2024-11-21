@@ -49,9 +49,9 @@ class QueryBuilder {
         
     }
 
-    static function InsertPicture($base64, $mimeType) {
+    static function InsertPicture(array $fileData): string {
 
-        return "INSERT INTO pictures ( content, type, contact_id ) VALUES ( '$base64', '$mimeType', last_insert_id() )";
+        return "INSERT INTO pictures ( content, type, contact_id ) VALUES ( '" . $fileData[0] . "', '" . $fileData[1] . "', last_insert_id() )";
 
     }
 

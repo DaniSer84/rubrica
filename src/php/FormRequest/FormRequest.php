@@ -80,34 +80,72 @@ class FormRequest {
         $backLink = "<a href=$backTo>Back</a>";
         
         $fileData = $this->getFileData($backLink);
-        $base64 = $fileData["base64"];
-        $mime_type = $fileData["mime_type"];
 
         if ($_SERVER['URL'] === '/src/pages/insert.php') {
 
-            $insertContact = QueryBuilder::InsertContact($this->request);
-            
-            $insertPicture = QueryBuilder::InsertPicture($base64, $mime_type);
-        
-            $this->db->doWithTransaction([
-                $insertContact,
-                $insertPicture,
-            ]);
+           $this->insert($fileData);
             
         }
 
         if ($_SERVER['URL'] === '/src/pages/update.php') {
 
-            $fields = Helper::setUpdateFields($this->request);
+            $this->update($fileData);
+            
+        }
+        
+        
+        header("Location: $backTo");
+        exit;
+        
+    }
+
+    private function getFileData($backLink) {
+
+        $data = [
+            null,
+            null
+        ];
+        
+        if ($this->files["picture"]["name"]) {
+
+            $imageUpload = new ImageUpload($this->files['picture']);
+            $imageUpload->validateImage($backLink);
+            $mime_type = $imageUpload->mimeType;
+            $base64 = $imageUpload->getBase64();
+
+            $data[0] = $base64;
+            $data[1] = $mime_type;
+        }
+
+        return $data;        
+        
+    }
+
+    private function insert($fileData) {
+
+        $insertContact = QueryBuilder::InsertContact($this->request);
+            
+        $insertPicture = QueryBuilder::InsertPicture($fileData);
+    
+        $this->db->doWithTransaction([
+            $insertContact,
+            $insertPicture,
+        ]);
+        
+    }
+
+    private function update($fileData) {
+
+        $fields = Helper::setUpdateFields($this->request);
             $items = Helper::setItems($fields);
             $id = $this->request["id"];
             $pictureItems = null;
 
-            if ($base64 && $mime_type) {
+            if ($fileData[0] && $fileData[1]) {
                 
                 $pictureItems = [
-                    $base64,
-                    $mime_type,
+                    $fileData[0],
+                    $fileData[1],
                     $id
                 ];
                 
@@ -130,35 +168,7 @@ class FormRequest {
             array_push($items, $id);
 
             $this->db->setData(QueryBuilder::UpdateContact(), [$items]);
-            
-        }
-        
-        
-        header("Location: $backTo");
-        exit;
-        
-    }
 
-    private function getFileData($backLink) {
-
-        $data = [
-            "base64" => null,
-            "mime_type" => null
-        ];
-        
-        if ($this->files["picture"]["name"]) {
-
-            $imageUpload = new ImageUpload($this->files['picture']);
-            $imageUpload->validateImage($backLink);
-            $mime_type = $imageUpload->mimeType;
-            $base64 = $imageUpload->getBase64();
-
-            $data["base64"] = $base64;
-            $data["mime_type"] = $mime_type;
-        }
-
-        return $data;        
-        
     }
     
 }
