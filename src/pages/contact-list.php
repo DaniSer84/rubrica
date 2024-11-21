@@ -40,11 +40,11 @@ $contacts = $db->getData(QueryBuilder::GetAll(), []);
             while ($contact = $contacts->fetch()):
                 $picture = $db->getData( QueryBuilder::GetPicture(), [$contact['id']])->fetch()[0];
                 ?>
-                <div class="card mb-3" style="max-width: 540px; max-height: 250px">
+                <div class="card mb-3" style="max-width: 540px;">
                     <div class="row g-0">
                         <div class="col-md-4">
                             <img src="<?= $picture !== "" ? $picture : "https://placehold.co/200x200?text=Your+Pic" ?>"
-                                class="img-fluid rounded-circle" alt="...">
+                                class="img-fluid normal-card-img" alt="...">
                         </div>
                         <div class="col-md-8 d-flex">
                             <div class="card-body">

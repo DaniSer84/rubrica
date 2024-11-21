@@ -38,7 +38,7 @@ $picture = $data['picture'];
         <?php if ($contact) :?>
         <div class="container">
             <div class="card">
-                <img src="<?=$picture[0] !== "" ? $picture[0] : "https://placehold.co/200x200?text=Your+Pic"?>" class="card-img-top">
+                <img src="<?=$picture[0] !== "" ? $picture[0] : "https://placehold.co/200x200?text=Your+Pic"?>" class="card-img-top normal-card-img">
                 <div class="card-body">
                     <h5 class="card-title display-6 text-center mb-5"><?= $contact['name'] ?> <?= $contact['surname'] ?></h5>
                     <?php

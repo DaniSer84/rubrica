@@ -6,6 +6,7 @@ let addContactBtn = document.querySelector('.add-contact-btn')
 let fileInput = document.querySelector('#file-upload')
 let checkboxes = document.querySelectorAll('.form-check-input')
 let active = document.querySelector('.fa-circle-check')
+let cardImg = document.querySelectorAll('.normal-card-img')
 
 // uploaded image check
 if (fileInput) Helper.uploadingImage(fileInput)
@@ -31,3 +32,7 @@ if (checkboxes) checkboxes.forEach(checkbox => {
 })
 
 if (active) Helper.isActive(active)
+
+cardImg.forEach(img => {
+   img.addEventListener('click', () => img.classList.toggle('bigger-card-img'))
+})

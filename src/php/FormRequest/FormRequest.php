@@ -49,6 +49,7 @@ class FormRequest {
         $id = $this->request["item_id"];
         
         $contact = $this->db->getData(QueryBuilder::GetOne(), [$id])->fetch();
+        $picture = $this->db->getData(QueryBuilder::GetPicture(), [$id])->fetch();
         
         if (!$contact) {
 
@@ -64,7 +65,6 @@ class FormRequest {
             
         }
         
-        $picture = $this->db->getData(QueryBuilder::GetPicture(), [$id])->fetch();
         
         $data = [
             "contact" => $contact,
