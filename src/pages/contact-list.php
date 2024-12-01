@@ -4,12 +4,19 @@ use Rubrica\Php\QueryBuilder\QueryBuilder;
 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/common.php";
 
-$headParams = [
+$head->setParams([
     "title" => "Update Contact",
     "style" => "../css/style.css",
     "script" => "../js/main.js"
-];
-$head->setParams($headParams);
+]);
+$navbar->setParams([
+    'items' => [
+        '../../index.php' => 'Home',
+        'contact-list.php' => 'Contact list',
+    ],
+    'active' => 'Contact list',
+    'search' => true
+]);
 
 $contacts = $db->getData(QueryBuilder::GetAll(), []);
 
@@ -20,15 +27,7 @@ $contacts = $db->getData(QueryBuilder::GetAll(), []);
 <?= $head->render() ?>
 
 <body>
-    <header class="d-flex justify-content-between align-items-center px-5 border-2 border-bottom text-center">
-        <a href="../../index.php">
-            <h1>Rubrica</h1>
-        </a>
-        <h3>Lista contatti</h3>
-        <nav>
-            <a href="../../index.php">Home</a>
-        </nav>
-    </header>
+    <?=$navbar->render()?>
     <main>
         <div class="container">
             <a href="insert.php">
