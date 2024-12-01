@@ -63,30 +63,31 @@ class Helper {
         $active = Self::AccessToValue($item,"active");
         
         
-        return  "<tr>" . 
-                    "<th scope='row'>$id</th>" . 
-                    "<td>$name</td>" . 
-                    "<td>$surname</td>" . 
-                    "<td>$phone_number</td>" . 
-                    "<td>$company</td>" . 
-                    "<td>$role</td>" . 
-                    "<td>$email</td>" . 
-                    "<td>$birthdate</td>" . 
-                    "<td>$createdAt</td>" . 
-                    "<td>" . 
-                    "<div class='form-check form-switch'> 
+        return  
+                "<tr>
+                    <th scope='row'>$id</th>
+                    <td>$name</td>
+                    <td>$surname</td>
+                    <td>$phone_number</td>
+                    <td>$company</td>
+                    <td>$role</td>
+                    <td>$email</td>
+                    <td>$birthdate</td>
+                    <td>$createdAt</td>
+                    <td>
+                    <div class='form-check form-switch'> 
                         <input class='form-check-input' type='checkbox' role='switch' value='$active' disabled>
-                    </div></td>" . 
-                    "<td>$hasImage</td>" . 
-                    "<td>" .    
-                        "<div class='list-item-btn-container flex-row justify-content-end'>" .
-                            "<a href='src/pages/update.php?item_id=$id'>" .
-                                "<button class='btn btn-info'><i class='fa-solid fa-pen-to-square'></i></button>" .
-                            "</a>" .
-                            "<button type='button' class='btn btn-danger set-to-delete' data-bs-toggle='modal' data-bs-target='#deleteItem' data-id='$id'><i class='fa-solid fa-trash-can'></i></button>" .
-                    "</div>" . 
-                    "</td>" . 
-                "</tr>";
+                    </div></td>
+                    <td>$hasImage</td>
+                    <td>
+                        <div class='list-item-btn-container flex-row justify-content-end'>
+                            <a href='src/pages/update.php?item_id=$id'>
+                                <button class='btn btn-info'><i class='fa-solid fa-pen-to-square'></i></button>
+                            </a>
+                            <button type='button' class='btn btn-danger set-to-delete' data-bs-toggle='modal' data-bs-target='#deleteItem' data-id='$id'><i class='fa-solid fa-trash-can'></i></button>
+                        </div>
+                    </td>
+                </tr>";
     
     }
 

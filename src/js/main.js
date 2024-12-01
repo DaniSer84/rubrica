@@ -33,6 +33,7 @@ if (checkboxes) checkboxes.forEach(checkbox => {
 
 if (active) Helper.isActive(active)
 
+// TODO: improve this behaviour
 cardImg.forEach(img => {
    img.addEventListener('click', () => img.classList.toggle('bigger-card-img'))
 })
