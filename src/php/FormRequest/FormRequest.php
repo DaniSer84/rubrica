@@ -21,7 +21,7 @@ class FormRequest {
     public string $method;
     public DatabaseContract $db;
 
-    public function __construct($request, $files, $server, DatabaseContract $db) {
+    public function __construct($request, $server, DatabaseContract $db, $files = []) {
 
         $this->request = $request;
         $this->files = $files;

@@ -13,7 +13,7 @@ $head->setParams($headParams);
 
 $referer = $_SERVER["HTTP_REFERER"];
 
-$formRequest = new FormRequest($_REQUEST, $_FILES, $_SERVER, $db);
+$formRequest = new FormRequest($_REQUEST, $_SERVER, $db, $_FILES);
 $formRequest->sendRequest();
 
 ?>

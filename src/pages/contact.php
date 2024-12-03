@@ -14,11 +14,13 @@ $navbar->setParams([
     'items' => [
         '../../index.php' => 'Home',
         'contact-list.php' => 'Contact list',
+        '#' => 'Info Contatto'
     ],
+    'active' => 'Info Contatto',
     'search' => false
 ]);
 
-$formRequest = new FormRequest($_REQUEST, $_FILES, $_SERVER, $db);
+$formRequest = new FormRequest($_REQUEST,  $_SERVER, $db, $_FILES);
 
 $data = $formRequest->sendRequest();
 $contact = $data['contact'];
