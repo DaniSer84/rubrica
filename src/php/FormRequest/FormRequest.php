@@ -14,26 +14,23 @@ class FormRequest {
         "post" => "POST"
     ];
 
-    public array $request;
-    public array $files;
     public string $referer;
     public array $fileData;
     public string $method;
     public DatabaseContract $db;
+    public string $url;
 
-    public function __construct($request, $server, DatabaseContract $db, $files = []) {
+    public function __construct(DatabaseContract $db) {
 
-        $this->request = $request;
-        $this->files = $files;
-        $this->referer = $server["HTTP_REFERER"];
-        $this->method = $server['REQUEST_METHOD'];
+        $this->referer = $_SERVER["HTTP_REFERER"];
+        $this->method = $_SERVER['REQUEST_METHOD'];
         $this->db = $db;
         
     }
 
     public function sendRequest() {
         
-        if ($this->method === self::METHOD["get"] && count($this->request)) {
+        if ($this->method === self::METHOD["get"] && count($_REQUEST)) {
 
             if ($_SERVER['URL'] === '/src/pages/delete.php')
                 return $this->delete();
@@ -50,7 +47,7 @@ class FormRequest {
     public function get() {
 
         
-        $id = $this->request["item_id"];
+        $id = $_REQUEST["item_id"];
         
         $contact = $this->db->getData(QueryBuilder::GetOne(), [$id])->fetch();
         $picture = $this->db->getData(QueryBuilder::GetPicture(), [$id])->fetch();
@@ -80,7 +77,7 @@ class FormRequest {
 
     public function post() {
 
-        $backTo = $this->request['back-to'];
+        $backTo = $_REQUEST['back-to'];
         $backLink = "<a href=$backTo>Back</a>";
         
         $fileData = $this->getFileData($backLink);
@@ -105,7 +102,7 @@ class FormRequest {
 
     public function delete() {
 
-        $id = $this->request["item_id"];
+        $id = $_REQUEST["item_id"];
         
         $this->db->deleteData(QueryBuilder::DeleteContact(), [ $id ] );
 
@@ -120,9 +117,9 @@ class FormRequest {
             null
         ];
         
-        if ($this->files["picture"]["name"]) {
+        if ($_FILES["picture"]["name"]) {
 
-            $imageUpload = new ImageUpload($this->files['picture']);
+            $imageUpload = new ImageUpload($_FILES['picture']);
             $imageUpload->validateImage($backLink);
             $mime_type = $imageUpload->mimeType;
             $base64 = $imageUpload->getBase64();
@@ -137,7 +134,7 @@ class FormRequest {
 
     private function insert($fileData) {
 
-        $insertContact = QueryBuilder::InsertContact($this->request);
+        $insertContact = QueryBuilder::InsertContact($_REQUEST);
             
         $insertPicture = QueryBuilder::InsertPicture($fileData);
     
@@ -150,9 +147,9 @@ class FormRequest {
 
     private function update($fileData) {
 
-        $fields = Helper::setUpdateFields($this->request);
+        $fields = Helper::setUpdateFields($_REQUEST);
             $items = Helper::setItems($fields);
-            $id = $this->request["id"];
+            $id = $_REQUEST["id"];
             $pictureItems = null;
 
             if ($fileData[0] && $fileData[1]) {
@@ -165,7 +162,7 @@ class FormRequest {
                 
             }
 
-            if ($this->request["clear-picture"]) {
+            if ($_REQUEST["clear-picture"]) {
 
                 $pictureItems = [
                     '',

@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/common.php';
+
 use Daniser\Rubrica\Helper;
 use Rubrica\Php\QueryBuilder\QueryBuilder;
 
