@@ -34,7 +34,11 @@ class FormRequest {
     public function sendRequest() {
         
         if ($this->method === self::METHOD["get"] && count($this->request)) {
-           return $this->get();
+
+            if ($_SERVER['URL'] === '/src/pages/delete.php')
+                return $this->delete();
+            
+            return $this->get();
         }
 
         if ($this->method === self::METHOD["post"]) {
@@ -96,6 +100,16 @@ class FormRequest {
         
         header("Location: $backTo");
         exit;
+        
+    }
+
+    public function delete() {
+
+        $id = $this->request["item_id"];
+        
+        $this->db->deleteData(QueryBuilder::DeleteContact(), [ $id ] );
+
+        header("Location: " . $this->referer);
         
     }
 
