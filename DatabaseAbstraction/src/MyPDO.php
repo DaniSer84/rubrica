@@ -60,7 +60,12 @@ class MyPDO extends \PDO implements DatabaseContract {
         } catch ( \PDOException $e ) {
 
             $this->rollBack();
-            
+
+            if ($e->errorInfo[1] == 1062) {
+                echo "This email already exists. <button class='go-back-btn'>Indietro</button>";
+                die();
+             }
+
             throw new \PDOException( "Transaction aborted" . $e->getMessage() );
         }
         

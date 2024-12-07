@@ -13,9 +13,6 @@ $head->setParams($headParams);
 
 $referer = $_SERVER["HTTP_REFERER"];
 
-$formRequest = new FormRequest($db);
-$formRequest->sendRequest();
-
 ?>
 
 <!DOCTYPE html>
@@ -23,6 +20,10 @@ $formRequest->sendRequest();
 <?= $head->render(); ?>
 
 <body>
+    <?php
+    $formRequest = new FormRequest($db);
+    $formRequest->sendRequest();
+    ?>
     <div class="form-container mb-5">
         <h4 class="mb-5 text-center">Aggiungi un contatto:</h4>
         <form action="" method="POST" enctype="multipart/form-data" class="needs-validation">

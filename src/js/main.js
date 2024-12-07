@@ -37,3 +37,8 @@ if (active) Helper.isActive(active)
 cardImg.forEach(img => {
    img.addEventListener('click', () => img.classList.toggle('bigger-card-img'))
 })
+
+let goBackBtn = document.querySelector('.go-back-btn');
+goBackBtn.addEventListener('click', () => {
+    history.back();
+})
