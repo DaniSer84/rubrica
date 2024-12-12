@@ -86,6 +86,24 @@ class Helper {
         })
        
     }
+
+    static ShowCardImage(img) {
+
+        let imgContainer = document.createElement('div')
+            let image = document.createElement('img')
+    
+            imgContainer.classList.add('img-container')
+            document.body.append(imgContainer)
+            image.src = img.src
+            image.classList.add('bigger-card-img')
+            imgContainer.append(image)
+    
+            image.addEventListener('click', () => {
+                imgContainer.remove()
+            })
+        
+    }
+    
 }
 
 export { Helper }

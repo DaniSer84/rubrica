@@ -7,6 +7,7 @@ let fileInput = document.querySelector('#file-upload')
 let checkboxes = document.querySelectorAll('.form-check-input')
 let active = document.querySelector('.fa-circle-check')
 let cardImg = document.querySelectorAll('.normal-card-img')
+let goBackBtn = document.querySelector('.go-back-btn')
 
 // uploaded image check
 if (fileInput) Helper.uploadingImage(fileInput)
@@ -33,27 +34,10 @@ if (checkboxes) checkboxes.forEach(checkbox => {
 
 if (active) Helper.isActive(active)
 
-// TODO: improve this behaviour
 cardImg.forEach(img => {
-    img.addEventListener('click', () => {
-        
-        let imgContainer = document.createElement('div')
-        let image = document.createElement('img')
-
-        imgContainer.classList.add('img-container')
-        document.body.append(imgContainer)
-        image.src = img.src
-        image.classList.add('bigger-card-img')
-        imgContainer.append(image)
-
-        image.addEventListener('click', () => {
-            imgContainer.remove()
-        })
-   }
-)
+    img.addEventListener('click', () => Helper.ShowCardImage(img))
 })
 
-let goBackBtn = document.querySelector('.go-back-btn')
 if (goBackBtn) {
     goBackBtn.addEventListener('click', () => {
         history.back();
