@@ -35,10 +35,27 @@ if (active) Helper.isActive(active)
 
 // TODO: improve this behaviour
 cardImg.forEach(img => {
-   img.addEventListener('click', () => img.classList.toggle('bigger-card-img'))
+    img.addEventListener('click', () => {
+        
+        let imgContainer = document.createElement('div')
+        let image = document.createElement('img')
+
+        imgContainer.classList.add('img-container')
+        document.body.append(imgContainer)
+        image.src = img.src
+        image.classList.add('bigger-card-img')
+        imgContainer.append(image)
+
+        image.addEventListener('click', () => {
+            imgContainer.remove()
+        })
+   }
+)
 })
 
-let goBackBtn = document.querySelector('.go-back-btn');
-goBackBtn.addEventListener('click', () => {
-    history.back();
-})
+let goBackBtn = document.querySelector('.go-back-btn')
+if (goBackBtn) {
+    goBackBtn.addEventListener('click', () => {
+        history.back();
+    })
+}

@@ -63,15 +63,13 @@ tr {
     cursor: pointer;
 }
 .bigger-card-img {
-    width: 80vh;
-    position: absolute;
+    height: 90vh;
     border-radius: 6%;
     scale: 1;
-    flex-grow: 0;
     cursor: pointer;
+    display: block;
     margin: auto;
-    left: -50%;
-    z-index: 1;
+    z-index: 3;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 .field:not(i) {
@@ -100,4 +98,12 @@ tr {
     display: block;
     text-align: center;
     word-break: break-word;
+}
+.img-container {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: #ababab80;
+    z-index: 2;
+    top: 0;
 }
