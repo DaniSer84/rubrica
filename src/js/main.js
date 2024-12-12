@@ -43,3 +43,13 @@ if (goBackBtn) {
         history.back();
     })
 }
+
+let list = document.querySelector('.table-group-divider');
+// let list = listContainer.children
+
+// console.log(list[0].children[0].outerText)
+// let id = list[0].children[0].outerText
+
+let i = 0;
+
+[...list.children].sort((a, b) => a.children[i].outerText - b.children[i].outerText).forEach(node => list.append(node))
