@@ -32,7 +32,7 @@ $navbar->setParams([
             <h5 class='title text-center mb-3 mt-5'>Contatti</h5>
             <table class='table'>
                 <thead>
-                    <tr>
+                    <tr id="t-head">
                         <th scope='col'>Id</th>
                         <th scope='col'>Nome</th>
                         <th scope='col'>Cognome</th>
