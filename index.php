@@ -49,10 +49,14 @@ $navbar->setParams([
                 <tbody class='table-group-divider'>
                     <?php
                     $result = $db->getData(QueryBuilder::GetAll(), []);
-                    while ($contact = $result->fetch()) {
-                        $picture = $db->getData(QueryBuilder::GetPicture(), [$contact['id']])->fetch();
-                        $hasImage = $picture[0] !== '' ? 'Yes' : 'No';
-                        echo Helper::createContactTable($contact, $hasImage);
+                    if ($result->fetch()) {
+                        while ($contact = $result->fetch()) {
+                            $picture = $db->getData(QueryBuilder::GetPicture(), [$contact['id']])->fetch();
+                            $hasImage = $picture[0] !== '' ? 'Yes' : 'No';
+                            echo Helper::createContactTable($contact, $hasImage);
+                        }
+                    } else {
+                        echo "<p class='text-center'>Nessun contatto trovato</p>";
                     }
                     ?>
                 </tbody>
