@@ -5,12 +5,19 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/common.php";
 use Daniser\Rubrica\Helper;
 use Rubrica\Php\FormRequest\FormRequest;
 
-$headParams = [
+$head->setParams([
     "title" => "Update Contact",
     "style" => "../css/style.css",
     "script" => "../js/main.js"
-];
-$head->setParams($headParams);
+]);
+$navbar->setParams([
+    'items' => [
+        '../../index.php' => 'Home',
+        'contact-list.php' => 'Lista Contatti',
+        '#' => 'Modifica contatto',
+    ],
+    'active' => 'Modifica contatto',
+]);
 
 $referer = $_SERVER["HTTP_REFERER"];
 
@@ -27,15 +34,7 @@ $picture = $data['picture'];
 <?= $head->render(); ?>
 
 <body>
-    <header class="d-flex justify-content-between align-items-center px-5 border-2 border-bottom text-center">
-        <h1>Rubrica</h1>
-        <h3>Modifica Contatto</h3>
-        <nav>
-            <a href="../../index.php">Home</a>
-            |
-            <a href="contact-list.php">Lista Contatti</a>
-        </nav>
-    </header>
+    <?=$navbar->render()?>
     <div class="form-container mb-5 mt-2">
         <!-- TODO: Improve picture for update: show preview if possible... -->
         <form action="" method="POST" enctype="multipart/form-data" class="needs-validation">
