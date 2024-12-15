@@ -30,18 +30,18 @@ $navbar->setParams([
     <main>
         <div class='container-fluid rubrica-container m-auto'>
             <h5 class='title text-center mb-3 mt-5'>Contatti</h5>
-            <table class='table'>
+            <table class='table table-striped' style="min-width:1250px">
                 <thead>
                     <tr id="t-head">
-                        <th scope='col'>Id</th>
-                        <th scope='col'>Nome</th>
-                        <th scope='col'>Cognome</th>
-                        <th scope='col'>Telefono</th>
-                        <th scope='col'>Compagnia</th>
-                        <th scope='col'>Ruolo</th>
-                        <th scope='col'>Email</th>
-                        <th scope='col'>Data di nascita</th>
-                        <th scope='col'>Data creazione</th>
+                        <th scope='col'>Id <i class="fa-solid fa-arrows-up-down" data-index="0"></i></th>
+                        <th scope='col'>Nome <i class="fa-solid fa-arrows-up-down" data-index="1"></i></th>
+                        <th scope='col'>Cognome <i class="fa-solid fa-arrows-up-down" data-index="2"></i></th>
+                        <th scope='col'>Telefono <i class="fa-solid fa-arrows-up-down" data-index="3"></i></th>
+                        <th scope='col'>Compagnia <i class="fa-solid fa-arrows-up-down" data-index="4"></i></th>
+                        <th scope='col'>Ruolo <i class="fa-solid fa-arrows-up-down" data-index="5"></i></th>
+                        <th scope='col'>Email <i class="fa-solid fa-arrows-up-down" data-index="6"></i></th>
+                        <th scope='col'>Data di nascita <i class="fa-solid fa-arrows-up-down" data-index="7"></i></th>
+                        <th scope='col'>Data creazione <i class="fa-solid fa-arrows-up-down" data-index="8"></i></th>
                         <th scope='col'>Attivo</th>
                         <th scope='col'>Image</th>
                     </tr>
