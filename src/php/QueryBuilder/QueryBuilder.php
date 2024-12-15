@@ -29,7 +29,7 @@ class QueryBuilder {
 
     static function GetAll() {
         
-        return "SELECT * FROM contacts ORDER BY surname";
+        return "SELECT * FROM contacts";
 
     }
 

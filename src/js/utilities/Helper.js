@@ -103,6 +103,39 @@ class Helper {
             })
         
     }
+
+    static SortList(e) {
+
+        let list = document.querySelector('.table-group-divider');
+        let el = e.target
+        let sortedList = this.Sort([...list.children], Number(el.dataset.index))
+        el.toggleAttribute('data')
+        
+        if (el.attributes.data) {
+            sortedList.forEach(node => list.append(node));
+        } else {
+            sortedList.reverse().forEach(node => list.append(node));
+        }
+        
+    }
+
+    static Sort(array, i) {
+
+        const byNum = [0, 3]
+        const byName = [1, 2, 4, 5, 6]
+        const byDate = [7, 8]
+        
+        if (byNum.includes(i)) {
+            return array.sort((a, b) => a.children[i].outerText - b.children[i].outerText)
+        } else if (byName.includes(i)) {
+            return array.sort((a, b) => a.children[i].outerText.localeCompare(b.children[i].outerText))
+        } else if (byDate.includes(i)) {
+            return array.sort((a, b) => new Date(a.children[i].outerText) - new Date(b.children[i].outerText))
+        } else {
+            return []
+        }
+    
+    }
     
 }
 
