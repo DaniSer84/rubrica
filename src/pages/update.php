@@ -42,7 +42,7 @@ $picture = $data['picture'];
             <div class="form-fields-container justify-content-between">
                 <input type="text" name="back-to" value="<?= $referer ?>" hidden>
                 <div class="mb-3 ">
-                    <label for="file-upload" class="position-relative text-center">
+                    <label for="file-upload" class="position-relative text-center mb-4">
                         <img src="<?=$picture[0] !== "" ? $picture[0] : "https://placehold.co/200x200?text=Your+Pic"?>" class="w-50 m-auto add-img-file img-fluid rounded-circle">
                     </label><br>
                     <span class="img-check d-none"></span>

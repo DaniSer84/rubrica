@@ -15,7 +15,6 @@ header > * {
 .form-fields-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
 }
 .rubrica-container {
     max-height: 80vh;
@@ -61,12 +60,15 @@ tr {
     scale: .6;
     flex-grow: 0;
     cursor: pointer;
+    display: block;
+    margin: auto;
 }
 .bigger-card-img {
     min-width: 50%;
     max-width: 100%;
     max-height: 90vh;
     border-radius: 6%;
+    border: 2px solid black;
     scale: 1;
     cursor: pointer;
     display: block;
@@ -109,6 +111,15 @@ tr {
     z-index: 2;
     top: 0;
 }
-#t-head th {
+#t-head i {
     cursor: pointer;
+}
+
+@media (max-width: 576px) { 
+    .form-fields-container {
+        flex-direction: column;
+    }   
+    .bigger-card-img {
+        margin: 40% auto;
+    }
 }
