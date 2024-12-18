@@ -3,7 +3,6 @@
 require_once __DIR__ . '/common.php';
 
 use Daniser\Rubrica\Helper;
-use Rubrica\Php\QueryBuilder\QueryBuilder;
 
 $head->setParams([
     'title' => 'Rubrica',
@@ -19,11 +18,9 @@ $navbar->setParams([
     'search' => true
 ]);
 
+var_dump($_GET);
 
-
-// var_dump($result);
-
-    ?>
+?>
 
 <!DOCTYPE html>
 <html lang='en'>
@@ -52,9 +49,8 @@ $navbar->setParams([
                 </thead>
                 <tbody class='table-group-divider'>
                     <?php
-                    // $result = $db->getData(QueryBuilder::GetAll(), []);
                     while ($contact = $result->fetch()) {
-                        $picture = $db->getData(QueryBuilder::GetPicture(), [$contact['id']])->fetch();
+                        $picture = $queryBuilder->getPicture($contact['id'])->fetch();
                         $hasImage = $picture[0] !== '' ? 'Yes' : 'No';
                         echo Helper::createContactTable($contact, $hasImage);
                     }

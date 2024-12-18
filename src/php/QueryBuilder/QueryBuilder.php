@@ -1,9 +1,17 @@
 <?php
 
 namespace Rubrica\Php\QueryBuilder;
+use Daniser\Rubrica\DatabaseContract;
+use Daniser\Rubrica\DatabaseFactory;
 use Daniser\Rubrica\Helper;
 
 class QueryBuilder {
+
+    private DatabaseContract $db;
+    
+    public function __construct() {
+        $this->db = DatabaseFactory::Create();
+    }
 
     const FIELDS = [
 
@@ -20,71 +28,84 @@ class QueryBuilder {
 
     ];
 
-    static function GetOne() {
+    public function getOne($id) {
 
-        return "SELECT * FROM contacts WHERE id = ?";
+        $query = "SELECT * FROM contacts WHERE id = ?";
+
+        return $this->db->getData($query, [$id]);
 
     }
 
-    static function GetAll() {
+    public function getAll() {
         
-        return "SELECT * FROM contacts";
+        $query = "SELECT * FROM contacts";
+
+        return $this->db->getData($query, []);
 
     }
 
-    static function GetPicture() {
+    public function getPicture($id) {
 
-        return "SELECT content FROM pictures WHERE contact_id = ?";
+        $query = "SELECT content FROM pictures WHERE contact_id = ?";
+
+        return $this->db->getData($query, [$id]);
 
     }
 
-    static function InsertContact($data) {
+    public function insertContact($contactData, $fileData) {
 
-        $relevantKeys = Helper::setRelevantFields($data);
+        $relevantKeys = Helper::setRelevantFields($contactData);
         $fields = Helper::setFields($relevantKeys);
         $values = Helper::setQueryValues($relevantKeys);
     
-        return "INSERT INTO contacts ( $fields ) VALUES ( $values )";
+        $contactQuery = "INSERT INTO contacts ( $fields ) VALUES ( $values )";
+        $pictureQuery = "INSERT INTO pictures ( content, type, contact_id ) 
+                         VALUES ( '$fileData[0]', '$fileData[1]', last_insert_id() )";
+
+        return $this->db->doWithTransaction([
+            $contactQuery,
+            $pictureQuery
+        ]);
         
     }
 
-    static function InsertPicture(array $fileData): string {
+    public function deleteContact($params) {
 
-        return "INSERT INTO pictures ( content, type, contact_id ) VALUES ( '" . $fileData[0] . "', '" . $fileData[1] . "', last_insert_id() )";
+        $query = "DELETE FROM contacts WHERE id = ?";
 
-    }
-
-    static function DeleteContact() {
-
-        return "DELETE FROM contacts WHERE id = ?";
+        return $this->db->deleteData($query, $params);
 
     }
 
-    static function UpdateContact() {
+    public function updateContact($params) {
 
-        return "UPDATE contacts SET
-                active = ?, 
-                name = ?,  
-                surname = ?, 
-                phone_number = ?, 
-                email = ?, 
-                company = ?, 
-                role = ?,
-                birthdate = ?
-                WHERE id = ?";
+        $query = "UPDATE contacts SET
+                 active = ?, 
+                 name = ?,  
+                 surname = ?, 
+                 phone_number = ?, 
+                 email = ?, 
+                 company = ?, 
+                 role = ?,
+                 birthdate = ?
+                 WHERE id = ?";
 
-    }
-
-    static function UpdatePicture() {
-
-        return "UPDATE pictures SET 
-                content = ?,
-                type = ? 
-                WHERE contact_id = ?";
+        return $this->db->setData($query, $params);
 
     }
 
-    static function search() {
+    public function updatePicture($params) {
+
+        $query = "UPDATE pictures SET 
+                 content = ?,
+                 type = ? 
+                 WHERE contact_id = ?";
+
+        return $this->db->setData($query, $params);
+
+    }
+
+    public function searchContact($params) {
 
         $query = "SELECT * FROM contacts WHERE ";
 
@@ -94,7 +115,9 @@ class QueryBuilder {
 
         }
 
-        return rtrim($query, ' OR');
+        $query = rtrim($query, ' OR');
+
+        return $this->db->getData($query, $params);
         
     }
 

@@ -20,7 +20,7 @@ $navbar->setParams([
     'search' => false
 ]);
 
-$formRequest = new FormRequest($db);
+$formRequest = new FormRequest();
 
 $data = $formRequest->sendRequest();
 $contact = $data['contact'];

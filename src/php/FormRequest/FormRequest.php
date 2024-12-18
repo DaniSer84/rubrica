@@ -2,7 +2,6 @@
 
 namespace Rubrica\Php\FormRequest;
 
-use Daniser\Rubrica\DatabaseContract;
 use Daniser\Rubrica\Helper;
 use Rubrica\Php\FileUpload\ImageUpload;
 use Rubrica\Php\QueryBuilder\QueryBuilder;
@@ -15,16 +14,14 @@ class FormRequest {
     ];
 
     public string $referer;
-    public array $fileData;
     public string $method;
-    public DatabaseContract $db;
-    public string $url;
+    private QueryBuilder $queryBuilder;
 
-    public function __construct(DatabaseContract $db) {
+    public function __construct() {
 
         $this->referer = $_SERVER["HTTP_REFERER"];
         $this->method = $_SERVER['REQUEST_METHOD'];
-        $this->db = $db;
+        $this->queryBuilder = new QueryBuilder();
         
     }
 
@@ -49,8 +46,8 @@ class FormRequest {
         
         $id = $_REQUEST["item_id"];
         
-        $contact = $this->db->getData(QueryBuilder::GetOne(), [$id])->fetch();
-        $picture = $this->db->getData(QueryBuilder::GetPicture(), [$id])->fetch();
+        $contact = $this->queryBuilder->getOne($id)->fetch();
+        $picture = $this->queryBuilder->getPicture($id)->fetch();
         
         if (!$contact) {
 
@@ -104,9 +101,9 @@ class FormRequest {
 
         $id = $_REQUEST["item_id"];
         
-        $this->db->deleteData(QueryBuilder::DeleteContact(), [ $id ] );
+        $this->queryBuilder->deleteContact([$id]);
 
-        header("Location: " . $this->referer);
+        header("Location: $this->referer");
         
     }
 
@@ -134,51 +131,44 @@ class FormRequest {
 
     private function insert($fileData) {
 
-        $insertContact = QueryBuilder::InsertContact($_REQUEST);
-            
-        $insertPicture = QueryBuilder::InsertPicture($fileData);
-    
-        $this->db->doWithTransaction([
-            $insertContact,
-            $insertPicture,
-        ]);
+        $this->queryBuilder->insertContact($_REQUEST, $fileData);
         
     }
 
     private function update($fileData) {
 
         $fields = Helper::setUpdateFields($_REQUEST);
-            $items = Helper::setItems($fields);
-            $id = $_REQUEST["id"];
-            $pictureItems = null;
+        $items = Helper::setItems($fields);
+        $id = $_REQUEST["id"];
+        $pictureItems = null;
 
-            if ($fileData[0] && $fileData[1]) {
-                
-                $pictureItems = [
-                    $fileData[0],
-                    $fileData[1],
-                    $id
-                ];
-                
-            }
+        if ($fileData[0] && $fileData[1]) {
+             
+            $pictureItems = [
+                $fileData[0],
+                $fileData[1],
+                $id
+            ];
+            
+        }
 
-            if ($_REQUEST["clear-picture"]) {
+        if ($_REQUEST["clear-picture"]) {
 
-                $pictureItems = [
-                    '',
-                    '',
-                    $id
-                ];
+            $pictureItems = [
+                '',
+                '',
+                $id
+            ];
 
-            }
+        }
 
-            if($pictureItems) {
-                $this->db->setData(QueryBuilder::UpdatePicture(), [$pictureItems]);
-            }
+        if ($pictureItems) {
+            $this->queryBuilder->updatePicture([$pictureItems]);
+        }
 
-            array_push($items, $id);
+        array_push($items, $id);
 
-            $this->db->setData(QueryBuilder::UpdateContact(), [$items]);
+        $this->queryBuilder->updateContact([$items]);
 
     }
     

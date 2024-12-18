@@ -21,7 +21,7 @@ $navbar->setParams([
 
 $referer = $_SERVER["HTTP_REFERER"];
 
-$formRequest = new FormRequest($db);
+$formRequest = new FormRequest();
 
 $data = $formRequest->sendRequest();
 $contact = $data['contact'];

@@ -7,6 +7,7 @@ use Rubrica\Php\Components\Head;
 use Rubrica\Php\Components\Modal;
 use Rubrica\Php\Components\Navbar;
 use Rubrica\Php\Components\SmallComponents;
+use Rubrica\Php\FormRequest\FormRequest;
 use Rubrica\Php\QueryBuilder\QueryBuilder;
 
 
@@ -14,9 +15,10 @@ require_once __DIR__ ."/vendor/autoload.php";
 
 $selectedContact = null;
 
-$db = DatabaseFactory::Create(DatabaseContract::TYPE_PDO);
+// $db = DatabaseFactory::Create(DatabaseContract::TYPE_PDO);
 
 $head = new Head();
+
 $navbar = new Navbar();
 
 $bsStrip = SmallComponents::bsStrip();
@@ -32,10 +34,14 @@ $deleteModal = new Modal([
     "text" => "Sei sicuro di voler eliminare il contatto?",
     "button" => $deleteModalButton->render()
 ]);
+
 $search = $_GET['search'] ?? "";
-$query = QueryBuilder::search();
-$result = $db->getData($query, [
+$queryBuilder = new QueryBuilder();
+$result = $queryBuilder->searchContact([
     "kw1" => "$search%",
     "kw2" => "%$search%",
     "kw3" => "%$search",
 ]);
+
+// $formRequest = new FormRequest();
+// $data = $formRequest->sendRequest();

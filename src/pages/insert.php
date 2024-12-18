@@ -21,7 +21,7 @@ $referer = $_SERVER["HTTP_REFERER"];
 
 <body>
     <?php
-    $formRequest = new FormRequest($db);
+    $formRequest = new FormRequest();
     $formRequest->sendRequest();
     ?>
     <div class="form-container mb-5">
