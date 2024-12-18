@@ -17,7 +17,6 @@ class QueryBuilder {
         "birthdate",
         "created_at",
         "active",
-        "picture"
 
     ];
 
@@ -83,6 +82,20 @@ class QueryBuilder {
                 type = ? 
                 WHERE contact_id = ?";
 
+    }
+
+    static function search() {
+
+        $query = "SELECT * FROM contacts WHERE ";
+
+        foreach(self::FIELDS as $field) {
+
+            $query .= "$field LIKE :kw1 OR $field LIKE :kw2 OR $field LIKE :kw3 OR ";
+
+        }
+
+        return rtrim($query, ' OR');
+        
     }
 
     

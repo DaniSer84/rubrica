@@ -17,7 +17,11 @@ $navbar->setParams([
     ],
     'active' => 'Home',
     'search' => true
-])
+]);
+
+
+
+// var_dump($result);
 
     ?>
 
@@ -48,7 +52,7 @@ $navbar->setParams([
                 </thead>
                 <tbody class='table-group-divider'>
                     <?php
-                    $result = $db->getData(QueryBuilder::GetAll(), []);
+                    // $result = $db->getData(QueryBuilder::GetAll(), []);
                     while ($contact = $result->fetch()) {
                         $picture = $db->getData(QueryBuilder::GetPicture(), [$contact['id']])->fetch();
                         $hasImage = $picture[0] !== '' ? 'Yes' : 'No';

@@ -9,8 +9,8 @@ class Navbar extends HtmlElement {
         $items = $this->putParam('items');
         $active = $this->putParam('active');
         $search = $this->putParam('search') ? 
-                        "<form class='d-flex' role='search'>
-                            <input class='form-control me-2' type='search' placeholder='Search' aria-label='Search'>
+                        "<form class='d-flex' role='search' method='GET'>
+                            <input name='search' class='form-control me-2' type='search' placeholder='Search' aria-label='Search'>
                             <button class='btn btn-outline-success' type='submit'>Cerca</button>
                         </form>" : 
                         null;

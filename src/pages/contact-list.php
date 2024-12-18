@@ -18,7 +18,7 @@ $navbar->setParams([
     'search' => true
 ]);
 
-$contacts = $db->getData(QueryBuilder::GetAll(), []);
+// $contacts = $db->getData(QueryBuilder::GetAll(), []);
 
 ?>
 
@@ -39,7 +39,7 @@ $contacts = $db->getData(QueryBuilder::GetAll(), []);
             </div>
             <div class="list-container">
                 <?php
-                while ($contact = $contacts->fetch()):
+                while ($contact = $result->fetch()):
                     $picture = $db->getData(QueryBuilder::GetPicture(), [$contact['id']])->fetch()[0];
                     ?>
                     <div class="card mb-3" style="max-width: 540px;">
