@@ -37,11 +37,13 @@ $deleteModal = new Modal([
 
 $search = $_GET['search'] ?? "";
 $queryBuilder = new QueryBuilder();
-$result = $queryBuilder->searchContact([
-    "kw1" => "$search%",
-    "kw2" => "%$search%",
-    "kw3" => "%$search",
-]);
 
-// $formRequest = new FormRequest();
-// $data = $formRequest->sendRequest();
+$data = $search !== "" ? 
+        $queryBuilder->searchContact([
+            "kw1" => "$search%",
+            "kw2" => "%$search%",
+            "kw3" => "%$search",
+        ]) :
+        $queryBuilder->getAll();
+
+$formRequest = new FormRequest();

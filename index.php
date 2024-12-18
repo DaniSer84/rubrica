@@ -18,8 +18,6 @@ $navbar->setParams([
     'search' => true
 ]);
 
-var_dump($_GET);
-
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +47,7 @@ var_dump($_GET);
                 </thead>
                 <tbody class='table-group-divider'>
                     <?php
-                    while ($contact = $result->fetch()) {
+                    while ($contact = $data->fetch()) {
                         $picture = $queryBuilder->getPicture($contact['id'])->fetch();
                         $hasImage = $picture[0] !== '' ? 'Yes' : 'No';
                         echo Helper::createContactTable($contact, $hasImage);

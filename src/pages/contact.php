@@ -3,7 +3,6 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . "/common.php";
 
 use Daniser\Rubrica\Helper;
-use Rubrica\Php\FormRequest\FormRequest;
 
 $head->setParams([
     "title" => "Contact", 
@@ -19,8 +18,6 @@ $navbar->setParams([
     'active' => 'Info Contatto',
     'search' => false
 ]);
-
-$formRequest = new FormRequest();
 
 $data = $formRequest->sendRequest();
 $contact = $data['contact'];

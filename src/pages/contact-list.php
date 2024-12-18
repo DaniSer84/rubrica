@@ -1,7 +1,5 @@
 <?php
 
-use Rubrica\Php\QueryBuilder\QueryBuilder;
-
 require_once $_SERVER['DOCUMENT_ROOT'] . "/common.php";
 
 $head->setParams([
@@ -37,7 +35,7 @@ $navbar->setParams([
             </div>
             <div class="list-container">
                 <?php
-                while ($contact = $result->fetch()):
+                while ($contact = $data->fetch()):
                     $picture = $queryBuilder->getPicture($contact['id'])->fetch()[0];
                     ?>
                     <div class="card mb-3" style="max-width: 540px;">

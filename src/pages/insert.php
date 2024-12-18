@@ -2,8 +2,6 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/common.php";
 
-use Rubrica\Php\FormRequest\FormRequest;
-
 $headParams = [
     "title" => "Update Contact",
     "style" => "../css/style.css",
@@ -12,6 +10,7 @@ $headParams = [
 $head->setParams($headParams);
 
 $referer = $_SERVER["HTTP_REFERER"];
+$formRequest->sendRequest();
 
 ?>
 
@@ -20,10 +19,6 @@ $referer = $_SERVER["HTTP_REFERER"];
 <?= $head->render(); ?>
 
 <body>
-    <?php
-    $formRequest = new FormRequest();
-    $formRequest->sendRequest();
-    ?>
     <div class="form-container mb-5">
         <h4 class="mb-5 text-center">Aggiungi un contatto:</h4>
         <form action="" method="POST" enctype="multipart/form-data" class="needs-validation">

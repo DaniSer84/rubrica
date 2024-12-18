@@ -40,6 +40,10 @@ header > * {
 .button-container a button {
     width: 100%;
 }
+.add-contact-btn {
+    position: relative;
+    left: calc(50% - 88.5px);
+}
 a {
     text-decoration: none;
     color: black;

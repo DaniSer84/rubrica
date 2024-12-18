@@ -8,26 +8,17 @@ use Rubrica\Php\QueryBuilder\QueryBuilder;
 
 class FormRequest {
 
-    const METHOD = [
-        "get" => "GET",
-        "post" => "POST"
-    ];
-
-    public string $referer;
-    public string $method;
     private QueryBuilder $queryBuilder;
 
     public function __construct() {
 
-        $this->referer = $_SERVER["HTTP_REFERER"];
-        $this->method = $_SERVER['REQUEST_METHOD'];
         $this->queryBuilder = new QueryBuilder();
         
     }
 
     public function sendRequest() {
-        
-        if ($this->method === self::METHOD["get"] && count($_REQUEST)) {
+
+        if ($_SERVER['REQUEST_METHOD'] === "GET" && count($_REQUEST)) {
 
             if ($_SERVER['URL'] === '/src/pages/delete.php')
                 return $this->delete();
@@ -35,7 +26,7 @@ class FormRequest {
             return $this->get();
         }
 
-        if ($this->method === self::METHOD["post"]) {
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
             return $this->post();
         }
 
@@ -103,7 +94,7 @@ class FormRequest {
         
         $this->queryBuilder->deleteContact([$id]);
 
-        header("Location: $this->referer");
+        header("Location: " . $_SERVER['HTTP_REFERER']);
         
     }
 
