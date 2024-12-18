@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . "/common.php";
+require_once __DIR__ . "/common.php";
 
 use Daniser\Rubrica\Helper;
 use Rubrica\Php\FormRequest\FormRequest;
@@ -12,7 +12,7 @@ $head->setParams([
 ]);
 $navbar->setParams([
     'items' => [
-        '../../index.php' => 'Home',
+        'home.php' => 'Home',
         'contact-list.php' => 'Lista Contatti',
         '#' => 'Modifica contatto',
     ],

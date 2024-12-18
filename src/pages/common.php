@@ -1,7 +1,5 @@
 <?php
 
-use Daniser\Rubrica\DatabaseContract;
-use Daniser\Rubrica\DatabaseFactory;
 use Rubrica\Php\Components\ActionButton;
 use Rubrica\Php\Components\Head;
 use Rubrica\Php\Components\Modal;
@@ -10,12 +8,9 @@ use Rubrica\Php\Components\SmallComponents;
 use Rubrica\Php\FormRequest\FormRequest;
 use Rubrica\Php\QueryBuilder\QueryBuilder;
 
-
-require_once __DIR__ ."/vendor/autoload.php";
+require_once $_SERVER['DOCUMENT_ROOT'] ."/vendor/autoload.php";
 
 $selectedContact = null;
-
-// $db = DatabaseFactory::Create(DatabaseContract::TYPE_PDO);
 
 $head = new Head();
 

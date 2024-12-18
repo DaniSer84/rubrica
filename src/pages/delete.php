@@ -1,5 +1,5 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . "/common.php";
+require_once __DIR__ . "/common.php";
 
 $formRequest->sendRequest();

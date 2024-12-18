@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . "/common.php";
+require_once __DIR__ . "/common.php";
 
 $head->setParams([
     "title" => "Lista Contatti",
@@ -9,7 +9,7 @@ $head->setParams([
 ]);
 $navbar->setParams([
     'items' => [
-        '../../index.php' => 'Home',
+        'home.php' => 'Home',
         '#' => 'Lista Contatti',
     ],
     'active' => 'Lista Contatti',

@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . "/common.php";
+require_once __DIR__ . "/common.php";
 
 use Daniser\Rubrica\Helper;
 
@@ -11,7 +11,7 @@ $head->setParams([
 ]);
 $navbar->setParams([
     'items' => [
-        '../../index.php' => 'Home',
+        'home.php' => 'Home',
         'contact-list.php' => 'Contact list',
         '#' => 'Info Contatto'
     ],

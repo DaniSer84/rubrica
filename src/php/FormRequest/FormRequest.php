@@ -33,7 +33,6 @@ class FormRequest {
     }
     
     public function get() {
-
         
         $id = $_REQUEST["item_id"];
         
