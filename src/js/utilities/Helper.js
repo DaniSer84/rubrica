@@ -33,14 +33,18 @@ class Helper {
         }
     }
 
-    static uploadingImage(input) {
+    static ImagePreview(input) {
 
         let check = document.querySelector('.img-check')
+        let img = document.querySelector('.add-img-file')
 
         input.addEventListener('change', () => {
 
             check.classList.remove('d-none')
             check.innerHTML = `<i class="fa-regular fa-circle-check" style="color: #17d924;"></i> ${input.value}`
+
+            const [file] = input.files
+            img.src = URL.createObjectURL(file)
 
         })
 
@@ -131,9 +135,25 @@ class Helper {
         } else {
             return []
         }
-    
+
     }
-    
+
+    static HandleRemovePic(input) {
+
+        let img = document.querySelector('.add-img-file')
+        let imgSrc = img.src
+
+        input.addEventListener('change', () => {
+
+            if (input.checked) {
+                img.src = 'https://placehold.co/200x200?text=Your+Pic'
+            } else {
+                img.src = imgSrc
+            }
+        })
+
+    }
+
 }
 
 export { Helper }

@@ -45,3 +45,4 @@ if (tableHead) tableHead.addEventListener('click', (e) => {
     Helper.SortList(e)
 })
 
+if (clearPic) Helper.HandleRemovePic(clearPic)
