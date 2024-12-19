@@ -13,8 +13,10 @@ $navbar->setParams([
         '#' => 'Lista Contatti',
     ],
     'active' => 'Lista Contatti',
-    'search' => true
+    'search' => $searchInput->render($_GET['search'] ?? '')
 ]);
+
+// TODO : aside tag for filters and order
 
 ?>
 
@@ -74,6 +76,7 @@ $navbar->setParams([
                         </div>
                     </div>
                 <?php endwhile ?>
+                <!-- TODO: alternative view if no data -->
             </div>
         </div>
     </main>

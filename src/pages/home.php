@@ -15,7 +15,7 @@ $navbar->setParams([
         'contact-list.php' => 'Lista Contatti',
     ],
     'active' => 'Home',
-    'search' => true
+    'search' => $searchInput->render($_GET['search'] ?? '')
 ]);
 
 ?>

@@ -4,6 +4,7 @@ use Rubrica\Php\Components\ActionButton;
 use Rubrica\Php\Components\Head;
 use Rubrica\Php\Components\Modal;
 use Rubrica\Php\Components\Navbar;
+use Rubrica\Php\Components\SearchInput;
 use Rubrica\Php\Components\SmallComponents;
 use Rubrica\Php\FormRequest\FormRequest;
 use Rubrica\Php\QueryBuilder\QueryBuilder;
@@ -15,6 +16,7 @@ $selectedContact = null;
 $head = new Head();
 
 $navbar = new Navbar();
+$searchInput = new SearchInput();
 
 $bsStrip = SmallComponents::bsStrip();
 
