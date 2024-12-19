@@ -23,4 +23,10 @@ class MySQLiQueryResult implements DatabaseQueryResultContract {
         return $this->result->fetch_all();
 
     }
+
+    public function rowCount() {
+
+        return $this->result->num_rows;
+        
+    }
 }

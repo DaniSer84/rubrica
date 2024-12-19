@@ -51,7 +51,7 @@ $picture = $data['picture'];
         </div>
         <?php else:?>
             <div class="container container-fluid m-auto w-50 text-center mt-5">
-                <p>Contatto cancellato!</p>
+                <p>Nessun contatto!</p>
                 <p class="fw-light"><a href="contact-list.php">torna alla lista...</a></p>
             </div>
         <?php endif ?>

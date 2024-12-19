@@ -46,13 +46,20 @@ $navbar->setParams([
                     </tr>
                 </thead>
                 <tbody class='table-group-divider'>
-                    <?php
-                    while ($contact = $data->fetch()) {
-                        $picture = $queryBuilder->getPicture($contact['id'])->fetch();
-                        $hasImage = $picture[0] !== '' ? 'Yes' : 'No';
-                        echo Helper::createContactTable($contact, $hasImage);
-                    }
-                    ?>
+                    <?php if ($data->rowCount()): ?>
+                        <?php
+                        while ($contact = $data->fetch()) {
+                            $picture = $queryBuilder->getPicture($contact['id'])->fetch();
+                            $hasImage = $picture[0] !== '' ? 'Yes' : 'No';
+                            echo Helper::createContactTable($contact, $hasImage);
+                        }
+                        ?>
+                    <?php else: ?>
+                        <div class="container container-fluid m-auto w-50 text-center mt-5">
+                            <p>Nessun contatto!</p>
+                            <p class="fw-light"><a href="home.php">torna alla lista...</a></p>
+                        </div>
+                    <?php endif ?>
                 </tbody>
             </table>
         </div>
