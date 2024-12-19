@@ -5,13 +5,10 @@ class Helper {
 
         button.addEventListener('click', (e) => {
 
-            let id = e.target.dataset.id
+            let id = e.target.dataset.id;
             let deleteButton = document.getElementById('delete-btn');
             let toDelete = document.getElementById('to-delete');
-            let url = document.URL === "http://localhost:83/index.php" ||  
-                      document.URL === "http://localhost:83/" ?
-                      "src/pages/delete.php" :
-                      "delete.php"
+            let url = "delete.php";
 
             if (e.target.tagName !== 'BUTTON')
                 id = e.target.closest('button').dataset.id
@@ -59,12 +56,12 @@ class Helper {
                 active.style.color = '#3ad737'
                 span.textContent = 'Attivo'
                 span.style.color = '#3ad737'
-    
+
             } else {
-    
+
                 active.style.color = '#aaaaaa'
                 span.innerHTML = '<em class="field-label">Inattivo</em'
-    
+
             }
         }
     }
@@ -72,9 +69,9 @@ class Helper {
     static modifyCheckboxLabel(checkbox, checkLabel) {
 
         checkbox.checked ? checkLabel.textContent = 'Attivo' : checkLabel.textContent = 'Inattivo'
-    
+
         checkbox.addEventListener('change', () => {
-    
+
             if (checkbox.checked) {
                 checkbox.value = 1
                 checkLabel.textContent = 'Attivo'
@@ -82,26 +79,26 @@ class Helper {
                 checkbox.value = 0
                 checkLabel.textContent = 'Inattivo'
             }
-    
+
         })
-       
+
     }
 
     static ShowCardImage(img) {
 
         let imgContainer = document.createElement('div')
-            let image = document.createElement('img')
-    
-            imgContainer.classList.add('img-container')
-            document.body.append(imgContainer)
-            image.src = img.src
-            image.classList.add('bigger-card-img')
-            imgContainer.append(image)
-    
-            image.addEventListener('click', () => {
-                imgContainer.remove()
-            })
-        
+        let image = document.createElement('img')
+
+        imgContainer.classList.add('img-container')
+        document.body.append(imgContainer)
+        image.src = img.src
+        image.classList.add('bigger-card-img')
+        imgContainer.append(image)
+
+        image.addEventListener('click', () => {
+            imgContainer.remove()
+        })
+
     }
 
     static SortList(e) {
@@ -110,13 +107,13 @@ class Helper {
         let el = e.target
         let sortedList = this.Sort([...list.children], Number(el.dataset.index))
         el.toggleAttribute('data')
-        
+
         if (el.attributes.data) {
             sortedList.forEach(node => list.append(node));
         } else {
             sortedList.reverse().forEach(node => list.append(node));
         }
-        
+
     }
 
     static Sort(array, i) {
@@ -124,7 +121,7 @@ class Helper {
         const byNum = [0, 3]
         const byName = [1, 2, 4, 5, 6]
         const byDate = [7, 8]
-        
+
         if (byNum.includes(i)) {
             return array.sort((a, b) => a.children[i].outerText - b.children[i].outerText)
         } else if (byName.includes(i)) {

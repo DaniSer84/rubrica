@@ -3,7 +3,6 @@
 require_once __DIR__ . "/common.php";
 
 use Daniser\Rubrica\Helper;
-use Rubrica\Php\FormRequest\FormRequest;
 
 $head->setParams([
     "title" => "Update Contact",
@@ -34,7 +33,6 @@ $picture = $data['picture'];
 <body>
     <?=$navbar->render()?>
     <div class="form-container mb-5 mt-2">
-        <!-- TODO: Improve picture for update: show preview if possible... -->
         <form action="" method="POST" enctype="multipart/form-data" class="needs-validation">
             <div class="form-fields-container justify-content-between">
                 <input type="text" name="back-to" value="<?= $referer ?>" hidden>
@@ -96,7 +94,7 @@ $picture = $data['picture'];
                 </div>
             </div>
             <div class="button-container">
-                <a href="<?= $referer ?>"><button class="btn btn-secondary">Indietro</button></a>
+                <a href="<?= $referer ?>" class="btn btn-secondary">Indietro</a>
                 <button type="submit" class="btn btn-primary">Modifica</button>
             </div>
         </form>

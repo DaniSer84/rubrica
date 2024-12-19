@@ -12,6 +12,7 @@ $head->setParams($headParams);
 $referer = $_SERVER["HTTP_REFERER"];
 $formRequest->sendRequest();
 
+// TODO : required fields
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +26,7 @@ $formRequest->sendRequest();
             <input type="text" name="back-to" value="<?= $referer ?>" hidden>
             <div class="mb-3 ">
                 <label for="file-upload" class="position-relative text-center">
-                    <img src="../../img/user-account.png" class="w-50 m-auto add-img-file">
+                    <img src="../img/user-account.png" class="w-50 m-auto add-img-file">
                 </label><br>
                 <span class="img-check d-none"></span>
                 <input type="file" id="file-upload" accept="image/png, image/jpeg" name="picture"

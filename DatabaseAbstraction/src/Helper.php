@@ -81,7 +81,7 @@ class Helper {
                     <td>$hasImage</td>
                     <td>
                         <div class='list-item-btn-container flex-row justify-content-end'>
-                            <a href='src/pages/update.php?item_id=$id'>
+                            <a href='update.php?item_id=$id'>
                                 <button class='btn btn-info'><i class='fa-solid fa-pen-to-square'></i></button>
                             </a>
                             <button type='button' class='btn btn-danger set-to-delete' data-bs-toggle='modal' data-bs-target='#deleteItem' data-id='$id'><i class='fa-solid fa-trash-can'></i></button>

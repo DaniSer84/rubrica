@@ -7,9 +7,10 @@ let active = document.querySelector('.fa-circle-check')
 let cardImg = document.querySelectorAll('.normal-card-img')
 let goBackBtn = document.querySelector('.go-back-btn')
 let tableHead = document.querySelector('#t-head') 
+let clearPic = document.querySelector('#clear-picture')
 
 // uploaded image check
-if (fileInput) Helper.uploadingImage(fileInput)
+if (fileInput) Helper.ImagePreview(fileInput)
 
 // set delete buttons
 if (deleteButton) deleteButton.forEach(button => Helper.setToDelete(button));

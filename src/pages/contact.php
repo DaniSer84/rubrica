@@ -16,7 +16,6 @@ $navbar->setParams([
         '#' => 'Info Contatto'
     ],
     'active' => 'Info Contatto',
-    'search' => false
 ]);
 
 $data = $formRequest->sendRequest();
