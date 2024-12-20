@@ -41,8 +41,8 @@ $navbar->setParams([
                         <th scope='col'>Email <i class="fa-solid fa-arrows-up-down" data-index="6"></i></th>
                         <th scope='col'>Data di nascita <i class="fa-solid fa-arrows-up-down" data-index="7"></i></th>
                         <th scope='col'>Data creazione <i class="fa-solid fa-arrows-up-down" data-index="8"></i></th>
-                        <th scope='col'>Attivo</th>
-                        <th scope='col'>Image</th>
+                        <th scope='col'>Attivo <i class="fa-solid fa-arrows-up-down" data-index="9"></i></th>
+                        <th scope='col'>Image <i class="fa-solid fa-arrows-up-down" data-index="10"></i></th>
                     </tr>
                 </thead>
                 <tbody class='table-group-divider'>

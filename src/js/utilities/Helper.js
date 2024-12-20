@@ -108,34 +108,56 @@ class Helper {
     static SortList(e) {
 
         let list = document.querySelector('.table-group-divider');
+        let targetList = [...document.querySelectorAll('#t-head i')]
         let el = e.target
         let sortedList = this.Sort([...list.children], Number(el.dataset.index))
         el.toggleAttribute('data')
 
         if (el.attributes.data) {
             sortedList.forEach(node => list.append(node));
+            el.classList = 'fa-solid fa-arrow-down'
         } else {
             sortedList.reverse().forEach(node => list.append(node));
+            el.classList = 'fa-solid fa-arrow-up'
         }
 
+        targetList.map((e) => {
+            if (e !== el) e.classList = 'fa-solid fa-arrows-up-down' 
+        })
+        
     }
 
     static Sort(array, i) {
 
-        const byNum = [0, 3]
-        const byName = [1, 2, 4, 5, 6]
-        const byDate = [7, 8]
+        switch (i) {
 
-        if (byNum.includes(i)) {
-            return array.sort((a, b) => a.children[i].outerText - b.children[i].outerText)
-        } else if (byName.includes(i)) {
-            return array.sort((a, b) => a.children[i].outerText.localeCompare(b.children[i].outerText))
-        } else if (byDate.includes(i)) {
-            return array.sort((a, b) => new Date(a.children[i].outerText) - new Date(b.children[i].outerText))
-        } else {
-            return []
+            case 0:
+            case 3:
+            case 9:
+                return array.sort((a, b) => this.selectValue(a, i) - this.selectValue(b, i));
+            case 1:
+            case 2:
+            case 4:
+            case 5:
+            case 6:
+            case 10:
+                return array.sort((a, b) => this.selectValue(a, i).localeCompare(this.selectValue(b, i)));
+            case 7:
+            case 8:
+                return array.sort((a, b) => new Date(this.selectValue(a, i)) - new Date(this.selectValue(b, i)));
+            default:
+                return []; 
+
         }
 
+    }
+
+    static selectValue(el, i) {
+
+        return i === 9 ? 
+               el.children[i].children[0].children[0].value :
+               el.children[i].outerText;
+               
     }
 
     static HandleRemovePic(input) {
