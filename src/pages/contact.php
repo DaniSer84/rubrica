@@ -32,7 +32,7 @@ $picture = $data['picture'];
     <main>
         <!-- CONTACT CARD -->
         <?php if ($contact) :?>
-        <div class="container">
+        <div class="container card-container">
             <div class="card">
                 <img src="<?=$picture[0] !== "" ? $picture[0] : "https://placehold.co/200x200?text=Your+Pic"?>" class="card-img-top normal-card-img">
                 <div class="card-body">

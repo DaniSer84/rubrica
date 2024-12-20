@@ -27,7 +27,7 @@ $navbar->setParams([
 <body>
     <?= $navbar->render() ?>
     <main>
-        <div class="container">
+        <div class="container mt-5 pt-3">
             <div class="add-contact-btn-container mt-4">
                 <a href="insert.php">
                     <button type="button" class="btn btn-success add-contact-btn">

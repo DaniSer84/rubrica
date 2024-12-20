@@ -12,7 +12,7 @@ class Navbar extends HtmlElement {
         $navItems = self::setNavItem($items, $active);
         
         return 
-            "<nav class='navbar navbar-expand-md border-2 border-bottom'>
+            "<nav class='navbar fixed-top bg-body-tertiary navbar-expand-md border-2 border-bottom'>
                 <div class='container-fluid'>
                     <span class='navbar-brand mb-0 h1'>Rubrica</span>
                     <button class='navbar-toggler' type='button' data-bs-toggle='collapse'

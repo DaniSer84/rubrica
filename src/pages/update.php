@@ -32,7 +32,7 @@ $picture = $data['picture'];
 
 <body>
     <?=$navbar->render()?>
-    <div class="form-container mb-5 mt-2">
+    <div class="form-container mb-5">
         <form action="" method="POST" enctype="multipart/form-data" class="needs-validation">
             <div class="form-fields-container justify-content-between">
                 <input type="text" name="back-to" value="<?= $referer ?>" hidden>

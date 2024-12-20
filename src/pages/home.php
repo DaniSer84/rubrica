@@ -27,9 +27,9 @@ $navbar->setParams([
 <body>
     <?= $navbar->render(); ?>
     <main>
-        <div class='container-fluid rubrica-container m-auto'>
+        <div class='container-fluid mt-5 rubrica-container m-auto'>
             <h5 class='title text-center mb-3 mt-5'>Contatti</h5>
-            <table class='table table-striped' style="min-width:1250px">
+            <table class='table table-striped' style="min-width:1280px">
                 <thead>
                     <tr id="t-head">
                         <th scope='col'>Id <i class="fa-solid fa-arrows-up-down" data-index="0"></i></th>
