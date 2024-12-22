@@ -1,5 +1,7 @@
 <?php
 
+use Rubrica\Php\Helper;
+
 require_once __DIR__ . "/common.php";
 
 $head->setParams([
@@ -7,16 +9,15 @@ $head->setParams([
     "style" => "../css/style.css",
     "script" => "../js/main.js"
 ]);
+$searchInput->setParams(['order' => $OrderOptionBtn->render()]);
 $navbar->setParams([
     'items' => [
         'home.php' => 'Home',
-        '#' => 'Lista Contatti',
+        'contact-list.php' => 'Lista Contatti',
     ],
     'active' => 'Lista Contatti',
     'search' => $searchInput->render($_GET['search'] ?? '')
 ]);
-
-// TODO : aside tag for filters and order
 
 ?>
 
@@ -38,7 +39,12 @@ $navbar->setParams([
             <div class="list-container">
                 <?php if ($data->rowCount()): ?>
                     <?php
-                    while ($contact = $data->fetch()):
+
+                    $data = $data->fetchAll();
+
+                    $data = $queryBuilder->applyOrderOption($data);
+
+                    foreach ($data as $contact):
                         $picture = $queryBuilder->getPicture($contact['id'])->fetch()[0];
                         ?>
                         <div class="card mb-3" style="max-width: 540px;">
@@ -76,7 +82,7 @@ $navbar->setParams([
                                 </div>
                             </div>
                         </div>
-                    <?php endwhile ?>
+                    <?php endforeach ?>
                 <?php else: ?>
                     <div class="container container-fluid m-auto w-50 text-center mt-5">
                         <p>Nessun contatto!</p>

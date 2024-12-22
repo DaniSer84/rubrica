@@ -121,5 +121,43 @@ class QueryBuilder {
         
     }
 
+    public function getData() {
+
+        $search = $_GET['search'] ?? "";
+
+        $data = $search !== "" ? 
+                $this->searchContact([
+                    "kw1" => "$search%",
+                    "kw2" => "%$search%",
+                    "kw3" => "%$search",
+                ]) :
+                $this->getAll();
+
+        return $data;
+        
+    }
+
+    public function applyOrderOption($data) {
+
+        if (isset($_GET['order'])) {
+
+            $i = $_GET['order'];
+            $reverse = isset($_GET['decr']) ?: false;
+
+            usort($data, function ($a, $b) use ($i, $reverse) {
+
+                $a = $a[$i] ?: "";
+                $b = $b[$i] ?: "";
+
+                return $reverse ? strnatcmp($b, $a) : strnatcmp($a, $b);
+
+            });
+
+        }
+
+        return $data;
+        
+    }
+
     
 }

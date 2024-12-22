@@ -4,6 +4,7 @@ use Rubrica\Php\Components\ActionButton;
 use Rubrica\Php\Components\Head;
 use Rubrica\Php\Components\Modal;
 use Rubrica\Php\Components\Navbar;
+use Rubrica\Php\Components\OrderOptionBtn;
 use Rubrica\Php\Components\SearchInput;
 use Rubrica\Php\Components\SmallComponents;
 use Rubrica\Php\FormRequest\FormRequest;
@@ -17,6 +18,7 @@ $head = new Head();
 
 $navbar = new Navbar();
 $searchInput = new SearchInput();
+$OrderOptionBtn = new OrderOptionBtn();
 
 $bsStrip = SmallComponents::bsStrip();
 
@@ -28,20 +30,12 @@ $deleteModalButton = new ActionButton([
 $deleteModal = new Modal([
     "id" => "deleteItem",
     "title" => "Eliminando contatto con id: <span id='to-delete'></span>",
-    "text" => "Sei sicuro di voler eliminare il contatto?",
+    "text" => "NB: Il contatto verrà eliminato definitivamente!",
     "button" => $deleteModalButton->render()
 ]);
 
-$search = $_GET['search'] ?? "";
 $queryBuilder = new QueryBuilder();
-
-$data = $search !== "" ? 
-        $queryBuilder->searchContact([
-            "kw1" => "$search%",
-            "kw2" => "%$search%",
-            "kw3" => "%$search",
-        ]) :
-        $queryBuilder->getAll();
+$data = $queryBuilder->getData();
 
 $formRequest = new FormRequest();
 

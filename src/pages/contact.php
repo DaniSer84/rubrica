@@ -66,8 +66,9 @@ $navbar->setParams([
         <?php endif ?>
     </main>
     <!-- Modal - delete contact -->
-    <?=$deleteModal->render()?>
-    <?=$bsStrip?>
+    <?= $deleteModal->render() ?>
+    <!-- TODO : ADD footer -->
+    <?= $bsStrip ?>
 </body>
 
 </html>

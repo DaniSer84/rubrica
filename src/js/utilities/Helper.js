@@ -64,7 +64,7 @@ class Helper {
             } else {
 
                 active.style.color = '#aaaaaa'
-                span.innerHTML = '<em class="field-label">Inattivo</em'
+                span.innerHTML = '<em class="field-label">Inattivo</em>'
 
             }
         }
@@ -112,17 +112,23 @@ class Helper {
         let el = e.target
         let sortedList = this.Sort([...list.children], Number(el.dataset.index))
         el.toggleAttribute('data')
+        console.dir(el.parentElement)
 
         if (el.attributes.data) {
             sortedList.forEach(node => list.append(node));
             el.classList = 'fa-solid fa-arrow-down'
+            el.parentElement.style.color = 'crimson';
         } else {
             sortedList.reverse().forEach(node => list.append(node));
             el.classList = 'fa-solid fa-arrow-up'
+            el.parentElement.style.color = 'crimson';
         }
-
+        
         targetList.map((e) => {
-            if (e !== el) e.classList = 'fa-solid fa-arrows-up-down' 
+            if (e !== el) {
+                e.parentElement.style.color = 'black';
+                e.classList = 'fa-solid fa-arrows-up-down' 
+            }
         })
         
     }
