@@ -1,11 +1,9 @@
 <?php
 
-namespace Rubrica\Php\FileUpload;
+namespace Rubrica\Php;
 
-class FileUploadHelper {
+class Helper {
 
-    const UPLOAD_DIR = "C:/WebDev/CODE/rubrica/src/pictures";
-    
     static function formatFileSize (int $bytes, int $decimals = 2): string {
 
         $size = ['B','kB','MB','GB','TB','PB','EB','ZB','YB'];
@@ -14,5 +12,5 @@ class FileUploadHelper {
         return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$size[$factor];
         
     }
-    
+
 }

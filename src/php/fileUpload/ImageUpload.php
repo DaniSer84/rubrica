@@ -2,6 +2,8 @@
 
 namespace Rubrica\Php\FileUpload;
 
+use Rubrica\Php\Helper;
+
 class ImageUpload {
 
     const UPLOAD_DIR = "C:/WebDev/CODE/rubrica/src/pictures";
@@ -76,9 +78,9 @@ class ImageUpload {
         if ($filesize > self::MAX_SIZE) {
             
             return "File size exceeds limit: <br> File size: " . 
-            FileUploadHelper::formatFileSize($filesize) . 
+            Helper::formatFileSize($filesize) . 
             "<br> allowed " . 
-            FileUploadHelper::formatFileSize(self::MAX_SIZE) .
+            Helper::formatFileSize(self::MAX_SIZE) .
             "<br>";
             
         }

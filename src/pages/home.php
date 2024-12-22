@@ -11,7 +11,7 @@ $head->setParams([
 ]);
 $navbar->setParams([
     'items' => [
-        '#' => 'Home',
+        'home.php' => 'Home',
         'contact-list.php' => 'Lista Contatti',
     ],
     'active' => 'Home',
@@ -29,7 +29,7 @@ $navbar->setParams([
     <main>
         <div class='container-fluid mt-5 rubrica-container m-auto'>
             <h5 class='title text-center mb-3 mt-5'>Contatti</h5>
-            <table class='table table-striped' style="min-width:1280px">
+            <table class='table table-striped' style="min-width:1310px">
                 <thead>
                     <tr id="t-head">
                         <th scope='col'>Id <i class="fa-solid fa-arrows-up-down" data-index="0"></i></th>
@@ -42,7 +42,7 @@ $navbar->setParams([
                         <th scope='col'>Data di nascita <i class="fa-solid fa-arrows-up-down" data-index="7"></i></th>
                         <th scope='col'>Data creazione <i class="fa-solid fa-arrows-up-down" data-index="8"></i></th>
                         <th scope='col'>Attivo <i class="fa-solid fa-arrows-up-down" data-index="9"></i></th>
-                        <th scope='col'>Image <i class="fa-solid fa-arrows-up-down" data-index="10"></i></th>
+                        <th scope='col'>Immagine <i class="fa-solid fa-arrows-up-down" data-index="10"></i></th>
                     </tr>
                 </thead>
                 <tbody class='table-group-divider'>

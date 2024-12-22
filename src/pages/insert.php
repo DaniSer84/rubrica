@@ -12,7 +12,6 @@ $head->setParams($headParams);
 $referer = $_SERVER["HTTP_REFERER"];
 $formRequest->sendRequest();
 
-// TODO : required fields
 ?>
 
 <!DOCTYPE html>

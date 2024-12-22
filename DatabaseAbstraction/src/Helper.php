@@ -65,7 +65,9 @@ class Helper {
         
         return  
                 "<tr>
-                    <th scope='row'>$id</th>
+                    <th scope='row'>
+                        <a href='contact.php?item_id=$id'>$id</a>
+                    </th>
                     <td>$name</td>
                     <td>$surname</td>
                     <td>$phone_number</td>
@@ -88,7 +90,7 @@ class Helper {
                         </div>
                     </td>
                 </tr>";
-    
+
     }
 
     public static function AccessToValue( ?array $values, string $key, $default = null ) {

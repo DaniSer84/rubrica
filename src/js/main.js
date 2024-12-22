@@ -15,22 +15,30 @@ if (fileInput) Helper.ImagePreview(fileInput)
 // set delete buttons
 if (deleteButton) deleteButton.forEach(button => Helper.setToDelete(button));
 
+// TODO: MAKE one function for manageIsActive
+// manage check input Active/Inactive 
 if (checkboxes) checkboxes.forEach(checkbox => {
 
-    Helper.setCheckInput(checkbox)
+    if (!checkbox.classList.contains('dec')) {
 
-    let checkLabel = document.querySelector('.form-check-label')
+        Helper.setCheckInput(checkbox)
 
-    if (checkLabel) {
-
-        Helper.modifyCheckboxLabel(checkbox, checkLabel)
-
+        let checkLabel = document.querySelector('.form-check-label')
+    
+        if (checkLabel) {
+    
+            Helper.modifyCheckboxLabel(checkbox, checkLabel)
+    
+        }
+        
     }
-
+    
 })
 
+// manage 'isActiv' icon 
 if (active) Helper.isActive(active)
 
+// zoom (modal) for card image
 cardImg.forEach(img => {
     img.addEventListener('click', () => Helper.ShowCardImage(img))
 })
