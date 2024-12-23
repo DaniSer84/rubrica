@@ -19,6 +19,31 @@ class Helper {
         })
     }
 
+    static handleIsActive() {
+
+        let checkboxes = document.querySelectorAll('.form-check-input')
+        let active = document.querySelector('.fa-circle-check')
+
+        if (checkboxes) checkboxes.forEach(checkbox => {
+        
+            if (!checkbox.classList.contains('dec')) {
+        
+                this.setCheckInput(checkbox)
+        
+                let checkLabel = document.querySelector('.form-check-label')
+            
+                if (checkLabel) {
+            
+                    this.modifyCheckboxLabel(checkbox, checkLabel)
+            
+                }
+            }
+        })
+
+        if (active) this.isActive(active)
+
+    }
+
     static setCheckInput(checkInput) {
 
         switch (checkInput.value) {
@@ -31,23 +56,6 @@ class Helper {
             default:
                 checkInput = true
         }
-    }
-
-    static ImagePreview(input) {
-
-        let check = document.querySelector('.img-check')
-        let img = document.querySelector('.add-img-file')
-
-        input.addEventListener('change', () => {
-
-            check.classList.remove('d-none')
-            check.innerHTML = `<i class="fa-regular fa-circle-check" style="color: #17d924;"></i> ${input.value}`
-
-            const [file] = input.files
-            img.src = URL.createObjectURL(file)
-
-        })
-
     }
 
     static isActive(active) {
@@ -88,48 +96,35 @@ class Helper {
 
     }
 
-    static ShowCardImage(img) {
-
-        let imgContainer = document.createElement('div')
-        let image = document.createElement('img')
-
-        imgContainer.classList.add('img-container')
-        document.body.append(imgContainer)
-        image.src = img.src
-        image.classList.add('bigger-card-img')
-        imgContainer.append(image)
-
-        image.addEventListener('click', () => {
-            imgContainer.remove()
-        })
-
-    }
-
     static SortList(e) {
 
         let list = document.querySelector('.table-group-divider');
         let targetList = [...document.querySelectorAll('#t-head i')]
         let el = e.target
-        let sortedList = this.Sort([...list.children], Number(el.dataset.index))
-        el.toggleAttribute('data')
-        console.dir(el.parentElement)
-
-        if (el.attributes.data) {
-            sortedList.forEach(node => list.append(node));
-            el.classList = 'fa-solid fa-arrow-down'
-            el.parentElement.style.color = 'crimson';
-        } else {
-            sortedList.reverse().forEach(node => list.append(node));
-            el.classList = 'fa-solid fa-arrow-up'
-            el.parentElement.style.color = 'crimson';
-        }
         
-        targetList.map((e) => {
-            if (e !== el) {
-                e.parentElement.style.color = 'black';
-                e.classList = 'fa-solid fa-arrows-up-down' 
+        if (el.tagName === 'I') {
+
+            let sortedList = this.Sort([...list.children], Number(el.dataset.index))
+            el.toggleAttribute('data')
+    
+            if (el.attributes.data /*&& !el.classList.contains('fa-arrow-down')*/) {
+                sortedList.forEach(node => list.append(node));
+                el.classList = 'fa-solid fa-arrow-down'
+                el.parentElement.style.color = 'crimson';
+            } else {
+                sortedList.reverse().forEach(node => list.append(node));
+                el.classList = 'fa-solid fa-arrow-up'
+                el.parentElement.style.color = 'crimson';
             }
-        })
+            
+            targetList.map((e) => {
+                if (e !== el) {
+                    e.parentElement.style.color = 'black';
+                    e.classList = 'fa-solid fa-arrows-up-down'
+                    e.removeAttribute('data')
+                }
+            })
+        }
         
     }
 
@@ -166,6 +161,22 @@ class Helper {
                
     }
 
+    static ImagePreview(input) {
+
+        let check = document.querySelector('.img-check')
+        let img = document.querySelector('.add-img-file')
+
+        input.addEventListener('change', () => {
+
+            check.classList.remove('d-none')
+            check.innerHTML = `<i class="fa-regular fa-circle-check" style="color: #17d924;"></i> ${input.value}`
+
+            const [file] = input.files
+            img.src = URL.createObjectURL(file)
+
+        })
+    }
+
     static HandleRemovePic(input) {
 
         let img = document.querySelector('.add-img-file')
@@ -179,9 +190,23 @@ class Helper {
                 img.src = imgSrc
             }
         })
-
     }
 
+    static ShowCardImage(img) {
+
+        let imgContainer = document.createElement('div')
+        let image = document.createElement('img')
+
+        imgContainer.classList.add('img-container')
+        document.body.append(imgContainer)
+        image.src = img.src
+        image.classList.add('bigger-card-img')
+        imgContainer.append(image)
+
+        image.addEventListener('click', () => {
+            imgContainer.remove()
+        })
+    }
 }
 
 export { Helper }

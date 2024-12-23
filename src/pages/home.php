@@ -32,7 +32,7 @@ $navbar->setParams([
             <table class='table table-striped' style="min-width:1310px">
                 <thead>
                     <tr id="t-head">
-                        <th scope='col'>Id <i class="fa-solid fa-arrows-up-down" data-index="0"></i></th>
+                        <th scope='col' style="color:crimson;">Id <i class="fa-solid fa-arrow-down" data-index="0" data></i></th>
                         <th scope='col'>Nome <i class="fa-solid fa-arrows-up-down" data-index="1"></i></th>
                         <th scope='col'>Cognome <i class="fa-solid fa-arrows-up-down" data-index="2"></i></th>
                         <th scope='col'>Telefono <i class="fa-solid fa-arrows-up-down" data-index="3"></i></th>

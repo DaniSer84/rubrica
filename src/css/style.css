@@ -17,7 +17,7 @@ header > * {
     flex-wrap: wrap;
 }
 .rubrica-container {
-    max-height: 80vh;
+    max-height: 78vh;
     overflow-y: auto;
 }
 .list-item-btn-container {
