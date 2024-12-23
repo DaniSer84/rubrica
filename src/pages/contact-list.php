@@ -92,9 +92,9 @@ $navbar->setParams([
             </div>
         </div>
     </main>
-    <!-- Modal - delete contact -->
-    <?= $deleteModal->render() ?>
-    <?= $bsStrip ?>
+    <?=$deleteModal->render()?>
+    <?=$footer->render()?>
+    <?=$bsStrip?>
 </body>
 
 </html>

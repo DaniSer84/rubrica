@@ -63,8 +63,7 @@ $navbar->setParams([
                 </tbody>
             </table>
         </div>
-        <!-- Modal - delete contact -->
-        <?= $deleteModal->render() ?>
+        
         <hr>
         <a href='insert.php'>
             <button type='button' class='btn btn-success add-contact-btn'>
@@ -72,8 +71,9 @@ $navbar->setParams([
             </button>
         </a>
     </main>
-
-    <?= $bsStrip ?>
+    <?= $deleteModal->render()?>
+    <?=$footer->render()?>
+    <?=$bsStrip?>
 </body>
 
 </html>

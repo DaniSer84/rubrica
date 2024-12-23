@@ -68,8 +68,10 @@ $formRequest->sendRequest();
             </div>
         </form>
     </div>
-
-    <?= $bsStrip ?>
+    <?php 
+    // $footer->render();
+    // $bsStrip; 
+    ?>
 </body>
 
 </html>

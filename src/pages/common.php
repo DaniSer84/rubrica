@@ -1,6 +1,7 @@
 <?php
 
 use Rubrica\Php\Components\ActionButton;
+use Rubrica\Php\Components\Footer;
 use Rubrica\Php\Components\Head;
 use Rubrica\Php\Components\Modal;
 use Rubrica\Php\Components\Navbar;
@@ -15,6 +16,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] ."/vendor/autoload.php";
 $selectedContact = null;
 
 $head = new Head();
+$footer = new Footer();
 
 $navbar = new Navbar();
 $searchInput = new SearchInput();

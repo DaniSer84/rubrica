@@ -99,8 +99,8 @@ $picture = $data['picture'];
             </div>
         </form>
     </div>
-
-    <?= $bsStrip ?>
+    <?=$footer->render()?>
+    <?=$bsStrip?>
 </body>
 
 </html>
