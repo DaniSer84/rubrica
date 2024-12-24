@@ -125,6 +125,11 @@ class QueryBuilder {
 
         $search = $_GET['search'] ?? "";
 
+        // TODO: handle multiple words es: 'Daniele Serenelli'
+
+        // print_r($search);
+        // die();
+
         $data = $search !== "" ? 
                 $this->searchContact([
                     "kw1" => "$search%",

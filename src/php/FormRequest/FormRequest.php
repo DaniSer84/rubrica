@@ -9,6 +9,22 @@ use Rubrica\Php\QueryBuilder\QueryBuilder;
 class FormRequest {
 
     // TODO: form validation
+
+        // TODO: html validation -> https://www.the-art-of-web.com/html/html5-form-validation/
+        
+        // TODO: javascript validation: required fields
+            // TODO: phone number -> country code
+            // TODO: date of birth format -> italy
+            // https://www.html.it/articoli/validare-e-inviare-un-form-con-javascript/
+            // https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation
+
+
+        // TODO: PHP: htmlspecialchars, 
+            // https://www.slingacademy.com/article/how-to-validate-form-in-php/
+            // https://www.w3docs.com/learn-php/php-form-validation.html
+            // https://www.phptutorial.net/php-tutorial/php-form/
+            // https://mailtrap.io/blog/php-form-validation/
+
     
     private QueryBuilder $queryBuilder;
 
@@ -20,7 +36,7 @@ class FormRequest {
 
     public function sendRequest() {
 
-        if ($_SERVER['REQUEST_METHOD'] === "GET" && count($_REQUEST)) {
+        if ($_SERVER['REQUEST_METHOD'] === "GET" && count($_GET)) {
 
             if ($_SERVER['URL'] === '/src/pages/delete.php')
                 return $this->delete();
@@ -36,7 +52,7 @@ class FormRequest {
     
     public function get() {
         
-        $id = $_REQUEST["item_id"];
+        $id = $_GET["item_id"];
         
         $contact = $this->queryBuilder->getOne($id)->fetch();
         $picture = $this->queryBuilder->getPicture($id)->fetch();
@@ -66,7 +82,7 @@ class FormRequest {
 
     public function post() {
 
-        $backTo = $_REQUEST['back-to'];
+        $backTo = $_POST['back-to'];
         $backLink = "<a href=$backTo>Back</a>";
         
         $fileData = $this->getFileData($backLink);
@@ -91,7 +107,7 @@ class FormRequest {
 
     public function delete() {
 
-        $id = $_REQUEST["item_id"];
+        $id = $_GET["item_id"];
         
         $this->queryBuilder->deleteContact([$id]);
 
@@ -123,15 +139,15 @@ class FormRequest {
 
     private function insert($fileData) {
 
-        $this->queryBuilder->insertContact($_REQUEST, $fileData);
+        $this->queryBuilder->insertContact($_POST, $fileData);
         
     }
 
     private function update($fileData) {
 
-        $fields = Helper::setUpdateFields($_REQUEST);
+        $fields = Helper::setUpdateFields($_POST);
         $items = Helper::setItems($fields);
-        $id = $_REQUEST["id"];
+        $id = $_POST["id"];
         $pictureItems = null;
 
         if ($fileData[0] && $fileData[1]) {
@@ -144,7 +160,7 @@ class FormRequest {
             
         }
 
-        if ($_REQUEST["clear-picture"]) {
+        if ($_POST["clear-picture"]) {
 
             $pictureItems = [
                 '',

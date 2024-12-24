@@ -159,7 +159,7 @@ class Helper {
         return i === 9 ? 
                el.children[i].children[0].children[0].value :
                el.children[i].outerText;
-               
+
     }
 
     static ImagePreview(input) {

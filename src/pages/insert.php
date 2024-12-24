@@ -47,7 +47,7 @@ $formRequest->sendRequest();
                 <label for="telefono">Telefono</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
                 <label for="email">Email</label>
             </div>
             <div class="form-floating mb-3">
@@ -60,7 +60,7 @@ $formRequest->sendRequest();
             </div>
             <div class="form-floating mb-5">
                 <input type="date" class="form-control" id="data_nascita" name="birthdate" placeholder="01/01/1980"
-                    required>
+                    >
                 <label for="data_nascita">Data di nascita</label>
             </div>
             <div class="button-container">
