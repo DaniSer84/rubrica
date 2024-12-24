@@ -10,7 +10,6 @@ $headParams = [
 $head->setParams($headParams);
 
 $referer = $_SERVER["HTTP_REFERER"];
-$formRequest->sendRequest();
 
 ?>
 
@@ -18,6 +17,9 @@ $formRequest->sendRequest();
 <html lang="en">
 <?= $head->render(); ?>
 
+<?php
+$formRequest->sendRequest();
+?>
 <body>
     <div class="container mb-5 border p-3 my-3" style="max-width:500px">
         <h4 class="mb-5 text-center">Aggiungi un contatto:</h4>

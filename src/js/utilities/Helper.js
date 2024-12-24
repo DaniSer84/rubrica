@@ -145,7 +145,8 @@ class Helper {
                 return array.sort((a, b) => this.selectValue(a, i).localeCompare(this.selectValue(b, i)));
             case 7:
             case 8:
-                return array.sort((a, b) => new Date(this.selectValue(a, i)) - new Date(this.selectValue(b, i)));
+                return array.sort((a, b) => new Date(this.selectValue(a, i) !== '' ? this.selectValue(a, i) : '100-01-01') - 
+                                            new Date(this.selectValue(b, i) !== '' ? this.selectValue(b, i) : '100-01-01'));
             default:
                 return []; 
 
