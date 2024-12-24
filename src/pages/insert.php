@@ -34,7 +34,7 @@ $formRequest->sendRequest();
                     class="form-control d-none">
             </div>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="nome" name="name" placeholder="Mario">
+                <input type="text" class="form-control" id="nome" name="name" placeholder="Mario" required>
                 <label for="nome">Nome</label>
             </div>
             <div class="form-floating mb-3">
@@ -42,7 +42,7 @@ $formRequest->sendRequest();
                 <label for="cognome">Cognome</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="tel" class="form-control" id="telefono" name="phone_number" placeholder="02 2021010"
+                <input type="tel" class="form-control" id="telefono" name="phone_number" placeholder="1234567890" minlength="8"
                     required>
                 <label for="telefono">Telefono</label>
             </div>

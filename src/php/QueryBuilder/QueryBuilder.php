@@ -105,9 +105,28 @@ class QueryBuilder {
 
     }
 
-    public function searchContact($params) {
+    public function searchContact($params, $filter) {
 
         $query = "SELECT * FROM contacts WHERE ";
+
+        $filteredField = $filter;
+ 
+        if ($filteredField !== '') {
+
+            if ($filteredField === 'fullname') {
+
+                $fullname = explode(' ', $_GET['search']);
+
+                $query .= "name = '$fullname[0]' AND surname = '$fullname[1]'";
+
+                return $this->db->getData($query, []);
+            }
+
+            $query .= "$filteredField LIKE :kw1 OR $filteredField LIKE :kw2 OR $filteredField LIKE :kw3";
+
+            return $this->db->getData($query, $params);
+            
+        }
 
         foreach(self::FIELDS as $field) {
 
@@ -124,18 +143,14 @@ class QueryBuilder {
     public function getData() {
 
         $search = $_GET['search'] ?? "";
-
-        // TODO: handle multiple words es: 'Daniele Serenelli'
-
-        // print_r($search);
-        // die();
+        $filter = $_GET['filter'] ?? "";
 
         $data = $search !== "" ? 
                 $this->searchContact([
                     "kw1" => "$search%",
                     "kw2" => "%$search%",
                     "kw3" => "%$search",
-                ]) :
+                ], $filter) :
                 $this->getAll();
 
         return $data;

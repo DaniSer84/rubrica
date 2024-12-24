@@ -59,7 +59,7 @@ $picture = $data['picture'];
                 </div>
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="nome" name="name" placeholder="Mario"
-                        value="<?= Helper::AccessToValue($contact, "name") ?>">
+                        value="<?= Helper::AccessToValue($contact, "name") ?>" required>
                     <label for="nome">Nome</label>
                 </div>
                 <div class="form-floating mb-3">
@@ -69,12 +69,13 @@ $picture = $data['picture'];
                 </div>
                 <div class="form-floating mb-3">
                     <input type="tel" class="form-control" id="telefono" name="phone_number" placeholder="02 2021010"
-                        value="<?= Helper::AccessToValue($contact, "phone_number") ?>">
+                        value="<?= Helper::AccessToValue($contact, "phone_number") ?>" required minlength="8"
+                        >
                     <label for="telefono">Telefono</label>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com"
-                        value="<?= Helper::AccessToValue($contact, "email") ?>">
+                        value="<?= Helper::AccessToValue($contact, "email") ?>" required>
                     <label for="email">Indirizzo email</label>
                 </div>
                 <div class="form-floating mb-3">
@@ -89,7 +90,7 @@ $picture = $data['picture'];
                 </div>
                 <div class="form-floating mb-5">
                     <input type="date" class="form-control" id="data_nascita" name="birthdate" placeholder="01/01/1980"
-                        value="<?= Helper::AccessToValue($contact, "birthdate") ?>" required>
+                        value="<?= Helper::AccessToValue($contact, "birthdate") ?>">
                     <label for="data_nascita">Data di nascita</label>
                 </div>
             </div>

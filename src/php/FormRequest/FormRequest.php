@@ -126,9 +126,17 @@ class FormRequest {
     }
 
     private function update($fileData) {
-
+        
         $fields = Helper::setUpdateFields($_POST);
+        var_dump($fields);
         $items = Helper::setItems($fields);
+
+        // TODO: fix type and null problems 
+        
+        $items[7] = $items[7] === '' ? null : $items[7];
+
+        var_dump($items);
+
         $id = $_POST["id"];
         $pictureItems = null;
 

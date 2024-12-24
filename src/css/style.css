@@ -19,6 +19,13 @@ header > * {
     display: flex;
     flex-wrap: wrap;
 }
+input:invalid {
+    border-color: #ff000054;
+}
+input:invalid:focus {
+    border-color: #ff000054;
+    border-width: 2px;
+}
 .rubrica-container {
     max-height: 78vh;
     overflow-y: auto;
