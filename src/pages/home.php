@@ -9,6 +9,7 @@ $head->setParams([
     'style' => '../css/style.css',
     'script' => '../js/main.js'
 ]);
+$searchInput->setParams(['filters' => $searchFilters->render()]);
 $navbar->setParams([
     'items' => [
         'home.php' => 'Home',

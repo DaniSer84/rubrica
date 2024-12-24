@@ -1,7 +1,5 @@
 <?php
 
-use Rubrica\Php\Helper;
-
 require_once __DIR__ . "/common.php";
 
 $head->setParams([
@@ -9,7 +7,10 @@ $head->setParams([
     "style" => "../css/style.css",
     "script" => "../js/main.js"
 ]);
-$searchInput->setParams(['order' => $OrderOptionBtn->render()]);
+$searchInput->setParams([
+    'order' => $OrderOptionBtn->render(),
+    'filters' => $searchFilters->render()
+]);
 $navbar->setParams([
     'items' => [
         'home.php' => 'Home',
