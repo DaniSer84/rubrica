@@ -6,8 +6,9 @@ use Rubrica\Php\Components\Head;
 use Rubrica\Php\Components\Modal;
 use Rubrica\Php\Components\Navbar;
 use Rubrica\Php\Components\OrderOptionBtn;
+use Rubrica\Php\Components\OtherComponents;
+use Rubrica\Php\Components\SearchFilters;
 use Rubrica\Php\Components\SearchInput;
-use Rubrica\Php\Components\SmallComponents;
 use Rubrica\Php\FormRequest\FormRequest;
 use Rubrica\Php\QueryBuilder\QueryBuilder;
 
@@ -21,8 +22,9 @@ $footer = new Footer();
 $navbar = new Navbar();
 $searchInput = new SearchInput();
 $OrderOptionBtn = new OrderOptionBtn();
+$searchFilters = new SearchFilters();
 
-$bsStrip = SmallComponents::bsStrip();
+$bsStrip = OtherComponents::bsStrip();
 
 $deleteModalButton = new ActionButton([
     "id" => "delete-btn",
@@ -40,4 +42,6 @@ $queryBuilder = new QueryBuilder();
 $data = $queryBuilder->getData();
 
 $formRequest = new FormRequest();
+
+// TODO: ADD TOtal number of contacts shown 
 

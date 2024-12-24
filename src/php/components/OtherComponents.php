@@ -2,7 +2,7 @@
 
 namespace Rubrica\Php\Components;
 
-class SmallComponents {
+class OtherComponents {
 
     static function bsStrip(): string {
 
