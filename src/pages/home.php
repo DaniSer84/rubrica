@@ -19,8 +19,6 @@ $navbar->setParams([
     'search' => $searchInput->render($_GET['search'] ?? '')
 ]);
 
-$elNumber = $data->rowCount() === 1 ? $data->rowCount() . " Contatto" : $data->rowCount() . " Contatti";
-
 ?>
 
 <!DOCTYPE html>

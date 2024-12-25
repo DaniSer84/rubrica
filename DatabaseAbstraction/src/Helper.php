@@ -207,6 +207,8 @@ class Helper {
         
     }
 
+    // TODO: check for visibility modifier https://www.php.net/manual/language.oop5.basic.php
+    
     static function setRelevantFields($data, $mode = 'insert') {
 
         return array_filter($data, function ($key) use ($mode) {
