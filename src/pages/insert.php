@@ -42,12 +42,13 @@ $formRequest->sendRequest();
                 <label for="cognome">Cognome</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="tel" class="form-control" id="telefono" name="phone_number" placeholder="1234567890" minlength="8"
-                    required>
+                <input type="tel" class="form-control" id="telefono" name="phone_number" placeholder="1234567890"
+                    minlength="8" maxlength="14" required>
                 <label for="telefono">Telefono</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com"
+                    required>
                 <label for="email">Email</label>
             </div>
             <div class="form-floating mb-3">
@@ -59,8 +60,7 @@ $formRequest->sendRequest();
                 <label for="qualifica">Qualifica</label>
             </div>
             <div class="form-floating mb-5">
-                <input type="date" class="form-control" id="data_nascita" name="birthdate" placeholder="01/01/1980"
-                    >
+                <input type="date" class="form-control" id="data_nascita" name="birthdate" placeholder="01/01/1980">
                 <label for="data_nascita">Data di nascita</label>
             </div>
             <div class="button-container">

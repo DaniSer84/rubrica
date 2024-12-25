@@ -19,6 +19,8 @@ $navbar->setParams([
     'search' => $searchInput->render($_GET['search'] ?? '')
 ]);
 
+$elNumber = $data->rowCount() === 1 ? $data->rowCount() . " Contatto" : $data->rowCount() . " Contatti";
+
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +31,7 @@ $navbar->setParams([
     <?= $navbar->render(); ?>
     <main>
         <div class='container-fluid mt-5 rubrica-container m-auto'>
-            <h5 class='title text-center mb-3 mt-5'>Contatti</h5>
+            <h5 class='title text-center mb-3 mt-5'><?=$elNumber?></h5>
             <table class='table table-striped' style="min-width:1310px">
                 <thead>
                     <tr id="t-head">
