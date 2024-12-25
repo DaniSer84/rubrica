@@ -32,7 +32,8 @@ $picture = $data['picture'];
 
 <body>
     <?=$navbar->render()?>
-    <div class="form-container mb-5">
+    <main>
+    <div class="form-container">
         <form action="" method="POST" enctype="multipart/form-data" class="needs-validation">
             <div class="form-fields-container justify-content-between">
                 <input type="text" name="back-to" value="<?= $referer ?>" hidden>
@@ -100,6 +101,7 @@ $picture = $data['picture'];
             </div>
         </form>
     </div>
+    </main>
     <?=$footer->render()?>
     <?=$bsStrip?>
 </body>

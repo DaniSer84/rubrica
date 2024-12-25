@@ -3,23 +3,23 @@
 require_once __DIR__ . "/common.php";
 
 $headParams = [
-    "title" => "Update Contact",
+    "title" => "Insert Contact",
     "style" => "../css/style.css",
     "script" => "../js/main.js"
 ];
 $head->setParams($headParams);
 
-$referer = $_SERVER["HTTP_REFERER"];
+$referer = $_SERVER["HTTP_REFERER"] ?? "home.php";
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it-IT">
 <?= $head->render(); ?>
-
 <?php
 $formRequest->sendRequest();
 ?>
+
 <body>
     <div class="container mb-5 border p-3 my-3" style="max-width:500px">
         <h4 class="mb-5 text-center">Aggiungi un contatto:</h4>
@@ -70,10 +70,9 @@ $formRequest->sendRequest();
             </div>
         </form>
     </div>
-    <?php 
-    // $footer->render();
-    // $bsStrip; 
-    ?>
+    <?php
+    $bsStrip
+        ?>
 </body>
 
 </html>

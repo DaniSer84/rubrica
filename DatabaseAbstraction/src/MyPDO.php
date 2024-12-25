@@ -62,7 +62,7 @@ class MyPDO extends \PDO implements DatabaseContract {
             $this->rollBack();
 
             if ($e->errorInfo[1] == 1062) {
-                echo "This email already exists. <button class='go-back-btn'>Indietro</button>";
+                echo "<p class='sql-err'>This email already exists. <button class='go-back-btn'>Indietro</button></p>";
                 die();
              }
 

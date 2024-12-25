@@ -127,7 +127,7 @@ class FormRequest {
 
     private function update($fileData) {
         
-        $fields = Helper::setUpdateFields($_POST);
+        $fields = Helper::setRelevantFields($_POST, 'update');
         var_dump($fields);
         $items = Helper::setItems($fields);
 

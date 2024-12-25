@@ -207,19 +207,12 @@ class Helper {
         
     }
 
-    static function setRelevantFields($data) {
+    static function setRelevantFields($data, $mode = 'insert') {
 
-        return array_filter($data, function ($key) {
-            return in_array($key, self::RELEVANT_FIELDS);
+        return array_filter($data, function ($key) use ($mode) {
+            return in_array($key, $mode === 'insert' ? self::RELEVANT_FIELDS : self::UPDATE_FIELDS);
         }, ARRAY_FILTER_USE_KEY);
 
     }
 
-    static function setUpdateFields($data) {
-
-        return array_filter($data, function ($key) {
-            return in_array($key, self::UPDATE_FIELDS);
-        }, ARRAY_FILTER_USE_KEY);
-
-    }
 }
