@@ -7,10 +7,14 @@ class FormValidation {
      // TODO: form validation
 
         // TODO: html validation -> https://www.the-art-of-web.com/html/html5-form-validation/
+            // TODO: phone number -> required / number of digits, etc..
+            // TODO: email 
+            // TODO: date
         
         // TODO: javascript validation: required fields
             // TODO: phone number -> country code
             // TODO: date of birth format -> italy
+            // TODO: email
             // https://www.html.it/articoli/validare-e-inviare-un-form-con-javascript/
             // https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation
 

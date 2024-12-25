@@ -69,8 +69,8 @@ $picture = $data['picture'];
                     <label for="cognome">Cognome</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="tel" class="form-control" id="telefono" name="phone_number" placeholder="02 2021010"
-                        value="<?= Helper::AccessToValue($contact, "phone_number") ?>" required minlength="8"
+                    <input type="tel" class="form-control" id="telefono" name="phone_number" placeholder="1234567890"
+                        value="<?= Helper::AccessToValue($contact, "phone_number") ?>" required minlength="8" pattern="^[0-9]+$"
                         >
                     <label for="telefono">Telefono</label>
                 </div>

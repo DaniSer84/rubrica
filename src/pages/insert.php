@@ -35,6 +35,7 @@ $formRequest->sendRequest();
             </div>
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="nome" name="name" placeholder="Mario" required>
+                <span></span>
                 <label for="nome">Nome</label>
             </div>
             <div class="form-floating mb-3">
@@ -43,12 +44,14 @@ $formRequest->sendRequest();
             </div>
             <div class="form-floating mb-3">
                 <input type="tel" class="form-control" id="telefono" name="phone_number" placeholder="1234567890"
-                    minlength="8" maxlength="14" required>
+                    minlength="8" maxlength="14" required pattern="^[0-9]+$">
+                <span></span>
                 <label for="telefono">Telefono</label>
             </div>
             <div class="form-floating mb-3">
                 <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com"
                     required>
+                <span></span>
                 <label for="email">Email</label>
             </div>
             <div class="form-floating mb-3">

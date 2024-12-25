@@ -19,13 +19,20 @@ header > * {
     display: flex;
     flex-wrap: wrap;
 }
-input:invalid {
+input:invalid, input:invalid:focus {
     border-color: #ff000054;
 }
 input:invalid:focus {
-    border-color: #ff000054;
-    border-width: 2px;
+    border-width: 3px;
 }
+  input:valid + span::after {
+    position: absolute;
+    top: 32%;
+    right: 10px;
+    content: "✓";
+    scale: 1.1;
+    color: #009000;
+  }
 .rubrica-container {
     max-height: 78vh;
     overflow-y: auto;
