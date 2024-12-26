@@ -128,14 +128,11 @@ class FormRequest {
     private function update($fileData) {
         
         $fields = Helper::setRelevantFields($_POST, 'update');
-        var_dump($fields);
         $items = Helper::setItems($fields);
 
         // TODO: fix type and null problems 
         
         $items[7] = $items[7] === '' ? null : $items[7];
-
-        var_dump($items);
 
         $id = $_POST["id"];
         $pictureItems = null;
@@ -150,7 +147,7 @@ class FormRequest {
             
         }
 
-        if ($_POST["clear-picture"]) {
+        if (isset($_POST["clear-picture"])) {
 
             $pictureItems = [
                 '',
