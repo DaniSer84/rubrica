@@ -31,11 +31,28 @@ class MyPDO extends \PDO implements DatabaseContract {
 
         $statement = $this->prepare( $command );
 
-        foreach ( $items as $item ) {
+        try {
 
-            $statement->execute($item);
+            foreach ( $items as $item ) {
+    
+                $statement->execute($item);
+                
+            }
+
+        } catch (\PDOException $e) {
+
+            // TODO: IMPROVE this 
+            if ($e->errorInfo[1] == 1062) {
+                echo "<p class='sql-err'>This email already exists. <button class='go-back-btn'>Indietro</button></p>";
+                die();
+             }
+
+            throw new \PDOException( "Transaction aborted" . $e->getMessage() );
             
         }
+
+
+        
         
     } 
 
@@ -61,6 +78,7 @@ class MyPDO extends \PDO implements DatabaseContract {
 
             $this->rollBack();
 
+            // TODO: IMPROVE this 
             if ($e->errorInfo[1] == 1062) {
                 echo "<p class='sql-err'>This email already exists. <button class='go-back-btn'>Indietro</button></p>";
                 die();
