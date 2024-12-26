@@ -27,12 +27,13 @@ $formRequest->sendRequest();
             <input type="text" name="back-to" value="<?= $referer ?>" hidden>
             <div class="mb-3 ">
                 <label for="file-upload" class="position-relative text-center">
-                    <img src="../img/user-account.png" class="w-50 m-auto add-img-file">
+                    <img src="../img/user-account.png" class="w-50 m-auto add-img-file" title="Inserisci un'immagine per il profilo.">
                 </label><br>
                 <span class="img-check d-none"></span>
                 <input type="file" id="file-upload" accept="image/png, image/jpeg" name="picture"
                     class="form-control d-none">
             </div>
+            <p class="required-fields">** I campi in rosso sono obbligatori! **</p>
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="nome" name="name" placeholder="Mario" required>
                 <span></span>
@@ -49,7 +50,7 @@ $formRequest->sendRequest();
                 <label for="telefono">Telefono</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com"
+                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" title="Per favore inserisci un indirizzo valido (es: nome@esempio.com)."
                     required>
                 <span></span>
                 <label for="email">Email</label>

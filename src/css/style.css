@@ -19,6 +19,14 @@ header > * {
     display: flex;
     flex-wrap: wrap;
 }
+.required-fields {
+    font-style: italic;
+    font-weight: 100;
+    color: gray;
+    font-size: small;
+    letter-spacing: 1px;
+    text-align: end ;
+}
 input:invalid, input:invalid:focus {
     border-color: #ff000054;
 }
