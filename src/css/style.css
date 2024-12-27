@@ -26,6 +26,8 @@ header > * {
     font-size: small;
     letter-spacing: 1px;
     text-align: end ;
+    color: #ff0000e5;
+    visibility: hidden;
 }
 input:invalid, input:invalid:focus {
     border-color: #ff000054;

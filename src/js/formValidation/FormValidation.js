@@ -4,7 +4,9 @@ export function setCustomMessages(form) {
     const email = form.elements.email;
     const name = form.elements.name;
     const phone = form.elements.phone;
+    const span = document.querySelector('.required-fields');
 
+    if(window.location.pathname === '/src/pages/insert.php') span.style.visibility = 'visible';
 
     email.addEventListener('input', (e) => {
 
@@ -64,6 +66,20 @@ export function setCustomMessages(form) {
             
         }
     
-})
-    
+    })
+
+    form.addEventListener('change', () => {
+
+        if (!form.checkValidity()) {
+
+           span.style.visibility = 'visible';
+
+        } else {
+
+            span.style.visibility = 'hidden';
+            
+        }
+        
+    })
+
 }

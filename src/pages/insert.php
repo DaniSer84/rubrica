@@ -22,7 +22,7 @@ $formRequest->sendRequest();
 
 <body>
     <div class="container mb-5 border p-3 my-3" style="max-width:500px">
-        <h4 class="mb-5 text-center">Aggiungi un contatto:</h4>
+        <h4 class="mb-4 text-center">Aggiungi un contatto:</h4>
         <form name="form-to-validate" action="" method="POST" enctype="multipart/form-data" class="needs-validation">
             <input type="text" name="back-to" value="<?= $referer ?>" hidden>
             <div class="mb-3 ">

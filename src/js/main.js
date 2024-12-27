@@ -38,3 +38,4 @@ if (tableHead) tableHead.addEventListener('click', (e) => {
 if (clearPic) Helper.HandleRemovePic(clearPic)
 
 if (formToValidate) setCustomMessages(formToValidate);
+

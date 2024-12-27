@@ -35,6 +35,7 @@ $referer = $_SERVER["HTTP_REFERER"];
     <?= $navbar->render() ?>
     <main>
         <div class="form-container">
+        <h4 class="mb-4 text-center">Modifica contatto:</h4>
             <form name="form-to-validate" action="" method="POST" enctype="multipart/form-data" class="needs-validation">
                 <div class="form-fields-container justify-content-between">
                     <input type="text" name="back-to" value="<?= $referer ?>" hidden>
@@ -91,12 +92,13 @@ $referer = $_SERVER["HTTP_REFERER"];
                             value="<?= Helper::AccessToValue($contact, "role") ?>">
                         <label for="qualifica">Qualifica</label>
                     </div>
-                    <div class="form-floating mb-5">
+                    <div class="form-floating mb-2">
                         <input type="date" class="form-control" id="data_nascita" name="birthdate"
                             placeholder="01/01/1980" value="<?= Helper::AccessToValue($contact, "birthdate") ?>">
                         <label for="data_nascita">Data di nascita</label>
                     </div>
                 </div>
+                <p class="required-fields">** I campi in rosso sono obbligatori! **</p>
                 <div class="button-container">
                     <a href="<?= $referer ?>" class="btn btn-secondary">Indietro</a>
                     <button type="submit" class="btn btn-primary">Modifica</button>
