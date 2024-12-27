@@ -23,7 +23,7 @@ $formRequest->sendRequest();
 <body>
     <div class="container mb-5 border p-3 my-3" style="max-width:500px">
         <h4 class="mb-5 text-center">Aggiungi un contatto:</h4>
-        <form action="" method="POST" enctype="multipart/form-data" class="needs-validation">
+        <form name="form-to-validate" action="" method="POST" enctype="multipart/form-data" class="needs-validation">
             <input type="text" name="back-to" value="<?= $referer ?>" hidden>
             <div class="mb-3 ">
                 <label for="file-upload" class="position-relative text-center">
@@ -35,41 +35,40 @@ $formRequest->sendRequest();
             </div>
             <p class="required-fields">** I campi in rosso sono obbligatori! **</p>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="nome" name="name" placeholder="Mario" required>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Mario" pattern="(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)" required>
                 <span></span>
-                <label for="nome">Nome</label>
+                <label for="name">Nome</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="cognome" name="surname" placeholder="Rossi">
+                <input type="text" class="form-control" id="surname" name="surname" placeholder="Rossi">
                 <label for="cognome">Cognome</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="tel" class="form-control" id="telefono" name="phone_number" placeholder="1234567890"
+                <input type="tel" class="form-control" id="phone" name="phone_number" placeholder="1234567890"
                     minlength="8" maxlength="14" required pattern="^[0-9]+$">
                 <span></span>
-                <label for="telefono">Telefono</label>
+                <label for="phone">Telefono</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" title="Per favore inserisci un indirizzo valido (es: nome@esempio.com)."
-                    required>
+                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" required>
                 <span></span>
                 <label for="email">Email</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="società" name="company" placeholder="CDM">
+                <input type="text" class="form-control" id="company" name="company" placeholder="CDM">
                 <label for="società">Società</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="qualifica" name="role" placeholder="Developer">
+                <input type="text" class="form-control" id="role" name="role" placeholder="Developer">
                 <label for="qualifica">Qualifica</label>
             </div>
             <div class="form-floating mb-5">
-                <input type="date" class="form-control" id="data_nascita" name="birthdate" placeholder="01/01/1980">
+                <input type="date" class="form-control" id="birthdate" name="birthdate" placeholder="01/01/1980">
                 <label for="data_nascita">Data di nascita</label>
             </div>
             <div class="button-container">
                 <button type="reset" class="btn btn-secondary">Resetta</button>
-                <a href="<?= $referer ?>"><button type="button" class="btn btn-danger">Annulla</button></a>
+                <a href="<?= $referer ?>" class="btn btn-danger" type="button">Annulla</a>
                 <button type="submit" class="btn btn-primary">Crea</button>
             </div>
         </form>

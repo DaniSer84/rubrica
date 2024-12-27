@@ -1,4 +1,5 @@
 import { Helper } from "./utilities/Helper.js";
+import { setCustomMessages } from "./formValidation/FormValidation.js";
 
 let deleteButton = document.querySelectorAll('.set-to-delete');
 let fileInput = document.querySelector('#file-upload')
@@ -6,6 +7,8 @@ let cardImg = document.querySelectorAll('.normal-card-img')
 let goBackBtn = document.querySelector('.go-back-btn')
 let tableHead = document.querySelector('#t-head') 
 let clearPic = document.querySelector('#clear-picture')
+
+const formToValidate = document.forms['form-to-validate'];
 
 // uploaded image check
 if (fileInput) Helper.ImagePreview(fileInput)
@@ -33,3 +36,5 @@ if (tableHead) tableHead.addEventListener('click', (e) => {
 })
 
 if (clearPic) Helper.HandleRemovePic(clearPic)
+
+if (formToValidate) setCustomMessages(formToValidate);

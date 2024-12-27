@@ -35,7 +35,7 @@ $referer = $_SERVER["HTTP_REFERER"];
     <?= $navbar->render() ?>
     <main>
         <div class="form-container">
-            <form action="" method="POST" enctype="multipart/form-data" class="needs-validation">
+            <form name="form-to-validate" action="" method="POST" enctype="multipart/form-data" class="needs-validation">
                 <div class="form-fields-container justify-content-between">
                     <input type="text" name="back-to" value="<?= $referer ?>" hidden>
                     <div class="mb-3 ">
@@ -61,9 +61,9 @@ $referer = $_SERVER["HTTP_REFERER"];
                         <label for="id">Id</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="nome" name="name" placeholder="Mario"
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Mario"
                             value="<?= Helper::AccessToValue($contact, "name") ?>" required>
-                        <label for="nome">Nome</label>
+                        <label for="name">Nome</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="cognome" name="surname" placeholder="Rossi"
@@ -71,10 +71,10 @@ $referer = $_SERVER["HTTP_REFERER"];
                         <label for="cognome">Cognome</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="tel" class="form-control" id="telefono" name="phone_number"
+                        <input type="tel" class="form-control" id="phone" name="phone_number"
                             placeholder="1234567890" value="<?= Helper::AccessToValue($contact, "phone_number") ?>"
                             required minlength="8" pattern="^[0-9]+$">
-                        <label for="telefono">Telefono</label>
+                        <label for="phone">Telefono</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com"
