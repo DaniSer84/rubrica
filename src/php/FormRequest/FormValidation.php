@@ -6,11 +6,6 @@ class FormValidation {
 
      // TODO: form validation
 
-        // TODO: html validation -> https://www.the-art-of-web.com/html/html5-form-validation/
-            // TODO: phone number -> required / number of digits, etc..
-            // TODO: email 
-            // TODO: date
-        
         // TODO: javascript validation: required fields
             // TODO: phone number -> country code
             // TODO: date of birth format -> italy
@@ -19,11 +14,14 @@ class FormValidation {
             // https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation
 
 
-        // TODO: PHP: htmlspecialchars, 
+        // TODO: Server-side form validation -> PHP: htmlspecialchars, etc...
             // https://www.slingacademy.com/article/how-to-validate-form-in-php/
             // https://www.w3docs.com/learn-php/php-form-validation.html
             // https://www.phptutorial.net/php-tutorial/php-form/
             // https://mailtrap.io/blog/php-form-validation/
+
+        // IMPROVMENTS:
+            // TODO: study regular expressions -> best email regex
 
 
     

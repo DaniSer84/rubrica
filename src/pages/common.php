@@ -46,7 +46,3 @@ $elNumber .= $elNumber === 1 ? " Contatto" : " Contatti";
 
 $formRequest = new FormRequest();
 
-
-
-// TODO: ADD TOtal number of contacts shown 
-

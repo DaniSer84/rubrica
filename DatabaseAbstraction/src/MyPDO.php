@@ -1,14 +1,11 @@
 <?php
 
-// questo namespace serve a far capire all'autoload in index di caricare il file -> per referenziare in maniera semplice le classi.
 namespace Daniser\Rubrica;
 
 class MyPDO extends \PDO implements DatabaseContract {
 
-    // definiamo il costruttore:
     public function __construct( DbConfig $dbConfig ) {
 
-        // stringa di connessione: 
         $dsn = $this->getDsn( $dbConfig->host, $dbConfig->port, $dbConfig->dbname);
         $username = $dbConfig->user;
         $password = $dbConfig->password;
@@ -51,19 +48,12 @@ class MyPDO extends \PDO implements DatabaseContract {
             
         }
 
-
-        
-        
     } 
 
-    // implementiamo la funzione per fare le transazioni:
     public function doWithTransaction(array $operations): void {
 
         try {
             
-            // in maniera molto generica la nostra astrazione attorno a MyPDO esegue lo statement andando a fare begin, commit e rollback se fallisce.
-
-            // prendiamo il nostro db (pdo) e facciamo
             $this->beginTransaction();
 
             foreach ($operations as $operation) {

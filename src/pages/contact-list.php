@@ -32,8 +32,8 @@ $navbar->setParams([
         <div class="container mt-5 pt-3">
         <h5 class='title text-center mb-3 mt-1'><?=$elNumber?></h5>
             <div class="add-contact-btn-container mt-4">
-                <a href="insert.php">
-                    <button type="button" class="btn btn-success add-contact-btn">
+                <a href="insert.php" class="add-contact-btn">
+                    <button type="button" class="btn btn-success">
                         Aggiungi un contatto
                     </button>
                 </a>

@@ -66,8 +66,8 @@ $navbar->setParams([
         </div>
         
         <hr>
-        <a href='insert.php'>
-            <button type='button' class='btn btn-success add-contact-btn'>
+        <a href='insert.php' class="add-contact-btn">
+            <button type='button' class='btn btn-success'>
                 Aggiungi un contatto
             </button>
         </a>
