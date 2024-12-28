@@ -20,6 +20,9 @@ $navbar->setParams([
     'search' => $searchInput->render($_GET['search'] ?? '')
 ]);
 
+$contactsCount = $data->rowCount();
+$contactsCount .= $contactsCount === 1 ? " Contatto" : " Contatti";
+
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +33,7 @@ $navbar->setParams([
     <?= $navbar->render() ?>
     <main>
         <div class="container mt-5 pt-3">
-        <h5 class='title text-center mb-3 mt-1'><?=$elNumber?></h5>
+        <h5 class='title text-center mb-3 mt-1'><?=$contactsCount?></h5>
             <div class="add-contact-btn-container mt-4">
                 <a href="insert.php" class="add-contact-btn">
                     <button type="button" class="btn btn-success">

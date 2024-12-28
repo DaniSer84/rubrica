@@ -5,6 +5,8 @@ export function setCustomMessages(form) {
     const name = form.elements.name;
     const phone = form.elements.phone;
 
+    // TODO: add limits for birthdate
+
 
     email.addEventListener('input', (e) => {
 
