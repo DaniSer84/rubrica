@@ -39,10 +39,8 @@ $deleteModal = new Modal([
 ]);
 
 $queryBuilder = new QueryBuilder();
-$data = $queryBuilder->getData();
-
-$elNumber = $data->rowCount();
-$elNumber .= $elNumber === 1 ? " Contatto" : " Contatti";
 
 $formRequest = new FormRequest();
+$data = $formRequest->sendRequest();
+
 

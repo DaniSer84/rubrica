@@ -115,6 +115,8 @@ class QueryBuilder {
 
             if ($filteredField === 'fullname') {
 
+                // TODO: use param for safety
+                
                 $fullname = explode(' ', $_GET['search']);
 
                 $query .= "name = '$fullname[0]' AND surname = '$fullname[1]'";

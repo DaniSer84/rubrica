@@ -18,12 +18,15 @@ class FormRequest {
 
     public function sendRequest() {
 
-        if ($_SERVER['REQUEST_METHOD'] === "GET" && count($_GET)) {
+        if ($_SERVER['REQUEST_METHOD'] === "GET") {
 
             if ($_SERVER['URL'] === '/src/pages/delete.php')
                 return $this->delete();
+
+            if (array_key_exists('item_id', $_GET) && $_SERVER['URL'] !== '/src/pages/common.php')
+                return $this->getOne();
             
-            return $this->get();
+            return $this->getData();
         }
 
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -31,8 +34,17 @@ class FormRequest {
         }
 
     }
+
+    private function getData() {
+
+        $queryBuilder = new QueryBuilder();
+        $data = $queryBuilder->getData();
+
+        return $data;
+        
+    }
     
-    public function get() {
+    public function getOne() {
         
         $id = $_GET["item_id"];
         
