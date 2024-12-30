@@ -70,7 +70,7 @@ class MyPDO extends \PDO implements DatabaseContract {
 
             // TODO: IMPROVE this 
             if ($e->errorInfo[1] == 1062) {
-                echo "<p class='sql-err'>This email already exists. <button class='go-back-btn'>Indietro</button></p>";
+                echo "<p class='sql-err'>Un contatto con questa email è già presente nel database. <button class='go-back-btn'>Indietro</button></p>";
                 die();
              }
 

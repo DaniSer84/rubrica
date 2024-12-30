@@ -3,7 +3,7 @@
 namespace Rubrica\Php\QueryBuilder;
 use Daniser\Rubrica\DatabaseContract;
 use Daniser\Rubrica\DatabaseFactory;
-use Daniser\Rubrica\Helper;
+use Rubrica\Php\Helper;
 
 class QueryBuilder {
 
@@ -40,7 +40,7 @@ class QueryBuilder {
         
         $query = "SELECT * FROM contacts";
 
-        return $this->db->getData($query, []);
+        return $this->db->getData($query);
 
     }
 

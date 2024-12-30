@@ -41,6 +41,5 @@ $deleteModal = new Modal([
 $queryBuilder = new QueryBuilder();
 
 $formRequest = new FormRequest();
-$data = $formRequest->sendRequest();
 
 

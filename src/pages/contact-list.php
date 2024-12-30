@@ -20,15 +20,16 @@ $navbar->setParams([
     'search' => $searchInput->render($_GET['search'] ?? '')
 ]);
 
-$contactsCount = $data->rowCount();
-$contactsCount .= $contactsCount === 1 ? " Contatto" : " Contatti";
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <?= $head->render() ?>
-
+<?php
+$data = $formRequest->sendRequest();
+$contactsCount = $data->rowCount();
+$contactsCount .= $contactsCount === 1 ? " Contatto" : " Contatti";
+?>
 <body>
     <?= $navbar->render() ?>
     <main>
@@ -55,7 +56,7 @@ $contactsCount .= $contactsCount === 1 ? " Contatto" : " Contatti";
                         <div class="card mb-3" style="max-width: 540px;">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img src="<?= $picture !== "" ? $picture : "https://placehold.co/200x200?text=Your+Pic" ?>"
+                                    <img src="<?= $picture !== null ? $picture : "https://placehold.co/200x200?text=Your+Pic" ?>"
                                         class="img-fluid normal-card-img" alt="...">
                                 </div>
                                 <div class="col-md-8 d-flex">

@@ -1,8 +1,8 @@
 <?php
 
-require_once __DIR__ . "/common.php";
+use Rubrica\Php\Helper;
 
-use Daniser\Rubrica\Helper;
+require_once __DIR__ . "/common.php";
 
 $head->setParams([
     "title" => "Contact",
@@ -35,7 +35,7 @@ $navbar->setParams([
         if ($contact): ?>
             <div class="container card-container">
                 <div class="card">
-                    <img src="<?= $picture[0] !== "" ? $picture[0] : "https://placehold.co/200x200?text=Your+Pic" ?>"
+                    <img src="<?= $picture[0] !== null ? $picture[0] : "https://placehold.co/200x200?text=Your+Pic" ?>"
                         class="card-img-top normal-card-img">
                     <div class="card-body">
                         <h5 class="card-title display-6 text-center mb-5"><?= $contact['name'] ?>     <?= $contact['surname'] ?>

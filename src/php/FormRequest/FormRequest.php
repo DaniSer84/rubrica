@@ -1,9 +1,9 @@
-<?php
+<?php 
 
 namespace Rubrica\Php\FormRequest;
 
-use Daniser\Rubrica\Helper;
 use Rubrica\Php\FileUpload\ImageUpload;
+use Rubrica\Php\Helper;
 use Rubrica\Php\QueryBuilder\QueryBuilder;
 
 class FormRequest {
@@ -37,8 +37,7 @@ class FormRequest {
 
     private function getData() {
 
-        $queryBuilder = new QueryBuilder();
-        $data = $queryBuilder->getData();
+        $data = $this->queryBuilder->getData();
 
         return $data;
         
@@ -74,6 +73,7 @@ class FormRequest {
         return $data;
     }
 
+ 
     public function post() {
 
         $backTo = $_POST['back-to'];
@@ -84,7 +84,7 @@ class FormRequest {
         if ($_SERVER['URL'] === '/src/pages/insert.php') {
 
            $this->insert($fileData);
-            
+
         }
 
         if ($_SERVER['URL'] === '/src/pages/update.php') {

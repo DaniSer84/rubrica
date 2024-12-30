@@ -1,8 +1,8 @@
 <?php
 
-require_once __DIR__ . '/common.php';
+use Rubrica\Php\Helper;
 
-use Daniser\Rubrica\Helper;
+require_once __DIR__ . '/common.php';
 
 $head->setParams([
     'title' => 'Rubrica',
@@ -19,15 +19,16 @@ $navbar->setParams([
     'search' => $searchInput->render($_GET['search'] ?? '')
 ]);
 
-$contactsCount = $data->rowCount();
-$contactsCount .= $contactsCount === 1 ? " Contatto" : " Contatti";
-
 ?>
 
 <!DOCTYPE html>
 <html lang='en'>
 <?= $head->render(); ?>
-
+<?php
+$data = $formRequest->sendRequest();
+$contactsCount = $data->rowCount();
+$contactsCount .= $contactsCount === 1 ? " Contatto" : " Contatti";
+?>
 <body>
     <?= $navbar->render(); ?>
     <main>
@@ -54,7 +55,7 @@ $contactsCount .= $contactsCount === 1 ? " Contatto" : " Contatti";
                         <?php
                         while ($contact = $data->fetch()) {
                             $picture = $queryBuilder->getPicture($contact['id'])->fetch();
-                            $hasImage = $picture[0] !== '' ? 'Yes' : 'No';
+                            $hasImage = $picture[0] !== null ? 'Yes' : 'No';
                             echo Helper::createContactTable($contact, $hasImage);
                         }
                         ?>
