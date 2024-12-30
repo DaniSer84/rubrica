@@ -32,7 +32,7 @@ class ImageUpload {
     public function __construct($data) {
 
         $this->data = $data;
-        $this->name = str_replace(' ', '-', $data["name"]);
+        $this->name = preg_replace('/[^a-zA-Z0-9\.\-_]/', '_', $data['name']);;
         $this->tmp = $data['tmp_name'];
         $this->mimeType = $this->getMimeType();
 

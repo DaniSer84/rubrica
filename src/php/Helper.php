@@ -218,4 +218,22 @@ class Helper {
         
     }
 
+    public static function setValue($field) {
+
+        if ($field === 'file_data') {
+
+            return  isset($_SESSION['file_data']) && $_SESSION['file_data'][0] !== null ? $_SESSION['file_data'][0] : "../img/user-account.png";
+            
+        }
+
+        return  $_SESSION['contact_data'][$field] ?? '';
+        
+    }
+
+    public static function setError($field) {
+
+        return isset($_SESSION['errors'][$field]) ? FormValidation::ERRORS[$_SESSION['errors'][$field]] : '';
+        
+    }
+
 }

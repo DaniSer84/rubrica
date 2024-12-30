@@ -56,9 +56,15 @@ class MyPDO extends \PDO implements DatabaseContract {
             
             $this->beginTransaction();
 
-            foreach ($operations as $operation) {
+            foreach ($operations as $command => $items) {
 
-                $this->exec($operation);
+                $statement = $this->prepare($command);
+
+                foreach ($items as $item) {
+
+                    $statement->execute($item);
+                    
+                }
                 
             }
 

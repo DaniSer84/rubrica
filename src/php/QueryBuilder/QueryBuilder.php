@@ -32,6 +32,12 @@ class QueryBuilder {
 
         $query = "SELECT * FROM contacts WHERE id = ?";
 
+        if ($id === 'last') {
+
+            return $this->db->getData("SELECT * FROM contacts ORDER BY id DESC LIMIT 1", []) ;
+            
+        }
+
         return $this->db->getData($query, [$id]);
 
     }
@@ -54,17 +60,18 @@ class QueryBuilder {
 
     public function insertContact($contactData, $fileData) {
 
-        $relevantKeys = Helper::setRelevantFields($contactData);
-        $fields = Helper::setFields($relevantKeys);
-        $values = Helper::setQueryValues($relevantKeys);
-    
-        $contactQuery = "INSERT INTO contacts ( $fields ) VALUES ( $values )";
+        $fields = Helper::setFields($contactData);
+        $values = Helper::setQueryValues($contactData);
+
+        $marks = Helper::setMarks($values);
+        
+        $contactQuery = "INSERT INTO contacts ( $fields ) VALUES ( $marks )";
         $pictureQuery = "INSERT INTO pictures ( content, type, contact_id ) 
-                         VALUES ( '$fileData[0]', '$fileData[1]', last_insert_id() )";
+                         VALUES ( ?, ?, last_insert_id() )";
 
         return $this->db->doWithTransaction([
-            $contactQuery,
-            $pictureQuery
+            $contactQuery => [$values],
+            $pictureQuery => [$fileData]
         ]);
         
     }

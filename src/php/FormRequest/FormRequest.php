@@ -10,9 +10,12 @@ class FormRequest {
 
     private QueryBuilder $queryBuilder;
 
+    private FormValidation $formValidation;
+
     public function __construct() {
 
         $this->queryBuilder = new QueryBuilder();
+        $this->formValidation = new FormValidation();
         
     }
 
@@ -93,8 +96,7 @@ class FormRequest {
             
         }
         
-        
-        header("Location: $backTo");
+        header('Location: insertSuccess.php');
         exit;
         
     }
@@ -133,20 +135,46 @@ class FormRequest {
 
     private function insert($fileData) {
 
-        $this->queryBuilder->insertContact($_POST, $fileData);
+        $sanitazedData = $this->formValidation->sanitizeInput($_POST);
+
+        $checkedData = $this->formValidation->validateData($sanitazedData);
+
+        if (count($checkedData[1])) {
+
+            $_SESSION['file_data'] = $fileData;
+            $_SESSION['contact_data'] = $sanitazedData;
+            $_SESSION['errors'] = $checkedData[1];
+            $_SESSION['checked_data'] = $checkedData[0];
+            
+            header('Refresh:0');
+            die();
+        }
+        
+        $this->queryBuilder->insertContact($checkedData[0], $fileData);
         
     }
 
     private function update($fileData) {
         
-        $fields = Helper::setRelevantFields($_POST, 'update');
-        $items = Helper::setItems($fields);
+        $sanitazedData = $this->formValidation->sanitizeInput($_POST, 'update');
 
-        // TODO: fix type and null problems 
+        $checkedData = $this->formValidation->validateData($sanitazedData);
+
         
-        $items[7] = $items[7] === '' ? null : $items[7];
+        if (count($checkedData[1])) {
+            
+            $_SESSION['contact_data'] = $sanitazedData;
+            $_SESSION['file_data'] = $fileData;
+            $_SESSION['errors'] = $checkedData[1];
+            $_SESSION['checked_data'] = $checkedData[0];
+            
+            header('Refresh:0');
+            die();
+            
+        }
 
         $id = $_POST["id"];
+        $_SESSION['id'] = $id;
         $pictureItems = null;
 
         if ($fileData[0] && $fileData[1]) {
@@ -162,8 +190,8 @@ class FormRequest {
         if (isset($_POST["clear-picture"])) {
 
             $pictureItems = [
-                '',
-                '',
+                null,
+                null,
                 $id
             ];
 
@@ -173,7 +201,11 @@ class FormRequest {
             $this->queryBuilder->updatePicture([$pictureItems]);
         }
 
+        array_unshift($checkedData[0], $sanitazedData['active']);
+        $items = Helper::setItems($checkedData[0]);
         array_push($items, $id);
+
+        $items = array_map(fn($v) => $v !== '' ? $v : null , $items);
 
         $this->queryBuilder->updateContact([$items]);
 

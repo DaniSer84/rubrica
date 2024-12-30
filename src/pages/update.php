@@ -1,8 +1,8 @@
-<?php
+<?php session_start();
+
+use Rubrica\Php\Helper;
 
 require_once __DIR__ . "/common.php";
-
-use Daniser\Rubrica\Helper;
 
 $head->setParams([
     "title" => "Update Contact",
@@ -36,12 +36,12 @@ $referer = $_SERVER["HTTP_REFERER"];
     <main>
         <div class="form-container">
         <h4 class="mb-4 text-center">Modifica contatto:</h4>
-            <form name="form-to-validate" action="" method="POST" enctype="multipart/form-data" class="needs-validation">
+            <form name="form-to-validate" action="" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                 <div class="form-fields-container justify-content-between">
                     <input type="text" name="back-to" value="<?= $referer ?>" hidden>
                     <div class="mb-3 ">
                         <label for="file-upload" class="position-relative text-center mb-4">
-                            <img src="<?= $picture[0] !== "" ? $picture[0] : "https://placehold.co/200x200?text=Your+Pic" ?>"
+                            <img src="<?= $picture[0] !== null ? $picture[0] : "https://placehold.co/200x200?text=Your+Pic" ?>"
                                 class="w-50 m-auto add-img-file img-fluid rounded-circle">
                         </label><br>
                         <span class="img-check d-none"></span>
@@ -61,22 +61,26 @@ $referer = $_SERVER["HTTP_REFERER"];
                             value="<?= Helper::AccessToValue($contact, "id") ?>" readonly>
                         <label for="id">Id</label>
                     </div>
+                    <span class="error"><?=Helper::setError('name')?></span>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="name" name="name" placeholder="Mario"
                             value="<?= Helper::AccessToValue($contact, "name") ?>" required>
                         <label for="name">Nome</label>
                     </div>
+                    <span class="error"><?=Helper::setError('surname')?></span>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="cognome" name="surname" placeholder="Rossi"
                             value="<?= Helper::AccessToValue($contact, "surname") ?>">
                         <label for="cognome">Cognome</label>
                     </div>
+                    <span class="error"><?=Helper::setError('phone_number')?></span>
                     <div class="form-floating mb-3">
                         <input type="tel" class="form-control" id="phone" name="phone_number"
                             placeholder="1234567890" value="<?= Helper::AccessToValue($contact, "phone_number") ?>"
                             required minlength="8" pattern="^[0-9]+$">
                         <label for="phone">Telefono</label>
                     </div>
+                    <span class="error"><?=Helper::setError('email')?></span>
                     <div class="form-floating mb-3">
                         <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com"
                             value="<?= Helper::AccessToValue($contact, "email") ?>" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
@@ -92,6 +96,7 @@ $referer = $_SERVER["HTTP_REFERER"];
                             value="<?= Helper::AccessToValue($contact, "role") ?>">
                         <label for="qualifica">Qualifica</label>
                     </div>
+                    <span class="error"><?=Helper::setError('birthdate')?></span>
                     <div class="form-floating mb-2">
                         <input type="date" class="form-control" id="data_nascita" name="birthdate"
                             placeholder="01/01/1980" value="<?= Helper::AccessToValue($contact, "birthdate") ?>">

@@ -43,6 +43,14 @@ input:invalid:focus {
     scale: 1.1;
     color: #009000;
   }
+.error {
+    padding-left: 10px;
+    font-style: italic;
+    font-weight: 500;
+    color: #ff0000e5;
+}
+  
+
 .rubrica-container {
     max-height: 78vh;
     overflow-y: auto;
